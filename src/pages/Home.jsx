@@ -20,7 +20,7 @@ export default function Home() {
       <Hero onOpenLightbox={setLightbox} />
       <Marquee onOpenLightbox={setLightbox} />
       <About />
-      <Pinned />
+      {/* <Pinned /> */}
       <Gallery onOpenLightbox={setLightbox} preview />
       <Commissions />
       <section className="py-20 md:py-28 px-5" style={{ background: 'radial-gradient(ellipse 60% 50% at 15% 15%, rgba(228,168,168,.4), transparent 60%), #F6EDE4' }}>
