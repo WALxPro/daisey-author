@@ -287,19 +287,19 @@ export function Commissions({ bare = false }) {
 
                   {/* BACK — full details */}
                   <div
-                    className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-gold flex flex-col p-6 text-cream"
+                    className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-gold flex flex-col p-4 text-cream"
                     style={{
                       background: `radial-gradient(ellipse 70% 50% at 75% 10%, rgba(198,58,58,.3), transparent 60%), linear-gradient(160deg,#3A1119,#241016 60%,#1C0A0F)`,
                     }}
                   >
-                    <h3 className="font-serif text-2xl text-[#FBF2E6]">
+                    <h3 className="font-serif text-xl text-[#FBF2E6]">
                       {t.title}
                     </h3>
-                    <div className="font-serif italic text-goldbright text-xl mt-1">
+                    <div className="font-serif italic text-goldbright text-lg ">
                       {t.price}
                     </div>
                     <span className="block w-14 h-px bg-goldbright/50 my-4" />
-                    <ul className="grid gap-2 text-[.88rem] text-creamdim">
+                    <ul className="grid gap-2 text-[.8rem] text-creamdim">
                       {t.points.map((p) => (
                         <li key={p}>
                           <span className="text-goldbright mr-2">✦</span>
