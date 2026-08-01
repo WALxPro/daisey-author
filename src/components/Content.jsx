@@ -10,24 +10,29 @@ import { SectionHead } from "./Sections";
 
 export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
   const [filter, setFilter] = useState("all");
+  const [numCols, setNumCols] = useState(3);
   const gridRef = useRef(null);
 
-  // VIP tile entrance: clip-reveal + scale, staggered
+  useEffect(() => {
+    function updateCols() {
+      if (window.innerWidth >= 1024) setNumCols(3);
+      else if (window.innerWidth >= 640) setNumCols(2);
+      else setNumCols(1);
+    }
+    updateCols();
+    window.addEventListener("resize", updateCols);
+    return () => window.removeEventListener("resize", updateCols);
+  }, []);
+
   useEffect(() => {
     const rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const tiles = gridRef.current
-      ? gridRef.current.querySelectorAll(".g-tile")
-      : [];
+    const tiles = gridRef.current ? gridRef.current.querySelectorAll(".g-tile") : [];
     if (!tiles.length) return;
     if (rm) {
       gsap.set(tiles, { clearProps: "all" });
       return;
     }
-    gsap.set(tiles, {
-      opacity: 0,
-      scale: 0.94,
-      clipPath: "inset(12% 12% 12% 12%)",
-    });
+    gsap.set(tiles, { opacity: 0, scale: 0.94, clipPath: "inset(12% 12% 12% 12%)" });
     const st = ScrollTrigger.batch(tiles, {
       start: "top 90%",
       once: true,
@@ -44,22 +49,110 @@ export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
     });
     ScrollTrigger.refresh();
     return () => st.forEach((t) => t.kill());
-  }, [filter]);
-  const visible = artworks.filter((a) => filter === "all" || a.cat === filter);
+  }, [filter, numCols]);
+
+  const items = artworks.filter((a) => filter === "all" || a.cat === filter);
+
+  function distribute(list, cols) {
+    const buckets = Array.from({ length: cols }, () => []);
+    list.forEach((item, i) => buckets[i % cols].push(item));
+    return buckets;
+  }
+
+  const renderTile = (a) => (
+    <figure
+      key={a.id}
+      onClick={() => onOpenLightbox?.(a)}
+      className="
+        g-tile
+        group
+        relative
+        w-full
+        overflow-hidden
+        cursor-pointer
+        bg-[var(--paper-deep)]
+        border
+        border-[var(--gold-soft)]
+        mb-[25px]
+        shadow-[0_10px_28px_rgba(43,28,20,.12)]
+        transition-shadow
+        duration-300
+        hover:shadow-[0_16px_38px_rgba(43,28,20,.2)]
+      "
+    >
+      <img
+        src={a.src}
+        alt={a.title}
+        loading="lazy"
+        decoding="async"
+        className="block w-full h-auto transition-transform duration-700 group-hover:scale-[1.025]"
+      />
+
+      {/* Burgundy hover gradient */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to top, var(--burgundy-deep) 0%, rgba(85,22,32,.55) 40%, transparent 68%)",
+        }}
+      />
+
+      {/* Caption block: title / category / short desc */}
+      <figcaption
+        className="
+          absolute left-5 right-5 bottom-5 z-[2]
+          opacity-0 translate-y-3
+          group-hover:opacity-100 group-hover:translate-y-0
+          transition-all duration-400
+        "
+      >
+        <h3 className="font-serif text-xl text-[var(--paper)]">{a.title}</h3>
+        <span className="block italic text-sm text-[var(--gold)] mt-0.5">
+          {a.catLabel}
+        </span>
+        {a.desc && (
+          <span className="block text-xs text-[var(--paper)]/75 mt-1">
+            {a.desc}
+          </span>
+        )}
+      </figcaption>
+
+      <span
+        className="
+          absolute inset-0 border border-transparent
+          group-hover:inset-2 group-hover:border-[var(--gold)]/60
+          transition-all duration-300 pointer-events-none z-[2]
+        "
+      />
+    </figure>
+  );
+
+  const renderGrid = (list) => {
+    const columns = distribute(list, numCols);
+    return (
+      <div className="flex gap-5 sm:gap-[50px] max-w-[1350px] mx-auto  px-5 sm-px-0">
+        {columns.map((col, idx) => (
+          <div key={idx} className="flex-1 flex flex-col gap-5 sm:gap-6 min-w-0">
+            {col.map((a) => renderTile(a))}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <section
       id="portfolio"
-      className="py-20 md:py-32"
+      className="py-20 md:py-32 "
       style={{
         background: `radial-gradient(ellipse 70% 50% at 80% 0%, rgba(198,58,58,.2), transparent 60%),
         radial-gradient(ellipse 55% 45% at 5% 100%, rgba(217,172,85,.12), transparent 60%),
         linear-gradient(180deg,#241016,#1C0A0F 60%,#241016)`,
       }}
     >
-      <div className="w-full ">
+      <div className="w-full" ref={gridRef}>
         {!bare && (
           <SectionHead
-            dark
             eyebrow="The Gallery"
             title={preview ? "A Glimpse Into My" : "Selected"}
             shimmerWord={preview ? "World" : "Works"}
@@ -68,140 +161,29 @@ export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
           </SectionHead>
         )}
 
-     <div
-  className="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mb-8 sm:mb-12 reveal"
-  role="tablist"
->
-  {filters.map((f) => (
-    <button
-      key={f.key}
-      onClick={() => setFilter(f.key)}
-      className={`font-caps text-[.58rem] sm:text-[.68rem] tracking-[.14em] sm:tracking-[.2em] uppercase px-3 py-2 sm:px-5 sm:py-2.5 border transition-all ${
-        filter === f.key
-          ? "text-white border-brand shadow-[0_6px_16px_rgba(198,58,58,.35)] sm:shadow-[0_8px_22px_rgba(198,58,58,.4)] bg-gradient-to-r from-brand to-[#A82626]"
-          : "bg-white/5 border-goldbright/40 text-creamdim hover:text-goldlight hover:border-goldlight"
-      }`}
-    >
-      {f.label}
-    </button>
-  ))}
-</div>
-
-        <div
-          ref={gridRef}
-          className="
-    grid
-    grid-cols-1
-    sm:grid-cols-3
-    lg:grid-cols-5
-    gap-0
-  "
-        >
-          {visible.map((a) => (
-            <figure
-              key={a.id}
-              onClick={() => onOpenLightbox(a)}
-              className="
-        g-tile
-        group
-        relative
-        aspect-square
-        overflow-hidden
-        cursor-pointer
-        bg-winedark
-        will-change-transform
-      "
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mb-8 sm:mb-12" role="tablist">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`font-caps text-[.58rem] sm:text-[.68rem] tracking-[.14em] sm:tracking-[.2em] uppercase px-3 py-2 sm:px-5 sm:py-2.5 border rounded-full transition-all ${
+                filter === f.key
+                  ? "text-[var(--paper)] border-[var(--burgundy)] bg-[var(--burgundy)] shadow-[0_6px_16px_rgba(122,34,48,.35)]"
+                  : "bg-[var(--paper-deep)] border-[var(--gold-soft)] text-[var(--ink-soft)] hover:text-[var(--burgundy)] hover:border-[var(--gold)]"
+              }`}
             >
-              <img
-                src={a.src}
-                alt={a.title}
-                loading="lazy"
-                className="
-          absolute
-          inset-0
-          w-full
-          h-full
-          object-cover
-          object-top
-          transition-transform
-          duration-700
-          group-hover:scale-[1.07]
-        "
-              />
-
-              <div
-                className="
-          absolute inset-0
-          opacity-0
-          group-hover:opacity-100
-          transition-opacity
-          duration-500
-          z-[1]
-        "
-                style={{
-                  background:
-                    "linear-gradient(200deg, rgba(36,16,22,0) 40%, rgba(18,6,8,.75))",
-                }}
-              />
-
-              <span
-                className="
-          absolute
-          left-1/2 top-1/2
-          -translate-x-1/2 -translate-y-1/2
-          scale-75 opacity-0
-          group-hover:opacity-100
-          group-hover:scale-100
-          transition-all duration-300
-          w-[58px] h-[58px]
-          rounded-full
-          border-[1.5px] border-white/90
-          flex items-center justify-center
-          text-white text-xl
-          bg-white/10 backdrop-blur
-          z-[2]
-          hover:!bg-brand
-          hover:!border-brand
-        "
-              >
-                <FiPlus />
-              </span>
-
-              <div
-                className="
-          absolute left-3.5 bottom-3 z-[2]
-          opacity-0 translate-y-2
-          group-hover:opacity-100
-          group-hover:translate-y-0
-          transition-all duration-[400ms]
-        "
-              >
-                <h3 className="font-serif text-lg text-[#FBF2E6]">{a.title}</h3>
-
-                <span className="font-caps text-[.55rem] tracking-[.24em] uppercase text-goldlight">
-                  {a.catLabel}
-                </span>
-              </div>
-
-              <span
-                className="
-          absolute inset-0
-          group-hover:inset-1.5
-          border border-transparent
-          group-hover:border-goldlight/70
-          transition-all duration-300
-          pointer-events-none
-          z-[2]
-        "
-              />
-            </figure>
+              {f.label}
+            </button>
           ))}
         </div>
+
+        {renderGrid(items)}
+
         {preview && (
-          <div className="text-center mt-10 reveal">
+          <div className="text-center mt-10">
             <Link
               to="/portfolio"
-              className="btn border-goldbright/60 text-cream bg-white/5 hover:bg-gold hover:text-winedark hover:border-gold"
+              className="btn border-[var(--gold-soft)] text-[var(--ink)] bg-[var(--paper-deep)] hover:bg-[var(--gold)] hover:text-[var(--paper)] hover:border-[var(--gold)]"
             >
               See Full Portfolio ✦
             </Link>

@@ -192,19 +192,71 @@ export function InstagramSection({ compact }) {
     <section className={`${compact ? 'py-16 md:py-24' : 'pb-16 md:pb-24'} text-cream relative overflow-hidden`} style={{ background: 'linear-gradient(140deg,#4A141B,#5A1820 55%,#3A1119)' }}>
       {!compact && <IgScatter />}
       <div className="max-w-[1240px] mx-auto px-5 md:px-8">
-        {/* tagged-by marquee */}
-        <div className="relative overflow-hidden mt-8 reveal">
-          <p className="font-caps text-[.6rem] tracking-[.3em] uppercase text-goldbright text-center mb-4">Tagged By Authors</p>
-          <div className="flex gap-4 w-max animate-marquee hover:[animation-play-state:paused]">
-            {[...taggedBy, ...taggedBy].map((t, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white/5 border border-goldbright/30 px-4 py-2.5 flex-none">
-                <img src={t.img} alt="" loading="lazy" className="w-9 h-9 object-cover object-top rounded-full border border-goldbright/50" />
-                <div className="text-[.78rem]"><b className="text-goldlight font-medium">📌 {t.handle}</b><span className="block text-creamdim">"{t.quote}"</span></div>
+        {/* Trusted-by testimonials — static grid replacing the old marquee */}
+        <p className="font-caps text-[.6rem] tracking-[.3em] uppercase text-goldbright text-center mb-3 reveal">
+          Client Feedback
+        </p>
+        <h3 className="font-serif text-2xl sm:text-3xl text-[#FBF2E6] text-center mb-10 sm:mb-14 reveal">
+          Trusted by Authors Worldwide
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 reveal">
+          {testimonials.map((t, i) => (
+            <figure
+              key={i}
+              className="
+                relative
+                flex flex-col
+                bg-white/5
+                border border-goldbright/25
+                rounded-lg
+                p-6 sm:p-7
+                shadow-[0_16px_38px_rgba(0,0,0,.28)]
+              "
+            >
+              <div className="flex gap-1 text-goldbright text-sm mb-3" aria-hidden="true">
+                {"★★★★★".split("").map((s, j) => (
+                  <span key={j}>{s}</span>
+                ))}
               </div>
-            ))}
-          </div>
+
+              <blockquote className="text-[.92rem] leading-relaxed text-creamdim italic mb-6 flex-1">
+                "{t.quote}"
+              </blockquote>
+
+              <figcaption className="flex items-center gap-3 pt-5 border-t border-goldbright/15">
+                <div
+                  className="
+                    w-11 h-11
+                    rounded-full
+                    flex items-center justify-center
+                    font-caps text-[.7rem]
+                    text-winedark
+                    bg-gradient-to-br from-goldbright to-[#A87A2C]
+                    flex-none
+                  "
+                  aria-hidden="true"
+                >
+                  {t.initials}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[.9rem] font-medium text-[#FBF2E6] truncate">
+                    {t.name}
+                  </div>
+                  <div className="text-[.72rem] text-goldlight truncate">
+                    {t.role}
+                  </div>
+                </div>
+              </figcaption>
+
+              <div className="mt-3 text-[.68rem] tracking-[.1em] uppercase text-creamdim/60">
+                {t.project}
+              </div>
+            </figure>
+          ))}
         </div>
-        <div className="text-center mt-10 reveal">
+
+        <div className="text-center mt-12 reveal">
           {compact && (
             <a href={INSTAGRAM} target="_blank" rel="noreferrer"
               className="inline-flex items-center gap-2.5 font-caps text-[.7rem] tracking-[.2em] uppercase text-white px-8 py-4 rounded-full transition-transform hover:scale-105 shadow-[0_12px_30px_rgba(0,0,0,.35)]"

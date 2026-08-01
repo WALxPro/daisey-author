@@ -67,7 +67,9 @@ export function SectionHead({ eyebrow, title, shimmerWord, children, dark }) {
         {title} <span className="shimmer">{shimmerWord}</span>
       </h2>
       {children && (
-        <p className={`mt-3.5 text-sm leading-relaxed sm:text-[1.20rem] sm:leading-[1.6] px-3 ${dark ? "text-creamdim" : "text-inksoft"}`}>
+        <p
+          className={`mt-3.5 text-sm leading-relaxed sm:text-[1.20rem] sm:leading-[1.6] px-3 ${dark ? "text-creamdim" : "text-inksoft"}`}
+        >
           {children}
         </p>
       )}
@@ -239,14 +241,27 @@ export function About() {
         <div className="reveal">
           <span className="eyebrow">About The Artist</span>
           <h2 className="font-serif font-medium text-burgundy text-2xl md:text-5xl leading-tight my-5">
-            An Artist Who Believes Every{" "}
-            <span className="shimmer">Character</span>Deserves a Face.
+            Bringing Stories to Life, One
+            <span className="shimmer"> Illustration</span> at a Time.
           </h2>
-          <p className="text-inksoft max-w-[56ch] text-sm leading-relaxed sm:text-[1.20rem] sm:leading-[1.6]">
-            I'm a self-taught illustrator who fell in love with storytelling
-            through art. Every piece I create is 100% hand-drawn, no AI, no
-            shortcuts just hours of sketching, coloring, and care poured into
-            bringing your characters to life.
+          <p className="text-inksoft max-w-[56ch] text-sm leading-relaxed sm:text-[1.20rem] sm:leading-[1.6] my-5">
+            I'm Daisy, a fantasy and romance illustrator passionate about
+            turning characters, emotions, and stories into memorable visual art.
+            Every piece I create is carefully hand-drawn with attention to
+            detail, ensuring that each character feels authentic, expressive,
+            and alive. My journey as an artist began with a love for
+            storytelling and a fascination with the worlds hidden inside books.
+          </p>
+          <p className="text-inksoft max-w-[56ch] text-sm leading-relaxed sm:text-[1.20rem] sm:leading-[1.6] mb-5">
+            Over the years, I've had the privilege of working with authors,
+            readers, and creatives from around the world, helping them give a
+            face to the characters they've imagined for so long. Whether it's a
+            beloved book character, an original fantasy hero, or a heartfelt
+            romantic scene, my goal is always the same:
+          </p>
+          <p className=" shimmer font-semibold max-w-[56ch] text-sm leading-relaxed sm:text-[1rem] sm:leading-[1.6]">
+            to create artwork that captures emotion, tells a story, and leaves a
+            lasting impression.
           </p>
 
           <div className="flex flex-wrap gap-9 mt-10 mb-[50px]">
@@ -277,7 +292,7 @@ export function About() {
                 100%
               </b>
               <span className="text-[.7rem] tracking-[.16em] uppercase text-inksoft">
-                Hand Drawn — No AI
+                Hand Drawn No AI
               </span>
             </div>
           </div>

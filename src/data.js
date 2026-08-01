@@ -2,20 +2,273 @@ export const BRAND = 'Daisyy Sketches'
 export const TAGLINE = 'Bringing Your Characters to Life, One Sketch at a Time'
 export const INSTAGRAM = 'https://www.instagram.com/daisyy_sketches'
 export const IG_HANDLE = '@daisyy_sketches'
-export const EMAIL = 'hello@daisyysketches.art'
+export const EMAIL = 'daisyylines@gmail.com'
 
+ 
 export const artworks = [
-  { id: 'swanston', src: '/images/book-cover-swanston.jpg', title: 'The Last Lamb of Swanston St.', cat: 'cover', catLabel: 'Book Cover', span: 'wide tall', note: 'Custom Book Cover — Romance Fantasy, 2025' },
-  { id: 'wolfborn', src: '/images/character-wolfborn.jpg', title: 'Wolfborn', cat: 'character', catLabel: 'Character', span: '', note: 'Character Portrait — Fantasy, 2025' },
-  { id: 'guardian', src: '/images/character-dreadlock.jpg', title: 'The Guardian', cat: 'character', catLabel: 'Character', span: '', note: 'Character Portrait — Urban Fantasy, 2025' },
-  { id: 'icerink', src: '/images/couple-icerink.jpg', title: 'Rink-side Kiss', cat: 'couple', catLabel: 'Couple', span: 'tall', note: 'Couple Illustration — Sports Romance, 2025' },
-  { id: 'redcarpet', src: '/images/couple-redcarpet.jpg', title: 'Red Carpet Night', cat: 'couple', catLabel: 'Couple', span: '', note: 'Couple Illustration — Contemporary Romance, 2025' },
-  { id: 'roseline', src: '/images/character-roseline.jpg', title: 'Roseline', cat: 'character', catLabel: 'Character', span: 'tall', note: 'Full-Body Character — Contemporary, 2025' },
-  { id: 'waltz', src: '/images/couple-oliver-cindy.jpg', title: 'Spotlight Waltz', cat: 'couple', catLabel: 'Couple', span: '', note: 'Couple Illustration — Romance, 2025' },
-  { id: 'trio', src: '/images/character-trio.jpg', title: 'The Trio', cat: 'character', catLabel: 'Character', span: 'wide', note: 'Group Character Art — Urban Fantasy, 2025' },
-  { id: 'trio', src: '/images/couple-shane-maddie.jpg', title: 'The Trio', cat: 'character', catLabel: 'Character', span: 'wide', note: 'Group Character Art — Urban Fantasy, 2025' },
-]
+  // =========================================
+  // 1. COUPLE ILLUSTRATIONS
+  // =========================================
 
+  {
+    id: 'icerink',
+    src: '/images/couple-icerink.jpg',
+    title: 'Rink-side Kiss',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Sports Romance, 2025',
+  },
+  {
+    id: 'redcarpet',
+    src: '/images/couple-redcarpet.jpg',
+    title: 'Red Carpet Night',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'waltz',
+    src: '/images/couple-oliver-cindy.jpg',
+    title: 'Spotlight Waltz',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Romance, 2025',
+  },
+  {
+    id: 'shanemaddie',
+    src: '/images/couple-shane-maddie.jpg',
+    title: 'Storm on the Shore',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'michaelbianca',
+    src: '/images/MICHAEL-BIANCA.jpg',
+    title: 'City Lights Embrace',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'katiemichael',
+    src: '/images/Katie-Michael.jpg',
+    title: 'Quiet Morning',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'jefflyranna',
+    src: '/images/Jeff-and-Lyranna.jpg',
+    title: 'Between Worlds',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Fantasy Romance, 2025',
+  },
+  {
+    id: 'royalbastards',
+    src: '/images/Half-body-Couple-art.jpg',
+    title: 'Royal Bastards MC',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Motorcycle Club Romance, 2025',
+  },
+  {
+    id: 'behindglass',
+    src: '/images/ADULT-CHARACTER-ILLUSTRATION.jpg.jpeg',
+    title: 'Behind Glass',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Prison Romance, 2025',
+  },
+  {
+    id: 'yellowcouch',
+    src: '/images/Black-couple-art.jpg',
+    title: 'Yellow Couch Nights',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'streetlean',
+    src: '/images/Couple-character.jpeg',
+    title: 'Street Lean',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Urban Romance, 2025',
+  },
+  {
+    id: 'dockatdusk',
+    src: '/images/TEEN-COUPLE-ILLUSTRATION.jpg.jpeg',
+    title: 'Dock at Dusk',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Young Adult Romance, 2025',
+  },
+  {
+    id: 'skylinehold',
+    src: '/images/Close-up-version.jpg',
+    title: 'Skyline Hold',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+
+  // NOTE: 2 more couple artworks to be added here once images are provided.
+
+  // =========================================
+  // 2. FULL-BODY CHARACTER DESIGNS
+  // =========================================
+
+  {
+    id: 'roseline',
+    src: '/images/character-roseline.jpg',
+    title: 'Roseline',
+    cat: 'character',
+    subcat: 'fullbody',
+    catLabel: 'Full Body Character',
+    span: '',
+    note: 'Full-Body Character — Contemporary, 2025',
+  },
+  {
+    id: 'elvenqueen',
+    src: '/images/Individdual-characters-female.jpg',
+    title: 'Elven Queen',
+    cat: 'character',
+    subcat: 'fullbody',
+    catLabel: 'Full Body Character',
+    span: '',
+    note: 'Full-Body Character — Fantasy, 2025',
+  },
+  {
+    id: 'goldenboy',
+    src: '/images/golden-boy.jpg',
+    title: 'Golden Hour',
+    cat: 'character',
+    subcat: 'fullbody',
+    catLabel: 'Full Body Character',
+    span: '',
+    note: 'Full-Body Character — Contemporary, 2025',
+  },
+
+  // =========================================
+  // 3. HALF-BODY / PORTRAIT CHARACTERS
+  // =========================================
+
+  {
+    id: 'wolfborn',
+    src: '/images/character-wolfborn.jpg',
+    title: 'Wolfborn',
+    cat: 'character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
+    span: '',
+    note: 'Character Portrait — Fantasy, 2025',
+  },
+  {
+    id: 'guardian',
+    src: '/images/character-dreadlock.jpg',
+    title: 'The Guardian',
+    cat: 'character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
+    span: '',
+    note: 'Character Portrait — Urban Fantasy, 2025',
+  },
+  {
+    id: 'nightbalcony',
+    src: '/images/single-illustration.png',
+    title: 'Night Balcony',
+    cat: 'character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
+    span: '',
+    note: 'Character Portrait — Contemporary, 2025',
+  },
+  
+  
+  {
+    id: 'wolfpendant',
+    src: '/images/Beta-Final-File.png',
+    title: 'Wolf Pendant',
+    cat: 'character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
+    span: '',
+    note: 'Character Portrait — Contemporary, 2025',
+  },
+
+  // =========================================
+  // 4. GROUP CHARACTER ART
+  // =========================================
+
+  {
+    id: 'trio',
+    src: '/images/character-trio.jpg',
+    title: 'The Trio',
+    cat: 'character',
+    subcat: 'group',
+    catLabel: 'Group Character Art',
+    span: '',
+    note: 'Group Character Art — Urban Fantasy, 2025',
+  },
+  {
+    id: 'familynight',
+    src: '/images/character-4.jpg',
+    title: 'Family Night In',
+    cat: 'character',
+    subcat: 'group',
+    catLabel: 'Group Character Art',
+    span: '',
+    note: 'Group Family Art — Slice of Life, 2025',
+  },
+
+  // =========================================
+  // 5. BOOK COVERS
+  // =========================================
+
+  {
+    id: 'swanston',
+    src: '/images/book-cover-swanston.jpg',
+    title: 'The Last Lamb of Swanston St.',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover — Romance Fantasy, 2025',
+  },
+  {
+    id: 'multigirl',
+    src: '/images/multigirl-book-cover.jpeg',
+    title: 'Multigirl',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover — Urban Fantasy, 2025',
+  },
+  {
+    id: 'twoworlds',
+    src: '/images/Comic-cover.jpg',
+    title: 'Two Worlds, One Window',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover — Mystery Romance, 2025',
+  },
+];
 export const heroSlides = ['swanston', 'icerink', 'wolfborn', 'waltz', 'roseline']
   .map((id) => artworks.find((a) => a.id === id))
 
@@ -25,6 +278,7 @@ export const filters = [
   { key: 'couple', label: 'Couple Illustrations' },
   { key: 'cover', label: 'Book Covers' },
 ]
+
 
 export const tiers = [
   {

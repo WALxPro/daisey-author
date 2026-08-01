@@ -71,15 +71,15 @@ export default function AboutPage() {
   useGsapReveal([])
   return (
     <>
-      <PageHero eyebrow="About Me" title="The Story Behind the" shimmerWord="Sketches" script='"Every character has a soul — I just try to draw it out."' />
+      <PageHero eyebrow="About Me" title="The Story Behind the" shimmerWord="Sketches" script='"Every character has a soul  I just try to draw it out."' />
       <About />
-      <section className="pb-4 bg-paper px-5 md:px-8">
+      {/* <section className="pb-4 bg-paper px-5 md:px-8">
         <div className="max-w-[760px] mx-auto text-inksoft grid gap-4 reveal">
           <p>I'm a self-taught illustrator who fell in love with storytelling through art. It started with sketching characters from my favorite romance-fantasy novels — and it turned into a calling when authors began asking me to draw <em>theirs</em>.</p>
           <p>Every piece I create is 100% hand-drawn — no AI, no shortcuts — just hours of sketching, coloring, and care poured into bringing your characters to life exactly the way you imagined them.</p>
           <p>Today I work with self-published authors around the world on couple art, character portraits, and complete book covers. If your story deserves to be <em>seen</em>, not just read — I'd love to draw it.</p>
         </div>
-      </section>
+      </section> */}
       <Timeline />
       <FunFacts />
       <InstagramSection compact />
