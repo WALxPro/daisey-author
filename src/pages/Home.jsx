@@ -1,19 +1,19 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Marquee, {  About, Flourish } from '../components/Sections'
-import { Gallery } from '../components/Content'
-import Lightbox from '../components/Contact'
 import { artworks } from '../data'
-import {  CTABanner } from '../components/Extras'
-import TestimonialSlider from '../components/TestimonialSlider'
-import { SectionHead } from '../components/Sections'
-import Pinned from '../components/Pinned'
 import { useGsapReveal } from '../hooks'
-import Commissions from '../components/Commissions'
 import MiniHead from '../components/MiniHead'
 import Heading from '../components/Heading'
-import InstagramSection from '../components/InstagramSection'
+import DeferredSection from '../components/DeferredSection'
+
+const Gallery = lazy(() => import('../components/Content').then((module) => ({ default: module.Gallery })))
+const Lightbox = lazy(() => import('../components/Contact'))
+const Commissions = lazy(() => import('../components/Commissions'))
+const TestimonialSlider = lazy(() => import('../components/TestimonialSlider'))
+const InstagramSection = lazy(() => import('../components/InstagramSection'))
+const CTABanner = lazy(() => import('../components/Extras').then((module) => ({ default: module.CTABanner })))
 
 export default function Home() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
@@ -28,13 +28,21 @@ export default function Home() {
       <Hero onOpenLightbox={openLightbox} />
       <Marquee onOpenLightbox={openLightbox} />
       <About />
-      {/* <Pinned /> */}
-      <Gallery onOpenLightbox={openLightbox} preview />
-      <Commissions />
-    <section className="aurora px-5 py-20 text-center md:py-28">
-  <MiniHead text="Testimonials" />
+      <DeferredSection minHeight="38rem">
+        <Suspense fallback={null}>
+          <Gallery onOpenLightbox={openLightbox} preview />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection minHeight="42rem">
+        <Suspense fallback={null}>
+          <Commissions />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection minHeight="32rem">
+        <section className="aurora px-5 py-20 text-center md:py-28">
+          <MiniHead text="Testimonials" />
 
-  <Heading text="Kind Words From" highlight="Clients" />
+          <Heading text="Kind Words From" highlight="Clients" />
 
   <p
     className="
@@ -55,20 +63,31 @@ export default function Home() {
     imagined.
   </p>
 
-  <div className="reveal">
-    <TestimonialSlider />
-  </div>
-</section>
-      <InstagramSection />
-      <CTABanner />
+          <Suspense fallback={null}>
+            <TestimonialSlider />
+          </Suspense>
+        </section>
+      </DeferredSection>
+      <DeferredSection minHeight="60rem">
+        <Suspense fallback={null}>
+          <InstagramSection />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection minHeight="20rem">
+        <Suspense fallback={null}>
+          <CTABanner />
+        </Suspense>
+      </DeferredSection>
       
       {lightboxIndex !== null && (
-        <Lightbox
-          artworks={artworks}
-          currentIndex={lightboxIndex}
-          onChange={setLightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
+        <Suspense fallback={null}>
+          <Lightbox
+            artworks={artworks}
+            currentIndex={lightboxIndex}
+            onChange={setLightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+          />
+        </Suspense>
       )}
     </>
   )

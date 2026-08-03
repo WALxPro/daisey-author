@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Gallery } from '../components/Content'
 import {artworks} from "../data"
 
 import { PageHero, CTABanner } from '../components/Extras'
 import { useGsapReveal } from '../hooks'
-import Lightbox from '../components/Contact'
+
+const Lightbox = lazy(() => import('../components/Contact'))
 
 export default function PortfolioPage() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
@@ -30,12 +31,14 @@ export default function PortfolioPage() {
         btn="Let's Create Yours"
       />
       {lightboxIndex !== null && (
-        <Lightbox
-          artworks={artworks}
-          currentIndex={lightboxIndex}
-          onChange={setLightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
+        <Suspense fallback={null}>
+          <Lightbox
+            artworks={artworks}
+            currentIndex={lightboxIndex}
+            onChange={setLightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+          />
+        </Suspense>
       )}
     </>
   )

@@ -177,6 +177,34 @@ img, picture, video, canvas, svg { max-width: 100%; }
 img, video { height: auto; }
 ::selection { @apply bg-rose text-burgundy; }
 
+/* Theme-matched scrollbar */
+html { scrollbar-color: var(--burgundy) var(--paper2); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--paper2); }
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--paper2);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--burgundy2), var(--wine));
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--brand), var(--burgundy)); }
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 48%, #3d2c54 0%, #1d112b 45%, #09040f 100%);
+}
+.app-loader__content { position: relative; z-index: 1; text-align: center; animation: loader-enter .7s var(--ease-silk) both; }
+.app-loader__sparkle { display: block; margin-bottom: .8rem; color: var(--gold-bright); font-size: 1.6rem; animation: loader-sparkle 1.6s ease-in-out infinite; }
+.app-loader__line { display: block; width: 9rem; height: 2px; margin: 1.4rem auto 0; overflow: hidden; border-radius: 999px; background: rgba(var(--color-gold), .18); }
+.app-loader__line span { display: block; width: 45%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--burgundy2), var(--gold-bright), var(--burgundy2)); animation: loader-line 1.25s ease-in-out infinite; }
+.app-loader__orb { position: absolute; border-radius: 999px; filter: blur(65px); opacity: .42; }
+.app-loader__orb--one { top: 12%; left: 12%; width: 20rem; height: 20rem; background: var(--burgundy); animation: loader-orb-one 6s ease-in-out infinite alternate; }
+.app-loader__orb--two { right: 10%; bottom: 9%; width: 24rem; height: 24rem; background: #9e699d; animation: loader-orb-two 7s ease-in-out infinite alternate; }
+
 @layer components {
    .gradient-violet {
     background: var(--gradient-violet);
@@ -237,6 +265,11 @@ img, video { height: auto; }
 @keyframes routeFade { from { opacity: 0; } to { opacity: 1; } }
 .route-fade { animation: routeFade .45s ease both; }
 @keyframes menuIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes loader-enter { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes loader-sparkle { 0%, 100% { transform: scale(.7) rotate(0deg); opacity: .55; } 50% { transform: scale(1.15) rotate(90deg); opacity: 1; } }
+@keyframes loader-line { from { transform: translateX(-110%); } to { transform: translateX(250%); } }
+@keyframes loader-orb-one { to { transform: translate3d(70px, 35px, 0) scale(1.15); } }
+@keyframes loader-orb-two { to { transform: translate3d(-60px, -45px, 0) scale(.86); } }
 
 
 
