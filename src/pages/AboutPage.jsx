@@ -657,7 +657,7 @@ export function MyJourneySection() {
                   sm:text-2xl
                 "
               >
-                Every artwork is a small piece of someone else’s story — and I
+                Every artwork is a small piece of someone else’s story and I
                 take that seriously, one sketch at a time.
               </p>
 

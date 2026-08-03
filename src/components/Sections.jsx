@@ -454,18 +454,22 @@ export function About() {
             romantic scene, my goal is always the same:
           </p>
 
-          <p
-            className="
-              max-w-[56ch]
-              text-sm font-semibold 
-              leading-relaxed text-burgundy2
-              sm:text-[1rem]
-              sm:leading-[1.6]
-            "
-          >
-            to create artwork that captures emotion, tells a story, and leaves a
+      
+                        <p
+                className="
+                  relative
+                  font-editorial
+                  text-xl
+                  italic
+                  leading-relaxed
+                  text-wine
+                  sm:text-2xl
+                  text-center
+                "
+              >
+                  to create artwork that captures emotion, tells a story, and leaves a
             lasting impression.
-          </p>
+              </p>
 
           {/* Stats */}
           <div className="mb-[50px] mt-10 flex flex-wrap gap-9">

@@ -16,24 +16,70 @@ export function useReducedMotion() {
   return rm
 }
 
-/** GSAP ScrollTrigger reveal for all .reveal elements (staggered per batch) */
+/**
+ * Scroll-triggered entrance animations shared by page text and cards.
+ * Each hook owns only its own triggers, so route changes do not interrupt
+ * component-specific GSAP animations such as galleries and sliders.
+ */
 export function useGsapReveal(deps = []) {
   useEffect(() => {
     const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const els = gsap.utils.toArray('.reveal')
-    if (!els.length) return
-    if (rm) { gsap.set(els, { opacity: 1, y: 0 }); return }
-    gsap.set(els, { opacity: 0, y: 30 })
-    ScrollTrigger.batch(els, {
-      start: 'top 88%',
-      once: true,
-      onEnter: (batch) =>
-        gsap.to(batch, { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', stagger: 0.1, overwrite: true }),
+    const text = gsap.utils.toArray('.reveal, .reveal-text')
+    const cards = gsap.utils.toArray('.reveal-card')
+    const targets = [...new Set([...text, ...cards])]
+    if (!targets.length) return
+
+    if (rm) {
+      gsap.set(targets, { opacity: 1, x: 0, y: 0, scale: 1, filter: 'none' })
+      return
+    }
+
+    const context = gsap.context(() => {
+      const textOnly = text.filter((element) => !cards.includes(element))
+
+      gsap.set(textOnly, { autoAlpha: 0, y: 28, filter: 'blur(5px)' })
+      gsap.set(cards, { autoAlpha: 0, y: 36, scale: 0.96 })
+
+      if (textOnly.length) {
+        ScrollTrigger.batch(textOnly, {
+          start: 'top 90%',
+          once: true,
+          onEnter: (batch) => gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.09,
+            overwrite: true,
+          }),
+        })
+      }
+
+      if (cards.length) {
+        ScrollTrigger.batch(cards, {
+          start: 'top 88%',
+          once: true,
+          onEnter: (batch) => gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: 'back.out(1.25)',
+            stagger: 0.1,
+            overwrite: true,
+          }),
+        })
+      }
     })
+
     ScrollTrigger.refresh()
     const onLoad = () => ScrollTrigger.refresh()
     window.addEventListener('load', onLoad)
-    return () => { window.removeEventListener('load', onLoad); ScrollTrigger.getAll().forEach((t) => t.kill()) }
+    return () => {
+      window.removeEventListener('load', onLoad)
+      context.revert()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 }
