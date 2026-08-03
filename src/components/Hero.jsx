@@ -49,6 +49,9 @@ export default function Hero({}) {
   useEffect(() => {
     if (reducedMotion) return undefined;
 
+    // Large blurred layers are costly on small and lower-powered devices.
+    const animateAmbient = window.matchMedia("(min-width: 768px)").matches;
+
     const context = gsap.context(() => {
       const timeline = gsap.timeline({
         defaults: {
@@ -141,44 +144,12 @@ export default function Hero({}) {
         delay: 1.2,
       });
 
-      // Background glow animations
-      gsap.to(".h-glow-a", {
-        x: 30,
-        y: -20,
-        duration: 9,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      gsap.to(".h-glow-b", {
-        x: -25,
-        y: 25,
-        duration: 11,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // Extra slow-breathing center glow
-      gsap.to(".h-glow-c", {
-        scale: 1.18,
-        opacity: 0.9,
-        duration: 8,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // Third roaming glow for depth
-      gsap.to(".h-glow-d", {
-        x: 40,
-        y: 30,
-        duration: 13,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
+      if (animateAmbient) {
+        gsap.to(".h-glow-a", { x: 30, y: -20, duration: 9, ease: "sine.inOut", repeat: -1, yoyo: true });
+        gsap.to(".h-glow-b", { x: -25, y: 25, duration: 11, ease: "sine.inOut", repeat: -1, yoyo: true });
+        gsap.to(".h-glow-c", { scale: 1.18, opacity: 0.9, duration: 8, ease: "sine.inOut", repeat: -1, yoyo: true });
+        gsap.to(".h-glow-d", { x: 40, y: 30, duration: 13, ease: "sine.inOut", repeat: -1, yoyo: true });
+      }
     }, rootRef);
 
     return () => context.revert();
@@ -191,10 +162,12 @@ export default function Hero({}) {
     }
 
     const intervalId = window.setInterval(() => {
+      if (document.visibilityState !== "visible") return;
+
       setCurrentSlide((current) => (current + 1) % slideCount);
 
       setProgressKey((current) => current + 1);
-    }, 4200);
+    }, 6000);
 
     return () => window.clearInterval(intervalId);
   }, [reducedMotion, slideCount]);
@@ -247,7 +220,7 @@ export default function Hero({}) {
           h-glow-a pointer-events-none
           absolute -left-24 top-10
           h-72 w-72 rounded-full
-          bg-burgundy/16 blur-[90px]
+          bg-burgundy/16 blur-[70px]
         "
       />
 
@@ -255,10 +228,10 @@ export default function Hero({}) {
       <div
         aria-hidden="true"
         className="
-          h-glow-b pointer-events-none
+          h-glow-b pointer-events-none hidden md:block
           absolute -right-20 bottom-0
           h-80 w-80 rounded-full
-          bg-rose/20 blur-[100px]
+          bg-rose/20 blur-[75px]
         "
       />
 
@@ -266,11 +239,11 @@ export default function Hero({}) {
       <div
         aria-hidden="true"
         className="
-          h-glow-c pointer-events-none
+          h-glow-c pointer-events-none hidden md:block
           absolute left-1/2 top-1/2
           h-96 w-96 -translate-x-1/2 -translate-y-1/2
           rounded-full
-          blur-[120px]
+          blur-[85px]
           opacity-70
         "
         style={{
@@ -282,10 +255,10 @@ export default function Hero({}) {
       <div
         aria-hidden="true"
         className="
-          h-glow-d pointer-events-none
+          h-glow-d pointer-events-none hidden md:block
           absolute left-[35%] top-[10%]
           h-64 w-64 rounded-full
-          blur-[110px]
+          blur-[80px]
         "
         style={{
           backgroundColor: "rgba(190, 120, 170, 0.20)",
@@ -315,7 +288,7 @@ export default function Hero({}) {
 
       {/* Drifting dust particles */}
       {!reducedMotion && (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
           {DUST.map((dust, index) => (
             <span
               key={index}
