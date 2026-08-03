@@ -188,14 +188,14 @@ function IgScatter() {
 }
 
 /* ---------- Instagram section ---------- */
-export function InstagramSection({ compact }) {
-  return (
-    <section className={`${compact ? 'py-16 md:py-24' : 'pb-16 md:pb-24'} text-cream relative overflow-hidden`} style={{ background: 'linear-gradient(140deg,var(--burgundy),var(--burgundy) 55%,var(--wine))' }}>
-      {!compact && <IgScatter />}
+// export function InstagramSection({ compact }) {
+//   return (
+//     <section className={`${compact ? 'py-16 md:py-24' : 'pb-16 md:pb-24'} text-cream relative overflow-hidden`} style={{ background: 'linear-gradient(140deg,var(--burgundy),var(--burgundy) 55%,var(--wine))' }}>
+//       {!compact && <IgScatter />}
       
-    </section>
-  )
-}
+//     </section>
+//   )
+// }
 
 /* ---------- Final CTA banner ---------- */
 export function CTABanner({ title = 'Ready to See Your Characters Come to Life?', sub = 'Get a personalized quote in 24-48 hours.', btn = 'Get a Custom Quote', to = '/contact' }) {

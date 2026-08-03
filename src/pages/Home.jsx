@@ -5,7 +5,7 @@ import Marquee, {  About, Flourish } from '../components/Sections'
 import { Gallery } from '../components/Content'
 import Lightbox from '../components/Contact'
 import { artworks } from '../data'
-import { InstagramSection, CTABanner } from '../components/Extras'
+import {  CTABanner } from '../components/Extras'
 import TestimonialSlider from '../components/TestimonialSlider'
 import { SectionHead } from '../components/Sections'
 import Pinned from '../components/Pinned'
@@ -13,7 +13,7 @@ import { useGsapReveal } from '../hooks'
 import Commissions from '../components/Commissions'
 import MiniHead from '../components/MiniHead'
 import Heading from '../components/Heading'
-
+import InstagramSection from '../components/InstagramSection'
 
 export default function Home() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
