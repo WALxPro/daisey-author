@@ -171,8 +171,10 @@ body[data-theme="dark"] {
     );
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body { @apply bg-paper text-ink font-sans font-light leading-relaxed overflow-x-hidden; background-color: var(--paper); color: var(--ink); }
+img, picture, video, canvas, svg { max-width: 100%; }
+img, video { height: auto; }
 ::selection { @apply bg-rose text-burgundy; }
 
 @layer components {
@@ -219,6 +221,11 @@ body { @apply bg-paper text-ink font-sans font-light leading-relaxed overflow-x-
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 639px) {
+  /* Stops iOS Safari from zooming the page when a form field is focused. */
+  input, select, textarea { font-size: 16px; }
 }
 
 @keyframes routeFade { from { opacity: 0; } to { opacity: 1; } }

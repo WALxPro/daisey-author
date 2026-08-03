@@ -1366,10 +1366,11 @@ export default function Lightbox({
                 draggable="false"
                 className="
                   block
-                  max-h-[68vh]
+                  max-h-[58svh]
                   max-w-full
                   select-none
                   object-contain
+                  sm:max-h-[68vh]
                   sm:max-w-[75vw]
                   lg:max-w-[62vw]
                 "

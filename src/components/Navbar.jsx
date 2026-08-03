@@ -120,6 +120,7 @@ export default function Navbar() {
       {open && (
         <div
           className="border-t border-[#ece8f2]
+            max-h-[calc(100svh-80px)] overflow-y-auto
             bg-white/[0.98] px-6 py-6 lg:hidden"
         >
           <ul className="mx-auto flex max-w-[1340px] flex-col gap-4">
