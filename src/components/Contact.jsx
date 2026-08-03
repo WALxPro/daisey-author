@@ -1269,10 +1269,11 @@ export default function Lightbox({
         style={{
           background: `
             radial-gradient(
-              circle at 50% 42%,
-              rgba(var(--color-paper), 0.2) 0%,
-              rgba(var(--color-wine-deep), 0.82) 38%,
-              rgba(var(--color-wine-dark), 0.97) 78%
+              ellipse 46% 70% at 50% 48%,
+              rgba(90, 77, 112, 0.62) 0%,
+              rgba(58, 47, 78, 0.7) 38%,
+              rgba(27, 17, 42, 0.9) 68%,
+              rgba(9, 4, 15, 1) 100%
             )
           `,
           backdropFilter: "blur(22px)",
