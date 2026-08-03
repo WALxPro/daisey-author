@@ -44,16 +44,16 @@ const PANELS = [
 // 1–3 brown/burgundy (gehre hote hue), 4th light
 const SHADES = [
   // Couple — dark
-  "radial-gradient(ellipse 70% 60% at 85% 15%, rgba(198,58,58,.25), transparent 60%), linear-gradient(160deg,#3A1119,#2E0F16)",
+  "radial-gradient(ellipse 70% 60% at 85% 15%, rgba(var(--color-brand) / .25), transparent 60%), linear-gradient(160deg,var(--wine),var(--burgundy))",
 
   // Character — light
-  "radial-gradient(ellipse 70% 60% at 12% 20%, rgba(228,168,168,.38), transparent 60%), linear-gradient(160deg,#FFF9F3,#F3E7DC)",
+  "radial-gradient(ellipse 70% 60% at 12% 20%, rgba(var(--color-rose-soft) / .38), transparent 60%), linear-gradient(160deg,var(--paper),var(--paper2))",
 
   // Book Cover — dark
-  "radial-gradient(ellipse 70% 60% at 85% 80%, rgba(217,172,85,.12), transparent 60%), linear-gradient(160deg,#1F0C11,#150809)",
+  "radial-gradient(ellipse 70% 60% at 85% 80%, rgba(var(--color-gold-bright) / .12), transparent 60%), linear-gradient(160deg,var(--wine),var(--wine-dark))",
 
   // Scene — light
-  "radial-gradient(ellipse 70% 60% at 15% 15%, rgba(228,168,168,.35), transparent 60%), linear-gradient(160deg,#FBF6EF,#EFDCD0)",
+  "radial-gradient(ellipse 70% 60% at 15% 15%, rgba(var(--color-rose-soft) / .35), transparent 60%), linear-gradient(160deg,var(--paper),var(--paper-deep))",
 ];
 
 export default function Pinned() {
@@ -110,7 +110,7 @@ export default function Pinned() {
       {/* intro */}
       <div className="text-center pt-20 md:pt-28 pb-12 px-5 text-cream">
         <span className="eyebrow">The Craft</span>
-        <h2 className="font-serif font-medium text-[#FBF2E6] text-2xl md:text-5xl mt-4">
+        <h2 className="font-serif font-medium text-[var(--paper)] text-2xl md:text-5xl mt-4">
           What I <span className="shimmer">create</span> for you
         </h2>
       </div>
@@ -147,7 +147,7 @@ export default function Pinned() {
                     of 0{PANELS.length}
                   </span>
                 </span>
-                <h3 className={`stack-rise font-serif font-medium text-2xl md:text-5xl mt-4 leading-tight ${p.light ? 'text-burgundy' : 'text-[#FBF2E6]'}`}>
+                <h3 className={`stack-rise font-serif font-medium text-2xl md:text-5xl mt-4 leading-tight ${p.light ? 'text-burgundy' : 'text-[var(--paper)]'}`}>
                   {p.title}
                 </h3>
                 <p className={`stack-rise mt-5 max-w-[44ch] text-sm leading-relaxed sm:text-[1.20rem] sm:leading-[1.6] md:text-lg ${p.light ? 'text-inksoft' : 'text-creamdim'}`}>
@@ -163,8 +163,8 @@ export default function Pinned() {
               {/* artwork */}
               <div className="relative z-[2] order-1 md:order-2 h-[34vh] md:h-[64vh]">
                 <div
-                  className="absolute inset-0 p-2 md:p-3 shadow-[0_30px_70px_rgba(0,0,0,.5),0_0_50px_rgba(217,172,85,.18)] overflow-hidden"
-                  style={{ background: 'linear-gradient(140deg,#8A5E1B,#D9AC55 30%,#8A5E1B 55%,#F0D08A 80%,#8A5E1B)' }}
+                  className="absolute inset-0 p-2 md:p-3 shadow-[0_30px_70px_rgba(var(--color-wine-dark),.5),0_0_50px_rgba(var(--color-gold-bright),.18)] overflow-hidden"
+                  style={{ background: 'linear-gradient(140deg,var(--gold),var(--gold-bright) 30%,var(--gold) 55%,var(--gold-light) 80%,var(--gold))' }}
                 >
                   <img
                     src={p.src}

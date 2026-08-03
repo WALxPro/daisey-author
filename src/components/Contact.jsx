@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { FaInstagram, FaXTwitter, FaArtstation } from "react-icons/fa6";
 import { SiKofi } from "react-icons/si";
-import { FiMail, FiClock, FiUploadCloud, FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import {
+  FiMail,
+  FiClock,
+  FiUploadCloud,
+  FiX,
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
 import { PiSparkleFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { SectionHead } from "./Sections";
@@ -36,7 +43,7 @@ const socials = [
 function Status() {
   return (
     <span className="inline-flex items-center gap-2 font-caps text-[.62rem] tracking-[.2em] uppercase text-goldbright">
-      <span className="w-2 h-2 rounded-full bg-[#7FCB8A] shadow-[0_0_10px_rgba(127,203,138,.8)] animate-pulsedot" />
+      <span className="w-2 h-2 rounded-full bg-[var(--brand)] shadow-[0_0_10px_rgba(var(--color-brand),.8)] animate-pulsedot" />
       Commissions Open
     </span>
   );
@@ -47,318 +54,1005 @@ const inputCls =
 const labelCls =
   "font-caps text-[.6rem] tracking-[.22em] uppercase text-inksoft";
 
-import { artworks } from "../data";
-
 export function Contact() {
   const [sent, setSent] = useState(false);
-  const featured = artworks.slice(0, 4);
+
+  const labelClass = `
+    mb-2
+    block
+    font-caps
+    text-[0.6rem]
+    font-semibold
+    uppercase
+    tracking-[0.24em]
+    text-gold
+  `;
+
+  const fieldClass = `
+    w-full
+    border-0
+    border-b
+    border-gold/35
+    bg-transparent
+    pb-2
+    font-editorial
+    text-[0.95rem]
+    text-paper
+    outline-none
+    transition-colors
+    duration-300
+    placeholder:text-paper/35
+    focus:border-gold
+  `;
+
+  const optionStyle = {
+    backgroundColor: "var(--wine-deep)",
+    color: "var(--paper)",
+  };
+
+  const infoCardClass = `
+    glass-card
+    group
+    relative
+    rounded-xl
+    p-6
+    text-left
+    transition-all
+    duration-500
+    hover:-translate-y-1.5
+    hover:border-gold/55
+    hover:shadow-[0_22px_55px_rgba(var(--color-wine-dark),0.42)]
+  `;
 
   return (
     <section
       id="contact"
-      className="py-20 md:py-32"
-      style={{
-        background: `radial-gradient(ellipse 55% 50% at 92% 10%, rgba(228,168,168,.42), transparent 60%),
-          radial-gradient(ellipse 50% 45% at 5% 60%, rgba(198,58,58,.09), transparent 60%),
-          linear-gradient(180deg,#FBF6EF,#F6E9E2)`,
-      }}
+      className="
+        plum-panel
+        relative
+        isolate
+        overflow-hidden
+        px-5
+        py-20
+        md:py-28
+      "
     >
-      <div className="max-w-[1180px] mx-auto px-3 md:px-10">
-        {/* ============================================================= */}
-        {/* HERO SPLIT: animated desk (left) + commission form (right)     */}
-        {/* ============================================================= */}
-        <div className="grid lg:grid-cols-[42%_58%] gap-10 lg:gap-16 items-center mb-24">
-          {/* -------- LEFT: animated art-studio desk -------- */}
-          <div className="reveal order-2 lg:order-1 relative">
-            {/* framed parchment panel so the scene feels like part of the studio */}
+      {/* Background glow — top left */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -left-40
+          top-10
+          -z-10
+          h-[500px]
+          w-[500px]
+          rounded-full
+          blur-[140px]
+        "
+        style={{
+          backgroundColor: "rgba(var(--color-burgundy2), 0.22)",
+        }}
+      />
+
+      {/* Background glow — right */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          -right-36
+          top-[28%]
+          -z-10
+          h-[460px]
+          w-[460px]
+          rounded-full
+          blur-[140px]
+        "
+        style={{
+          backgroundColor: "rgba(var(--color-rose), 0.16)",
+        }}
+      />
+
+      {/* Background glow — bottom */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-1/2
+          -z-10
+          h-[420px]
+          w-[650px]
+          -translate-x-1/2
+          rounded-full
+          blur-[150px]
+        "
+        style={{
+          backgroundColor: "rgba(var(--color-burgundy), 0.14)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-[1180px]">
+        {/* ===================================================== */}
+        {/* COMMISSION HEADING                                    */}
+        {/* ===================================================== */}
+
+        <header className="mx-auto mb-14 max-w-3xl text-center">
+          <p
+            className="
+              font-caps
+              text-[0.64rem]
+              uppercase
+              tracking-[0.34em]
+              text-gold
+            "
+          >
+            Commission Inquiry
+          </p>
+
+          <h2
+            className="
+              mt-5
+              font-serif
+              text-3xl
+              uppercase
+              leading-tight
+              tracking-[0.08em]
+              text-paper
+              sm:text-4xl
+              md:text-5xl
+            "
+          >
+            Bring Your Vision To Life{" "}
+          </h2>
+
+          <div
+            aria-hidden="true"
+            className="rule-gold mx-auto mt-6 h-px w-44"
+          />
+
+          <p
+            className="
+              mx-auto
+              mt-6
+              max-w-[58ch]
+              font-editorial
+              text-base
+              leading-relaxed
+              text-paper/65
+              sm:text-lg
+            "
+          >
+            Tell me about your character, your story and the artwork you have
+            been imagining. Every commission begins with your idea.
+          </p>
+        </header>
+
+        {/* ===================================================== */}
+        {/* ARTIST DESK + FORM                                    */}
+        {/* ===================================================== */}
+
+        <div
+          className="
+            grid
+            items-center
+            gap-10
+            lg:grid-cols-[42%_58%]
+            lg:gap-14
+          "
+        >
+          {/* Left illustration */}
+          <div className="order-2 lg:order-1">
             <div
-              className="relative rounded-xl p-4 md:p-6 border border-gold/30 shadow-[0_28px_70px_rgba(90,24,32,.14)] overflow-hidden"
-              style={{
-                background:
-                  "radial-gradient(ellipse 70% 60% at 50% 40%, #FDF8EF, #F3E7D6)",
-              }}
+              className="
+                glass-card
+                relative
+                overflow-hidden
+                rounded-2xl
+                p-3
+                shadow-[0_30px_90px_rgba(var(--color-wine-dark),0.52)]
+                sm:p-4
+              "
             >
-              {/* subtle corner flourishes */}
-              <span className="absolute top-2 left-3 font-script text-gold text-lg opacity-50">
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  left-4
+                  top-3
+                  z-20
+                  text-lg
+                  text-gold
+                  opacity-75
+                "
+              >
                 ✦
               </span>
-              <span className="absolute bottom-2 right-3 font-script text-gold text-lg opacity-50">
+
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  bottom-3
+                  right-4
+                  z-20
+                  text-lg
+                  text-gold
+                  opacity-75
+                "
+              >
                 ✦
               </span>
-              <ArtistDesk />
+
+              {/* Light canvas keeps illustration visible */}
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-xl
+                  p-3
+                  sm:p-5
+                "
+                style={{
+                  background: `
+                    radial-gradient(
+                      circle at 50% 38%,
+                      var(--paper),
+                      var(--paper2)
+                    )
+                  `,
+                  boxShadow: "inset 0 0 35px rgba(var(--color-burgundy), 0.08)",
+                }}
+              >
+                <ArtistDesk />
+              </div>
             </div>
 
-            {/* caption under the scene */}
-            <p className="mt-4 text-center font-script text-brand text-2xl leading-none">
+            <p
+              className="
+                mt-5
+                text-center
+                font-script
+                text-2xl
+                leading-none
+                text-gold
+                sm:text-3xl
+              "
+            >
               where every character begins…
             </p>
           </div>
 
-          {/* -------- RIGHT: heading + commission form -------- */}
+          {/* Right form */}
           <div className="order-1 lg:order-2">
             {sent ? (
-              <div className="reveal in bg-white/60 border border-gold/40 rounded-lg p-10 shadow-[0_22px_55px_rgba(90,24,32,.13)] text-center">
-                {/* animated checkmark */}
+              <div
+                aria-live="polite"
+                className="
+                  glass-card
+                  rounded-2xl
+                  px-7
+                  py-14
+                  text-center
+                  shadow-[0_28px_80px_rgba(var(--color-wine-dark),0.52)]
+                  sm:px-10
+                "
+              >
                 <svg
-                  width="64"
-                  height="64"
-                  viewBox="0 0 64 64"
-                  className="mx-auto mb-5"
+                  width="68"
+                  height="68"
+                  viewBox="0 0 68 68"
+                  className="mx-auto mb-6"
+                  aria-hidden="true"
                 >
                   <circle
-                    cx="32"
-                    cy="32"
-                    r="29"
+                    cx="34"
+                    cy="34"
+                    r="30"
                     fill="none"
-                    stroke="#B9862F"
+                    stroke="var(--gold)"
                     strokeWidth="2"
-                    strokeDasharray="182"
-                    strokeDashoffset="182"
-                    style={{ animation: "drawRing .7s ease forwards" }}
+                    strokeDasharray="190"
+                    strokeDashoffset="190"
+                    style={{
+                      animation: "contactDrawRing .7s ease forwards",
+                    }}
                   />
+
                   <path
-                    d="M20 33 l9 9 l16 -18"
+                    d="M21 35 l9 9 l17 -19"
                     fill="none"
-                    stroke="#5A1820"
+                    stroke="var(--gold-bright)"
                     strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeDasharray="42"
-                    strokeDashoffset="42"
-                    style={{ animation: "drawCheck .5s ease .6s forwards" }}
+                    strokeDasharray="45"
+                    strokeDashoffset="45"
+                    style={{
+                      animation: "contactDrawCheck .5s ease .6s forwards",
+                    }}
                   />
                 </svg>
-                <h3 className="font-serif text-3xl text-burgundy mb-3">
-                  Thank you!
-                </h3>
-                <p className="text-inksoft leading-[1.9] max-w-[42ch] mx-auto">
-                  Your request has been received. I'll personally review it and
-                  respond within 24–48 hours. Looking forward to bringing your
-                  vision to life.
+
+                <p
+                  className="
+                    font-caps
+                    text-[0.62rem]
+                    uppercase
+                    tracking-[0.3em]
+                    text-gold
+                  "
+                >
+                  Request Received
                 </p>
+
+                <h3
+                  className="
+                    mt-3
+                    font-display
+                    text-3xl
+                    uppercase
+                    tracking-[0.1em]
+                    text-paper
+                    sm:text-4xl
+                  "
+                >
+                  Thank You
+                </h3>
+
+                <div className="rule-gold mx-auto mt-5 h-px w-32" />
+
+                <p
+                  className="
+                    mx-auto
+                    mt-5
+                    max-w-[44ch]
+                    font-editorial
+                    text-base
+                    leading-relaxed
+                    text-paper/65
+                  "
+                >
+                  Your request has been received. I will personally review it
+                  and respond within 24–48 hours. I am looking forward to
+                  bringing your vision to life.
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => setSent(false)}
+                  className="
+                    mt-8
+                    rounded-full
+                    border
+                    border-gold/45
+                    px-6
+                    py-3
+                    font-caps
+                    text-[0.62rem]
+                    uppercase
+                    tracking-[0.22em]
+                    text-gold
+                    transition-all
+                    duration-300
+                    hover:border-gold
+                    hover:bg-white/[0.06]
+                    hover:text-paper
+                  "
+                >
+                  Send Another Request
+                </button>
               </div>
             ) : (
               <form
-                className="reveal bg-[#F6E9E2] rounded-lg p-7 md:p-8 relative border border-gold/25 shadow-[0_22px_55px_rgba(90,24,32,.12)]"
-                onSubmit={(e) => {
-                  e.preventDefault();
+                className="
+                  glass-card
+                  relative
+                  rounded-2xl
+                  p-6
+                  shadow-[0_28px_80px_rgba(var(--color-wine-dark),0.52)]
+                  sm:p-8
+                  md:p-10
+                "
+                onSubmit={(event) => {
+                  event.preventDefault();
                   setSent(true);
                 }}
               >
-                <span className="absolute top-3.5 right-4 font-script text-gold text-base opacity-60">
+                <span
+                  aria-hidden="true"
+                  className="
+                    absolute
+                    right-5
+                    top-4
+                    text-base
+                    text-gold
+                    opacity-75
+                  "
+                >
                   ✦
                 </span>
 
-                <div className="mb-5">
-                  <label
-                    htmlFor="f-name"
-                    className="font-caps font-bold text-[.6rem] tracking-[.2em] uppercase text-gold block mb-1.5"
-                  >
+                {/* Name */}
+                <div className="mb-6">
+                  <label htmlFor="f-name" className={labelClass}>
                     Your name
                   </label>
+
                   <input
                     id="f-name"
+                    name="name"
+                    type="text"
                     required
+                    autoComplete="name"
                     placeholder="e.g. Alex Rivers"
-                    className="w-full bg-transparent border-0 border-b border-[#D9C4A8] pb-1.5 text-[.92rem] text-ink placeholder:text-[#B0A090] focus:outline-none focus:border-brand transition-colors"
+                    className={fieldClass}
                   />
                 </div>
 
-                <div className="mb-5">
-                  <label
-                    htmlFor="f-email"
-                    className="font-caps font-bold text-[.6rem] tracking-[.2em] uppercase text-gold block mb-1.5"
-                  >
+                {/* Email */}
+                <div className="mb-6">
+                  <label htmlFor="f-email" className={labelClass}>
                     Email
                   </label>
+
                   <input
                     id="f-email"
+                    name="email"
                     type="email"
                     required
+                    autoComplete="email"
                     placeholder="you@email.com"
-                    className="w-full bg-transparent border-0 border-b border-[#D9C4A8] pb-1.5 text-[.92rem] text-ink placeholder:text-[#B0A090] focus:outline-none focus:border-brand transition-colors"
+                    className={fieldClass}
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-5">
+                {/* Project and budget */}
+                <div
+                  className="
+                    mb-6
+                    grid
+                    grid-cols-1
+                    gap-6
+                    sm:grid-cols-2
+                  "
+                >
                   <div>
-                    <label
-                      htmlFor="f-type"
-                      className="font-caps font-bold text-[.6rem] tracking-[.2em] uppercase text-gold block mb-1.5"
-                    >
+                    <label htmlFor="f-type" className={labelClass}>
                       Project type
                     </label>
+
                     <select
                       id="f-type"
-                      className="w-full bg-transparent border-0 border-b border-[#D9C4A8] pb-1.5 text-[.92rem] text-ink focus:outline-none focus:border-brand transition-colors"
+                      name="projectType"
+                      className={`${fieldClass} cursor-pointer`}
+                      style={{ colorScheme: "dark" }}
                     >
-                      <option>Bust Up</option>
-                      <option>Half Body</option>
-                      <option>Full Body</option>
-                      <option>Couple Illustration</option>
-                      <option>Book Cover</option>
-                      <option>Not Sure Yet</option>
+                      <option style={optionStyle}>Bust Up</option>
+
+                      <option style={optionStyle}>Half Body</option>
+
+                      <option style={optionStyle}>Full Body</option>
+
+                      <option style={optionStyle}>Couple Illustration</option>
+
+                      <option style={optionStyle}>Book Cover</option>
+
+                      <option style={optionStyle}>Scene Illustration</option>
+
+                      <option style={optionStyle}>Comic Illustration</option>
+
+                      <option style={optionStyle}>Not Sure Yet</option>
                     </select>
                   </div>
+
                   <div>
-                    <label
-                      htmlFor="f-budget"
-                      className="font-caps font-bold text-[.6rem] tracking-[.2em] uppercase text-gold block mb-1.5"
-                    >
+                    <label htmlFor="f-budget" className={labelClass}>
                       Budget
                     </label>
+
                     <select
                       id="f-budget"
-                      className="w-full bg-transparent border-0 border-b border-[#D9C4A8] pb-1.5 text-[.92rem] text-ink focus:outline-none focus:border-brand transition-colors"
+                      name="budget"
+                      className={`${fieldClass} cursor-pointer`}
+                      style={{ colorScheme: "dark" }}
                     >
-                      <option>Under $100</option>
-                      <option>$100–250</option>
-                      <option>$250–500</option>
-                      <option>$500+</option>
+                      <option style={optionStyle}>Under $100</option>
+
+                      <option style={optionStyle}>$100–250</option>
+
+                      <option style={optionStyle}>$250–500</option>
+
+                      <option style={optionStyle}>$500+</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <label
-                    htmlFor="f-desc"
-                    className="font-caps font-bold text-[.6rem] tracking-[.2em] uppercase text-gold block mb-1.5"
-                  >
+                {/* Idea */}
+                <div className="mb-7">
+                  <label htmlFor="f-desc" className={labelClass}>
                     Your idea
                   </label>
+
                   <textarea
                     id="f-desc"
+                    name="description"
+                    required
                     placeholder="Tell me about your character(s), story, mood, personality, inspiration, and include any reference links if available."
-                    className="w-full bg-transparent border-0 border-b border-[#D9C4A8] pb-1.5 text-xs sm:text-[.92rem] text-ink placeholder:text-[#B0A090] min-h-[80px] resize-y focus:outline-none focus:border-brand transition-colors"
+                    className={`
+                      ${fieldClass}
+                      min-h-[110px]
+                      resize-y
+                      leading-relaxed
+                    `}
                   />
                 </div>
 
-                <div className="mb-7">
-                  <label className="font-caps font-bold text-[.6rem] tracking-[.2em] uppercase text-gold block mb-1.5">
+                {/* Reference upload */}
+                <div className="mb-8">
+                  <label htmlFor="f-reference" className={labelClass}>
                     Reference upload
                   </label>
-                  <div className="border border-dashed border-gold rounded p-4 text-center text-xs sm:text-[.78rem] text-inksoft cursor-pointer transition-colors hover:border-brand hover:text-brand flex items-center justify-center gap-2">
-                    <FiUploadCloud className="text-base" /> Drop your reference
-                    images here, or click to browse
-                  </div>
+
+                  <label
+                    htmlFor="f-reference"
+                    className="
+                      flex
+                      min-h-[68px]
+                      cursor-pointer
+                      items-center
+                      justify-center
+                      gap-2
+                      rounded-lg
+                      border
+                      border-dashed
+                      border-gold/40
+                      bg-white/[0.04]
+                      px-4
+                      text-center
+                      font-editorial
+                      text-xs
+                      text-paper/60
+                      transition-all
+                      duration-300
+                      hover:border-gold
+                      hover:bg-white/[0.08]
+                      hover:text-gold
+                      sm:text-sm
+                    "
+                  >
+                    <FiUploadCloud className="shrink-0 text-lg" />
+
+                    <span>
+                      Drop your reference images here, or click to browse
+                    </span>
+                  </label>
+
+                  <input
+                    id="f-reference"
+                    name="reference"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="sr-only"
+                  />
                 </div>
 
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full font-caps text-[.7rem] tracking-[.2em] uppercase text-paper py-3.5 rounded transition-transform hover:scale-[1.02] shadow-[0_10px_24px_rgba(90,24,32,.3)]"
+                  className="
+                    group
+                    relative
+                    w-full
+                    overflow-hidden
+                    rounded-lg
+                    px-5
+                    py-4
+                    font-caps
+                    text-[0.68rem]
+                    font-semibold
+                    uppercase
+                    tracking-[0.24em]
+                    text-[var(--wine-deep)]
+                    shadow-[0_14px_35px_rgba(var(--color-wine-dark),0.42)]
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:shadow-[0_20px_48px_rgba(var(--color-gold),0.22)]
+                  "
                   style={{
-                    background: "linear-gradient(120deg,#5A1820,#7A2430)",
+                    background:
+                      "linear-gradient(115deg, var(--gold), var(--gold-bright), var(--gold-light))",
                   }}
                 >
-                  Send my request ✦
+                  <span className="relative z-10">Send My Request ✦</span>
+
+                  <span
+                    aria-hidden="true"
+                    className="
+                      absolute
+                      inset-y-0
+                      -left-full
+                      w-1/2
+                      skew-x-[-20deg]
+                      bg-white/40
+                      transition-all
+                      duration-700
+                      group-hover:left-full
+                    "
+                  />
                 </button>
               </form>
             )}
           </div>
         </div>
 
-        <div className="max-w-[900px] mx-auto text-center">
-          {/* header */}
-          <div className="reveal">
-            <span className="font-script text-gold text-2xl block leading-none mb-3">
+        {/* ===================================================== */}
+        {/* SECTION DIVIDER                                       */}
+        {/* ===================================================== */}
+
+        <div
+          aria-hidden="true"
+          className="
+            rule-gold
+            mx-auto
+            my-20
+            h-px
+            w-full
+            max-w-[900px]
+            opacity-60
+            md:my-28
+          "
+        />
+
+        {/* ===================================================== */}
+        {/* LOWER CONTACT INFORMATION                             */}
+        {/* ===================================================== */}
+
+        <div className="mx-auto max-w-[900px] text-center">
+          <div>
+            <span
+              className="
+                block
+                font-script
+                text-3xl
+                leading-none
+                text-gold
+                sm:text-4xl
+              "
+            >
               a little note
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-burgundy leading-[1.1]">
+
+            <h2
+              className="
+                mt-4
+                font-serif
+                text-3xl
+                uppercase
+                leading-tight
+                tracking-[0.08em]
+                text-paper
+                sm:text-4xl
+                md:text-5xl
+              "
+            >
               Tell Me Your Story…
             </h2>
-            <div className="flex items-center justify-center gap-3 mt-5 mb-9">
-              <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold/60" />
-              <span className="font-script text-gold text-lg">✦</span>
-              <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold/60" />
+
+            <div
+              className="
+                mt-6
+                flex
+                items-center
+                justify-center
+                gap-4
+              "
+            >
+              <span
+                className="
+                  h-px
+                  w-16
+                  bg-gradient-to-r
+                  from-transparent
+                  to-gold/70
+                "
+              />
+
+              <span className="text-lg text-gold">✦</span>
+
+              <span
+                className="
+                  h-px
+                  w-16
+                  bg-gradient-to-l
+                  from-transparent
+                  to-gold/70
+                "
+              />
             </div>
           </div>
 
-          {/* intro copy */}
-          <p className="reveal text-inksoft max-w-[62ch] mx-auto mb-4 sm:text-[1.20rem] sm:leading-[1.6] text-sm">
-            Whether you're an author dreaming of the perfect character design, a
-            reader wanting to see a beloved character come to life, or someone
-            searching for a one-of-a-kind custom illustration, I'd love to hear
-            your ideas.
-          </p>
-          <p className="reveal text-inksoft max-w-[62ch] mx-auto mb-12 sm:text-[1.20rem] sm:leading-[1.6] text-sm">
-            Every illustration begins with a conversation. Share your vision,
-            and together we'll create something memorable, meaningful, and
-            uniquely yours.
-          </p>
+          {/* Intro text */}
+          <div className="mx-auto mt-9 max-w-[64ch]">
+            <p
+              className="
+                font-editorial
+                text-base
+                leading-relaxed
+                text-paper/65
+                sm:text-lg
+                sm:leading-[1.75]
+              "
+            >
+              Whether you are an author dreaming of the perfect character
+              design, a reader wanting to see a beloved character come to life,
+              or someone searching for a one-of-a-kind custom illustration, I
+              would love to hear your ideas.
+            </p>
 
-          {/* 2×2 paper info cards */}
-          <div className="grid sm:grid-cols-2 gap-5 mb-14 text-left">
-            {/* Email */}
-            <div className="reveal relative bg-[#F7ECE4] rounded-lg p-6 border border-gold/20 shadow-[0_14px_36px_rgba(90,24,32,.09)]">
-              <span className="absolute top-4 right-4 font-script text-gold text-sm opacity-60">
+            <p
+              className="
+                mt-5
+                font-editorial
+                text-base
+                leading-relaxed
+                text-paper/65
+                sm:text-lg
+                sm:leading-[1.75]
+              "
+            >
+              Every illustration begins with a conversation. Share your vision,
+              and together we will create something memorable, meaningful and
+              uniquely yours.
+            </p>
+          </div>
+
+          {/* Information cards */}
+          <div
+            className="
+              mt-14
+              grid
+              gap-5
+              sm:grid-cols-2
+            "
+          >
+            {/* Email card */}
+            <article className={infoCardClass}>
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  right-4
+                  top-4
+                  text-sm
+                  text-gold
+                  opacity-65
+                "
+              >
                 ✦
               </span>
-              <div className="font-caps font-bold text-[.8rem] tracking-[.28em] uppercase text-gold mb-4">
-                email
-              </div>
-              <div className="h-px w-full bg-gold/25 mb-4" />
+
+              <p
+                className="
+                  font-caps
+                  text-[0.68rem]
+                  font-semibold
+                  uppercase
+                  tracking-[0.28em]
+                  text-gold
+                "
+              >
+                Email
+              </p>
+
+              <div className="my-4 h-px w-full bg-gold/25" />
+
               <a
                 href={`mailto:${EMAIL}`}
-                className=" text-base text-burgundy hover:text-brand transition-colors"
+                className="
+                  break-all
+                  font-editorial
+                  text-base
+                  text-paper/80
+                  transition-colors
+                  duration-300
+                  hover:text-gold
+                "
               >
                 {EMAIL}
               </a>
-            </div>
+            </article>
 
-            {/* Response time */}
-            <div className="reveal relative bg-[#F7ECE4] rounded-lg p-6 border border-gold/20 shadow-[0_14px_36px_rgba(90,24,32,.09)]">
-              <span className="absolute top-4 right-4 font-script text-gold text-sm opacity-60">
+            {/* Response time card */}
+            <article className={infoCardClass}>
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  right-4
+                  top-4
+                  text-sm
+                  text-gold
+                  opacity-65
+                "
+              >
                 ✦
               </span>
-              <div className="font-caps font-bold text-[.8rem] tracking-[.28em] uppercase text-gold mb-4">
-                response time
-              </div>
-              <div className="h-px w-full bg-gold/25 mb-4" />
-              <p className=" text-base text-ink">
+
+              <p
+                className="
+                  font-caps
+                  text-[0.68rem]
+                  font-semibold
+                  uppercase
+                  tracking-[0.28em]
+                  text-gold
+                "
+              >
+                Response Time
+              </p>
+
+              <div className="my-4 h-px w-full bg-gold/25" />
+
+              <p
+                className="
+                  font-editorial
+                  text-base
+                  text-paper/80
+                "
+              >
                 Usually within 24–48 hours
               </p>
-            </div>
+            </article>
 
-            {/* Status */}
-            <div className="reveal relative bg-[#F7ECE4] rounded-lg p-6 border border-gold/20 shadow-[0_14px_36px_rgba(90,24,32,.09)]">
-              <span className="absolute top-4 right-4 font-script text-gold text-sm opacity-60">
+            {/* Status card */}
+            <article className={infoCardClass}>
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  right-4
+                  top-4
+                  text-sm
+                  text-gold
+                  opacity-65
+                "
+              >
                 ✦
               </span>
-              <div className="font-caps font-bold text-[.8rem] tracking-[.28em] uppercase text-gold mb-4">
-                status
-              </div>
-              <div className="h-px w-full bg-gold/25 mb-4" />
-              <p className=" text-base text-burgundy inline-flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-gold inline-block animate-pulse" />
+
+              <p
+                className="
+                  font-caps
+                  text-[0.68rem]
+                  font-semibold
+                  uppercase
+                  tracking-[0.28em]
+                  text-gold
+                "
+              >
+                Status
+              </p>
+
+              <div className="my-4 h-px w-full bg-gold/25" />
+
+              <p
+                className="
+                  inline-flex
+                  items-center
+                  gap-2.5
+                  font-editorial
+                  text-base
+                  text-paper/80
+                "
+              >
+                <span
+                  aria-hidden="true"
+                  className="
+                    inline-block
+                    h-2
+                    w-2
+                    rounded-full
+                    bg-gold
+                    shadow-[0_0_12px_rgba(var(--color-gold),0.8)]
+                    animate-pulse
+                  "
+                />
                 Commissions Open
               </p>
-            </div>
+            </article>
 
-            {/* Commission type */}
-            <div className="reveal relative bg-[#F7ECE4] rounded-lg p-6 border border-gold/20 shadow-[0_14px_36px_rgba(90,24,32,.09)]">
-              <span className="absolute top-4 right-4 font-script text-gold text-sm opacity-60">
+            {/* Commission types card */}
+            <article className={infoCardClass}>
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  right-4
+                  top-4
+                  text-sm
+                  text-gold
+                  opacity-65
+                "
+              >
                 ✦
               </span>
-              <div className="font-caps font-bold text-[.8rem] tracking-[.28em] uppercase text-gold mb-4">
-                commission type
-              </div>
-              <div className="h-px w-full bg-gold/25 mb-4" />
-              <ul className=" text-base text-ink leading-[1.9]">
-                <li>Character Art</li>
-                <li>Couple Illustrations</li>
-                <li>Book Covers</li>
-                <li>Fantasy Romance</li>
+
+              <p
+                className="
+                  font-caps
+                  text-[0.68rem]
+                  font-semibold
+                  uppercase
+                  tracking-[0.28em]
+                  text-gold
+                "
+              >
+                Commission Types
+              </p>
+
+              <div className="my-4 h-px w-full bg-gold/25" />
+
+              <ul
+                className="
+                  space-y-2
+                  font-editorial
+                  text-base
+                  text-paper/80
+                "
+              >
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✦</span>
+                  Character Art
+                </li>
+
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✦</span>
+                  Couple Illustrations
+                </li>
+
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✦</span>
+                  Book Covers
+                </li>
+
+                <li className="flex items-center gap-2">
+                  <span className="text-gold">✦</span>
+                  Fantasy Romance
+                </li>
               </ul>
-            </div>
+            </article>
           </div>
 
-          {/* divider */}
-          <div className="reveal flex items-center justify-center mb-8">
-            <span className="h-px w-40 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
-          </div>
+          {/* Social divider */}
+          <div
+            aria-hidden="true"
+            className="
+              rule-gold
+              mx-auto
+              mt-16
+              h-px
+              w-44
+              opacity-65
+            "
+          />
 
-          {/* social icons with hover tooltips */}
-          <div className="reveal flex items-center justify-center gap-6 mb-6">
+          {/* Social icons */}
+          <div
+            className="
+              mt-9
+              flex
+              flex-wrap
+              items-center
+              justify-center
+              gap-5
+            "
+          >
             {socials.map(({ icon: Icon, label, href }) => (
               <a
                 key={label}
@@ -366,196 +1060,487 @@ export function Contact() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
-                className="group relative w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center text-burgundy transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-[0_10px_22px_rgba(185,134,47,.28)] hover:bg-gold/10"
+                className="
+                  group
+                  relative
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-gold/40
+                  bg-white/[0.04]
+                  text-gold
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1.5
+                  hover:border-gold
+                  hover:bg-white/[0.09]
+                  hover:text-paper
+                  hover:shadow-[0_12px_30px_rgba(var(--color-gold),0.18)]
+                "
               >
-                <Icon className="text-base transition-transform duration-300 group-hover:scale-110" />
+                <Icon
+                  className="
+                    text-base
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
+                  "
+                />
 
+                {/* Tooltip */}
                 <span
-                  className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap
-                     font-caps text-[.58rem] tracking-[.18em] uppercase text-paper bg-burgundy
-                     px-2.5 py-1 rounded shadow-[0_6px_16px_rgba(90,24,32,.3)]
-                     opacity-0 translate-y-1 transition-all duration-300
-                     group-hover:opacity-100 group-hover:translate-y-0"
+                  className="
+                    pointer-events-none
+                    absolute
+                    -top-10
+                    left-1/2
+                    -translate-x-1/2
+                    translate-y-1
+                    whitespace-nowrap
+                    rounded
+                    border
+                    border-gold/25
+                    bg-[var(--wine-dark)]
+                    px-3
+                    py-1.5
+                    font-caps
+                    text-[0.55rem]
+                    uppercase
+                    tracking-[0.18em]
+                    text-paper
+                    opacity-0
+                    shadow-[0_8px_20px_rgba(var(--color-wine-dark),0.6)]
+                    transition-all
+                    duration-300
+                    group-hover:translate-y-0
+                    group-hover:opacity-100
+                  "
                 >
                   {label}
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-burgundy rotate-45" />
+
+                  <span
+                    aria-hidden="true"
+                    className="
+                      absolute
+                      -bottom-1
+                      left-1/2
+                      h-2
+                      w-2
+                      -translate-x-1/2
+                      rotate-45
+                      bg-[var(--wine-dark)]
+                    "
+                  />
                 </span>
               </a>
             ))}
           </div>
 
-          {/* signature */}
-          <span className="reveal font-script text-gold text-2xl block">
+          {/* Signature */}
+          <span
+            className="
+              mt-8
+              block
+              font-script
+              text-3xl
+              text-gold
+            "
+          >
             with love, Daisy
           </span>
         </div>
       </div>
 
-      {/* keyframes for the success checkmark */}
       <style>{`
-        @keyframes drawRing { to { stroke-dashoffset: 0; } }
-        @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+        @keyframes contactDrawRing {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        @keyframes contactDrawCheck {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          circle,
+          path {
+            animation: none !important;
+            stroke-dashoffset: 0 !important;
+          }
+        }
       `}</style>
     </section>
   );
 }
 
-export function Footer() {
-  return (
-    <footer
-      className="py-10 border-t border-gold/30 text-[#E9D6C6]"
-      style={{ background: "linear-gradient(120deg,#5A1820,#4A141B)" }}
-    >
-      <div className="max-w-[1200px] mx-auto px-5 md:px-10 flex flex-wrap justify-between items-center gap-6">
-        <a
-          href="#home"
-          className="font-script text-3xl text-cream leading-none"
-        >
-          {BRAND}{" "}
-          <PiSparkleFill className="inline text-goldbright text-base -mt-2" />
-        </a>
-        <Status />
-        <small className="text-[#C9AB9C] text-[.78rem]">
-          © 2026 Daisyy Sketches — All artwork is 100% hand-drawn. No AI used.
-        </small>
-        <div className="flex items-center gap-4">
-          <Link
-            to="/terms"
-            className="text-[.72rem] tracking-[.15em] uppercase text-[#C9AB9C] hover:text-goldbright transition-colors"
-          >
-            Terms of Service
-          </Link>
-          <a
-            href={INSTAGRAM}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-            className="w-9 h-9 rounded-full flex items-center justify-center text-white transition-transform hover:scale-110"
-            style={{
-              background:
-                "linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",
-            }}
-          >
-            <FaInstagram />
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
-}
+// import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
-export function Lightbox({ art, onClose, onPrev, onNext, currentIndex, total }) {
-  useEffect(() => {
-    const fn = (e) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") onPrev?.();
-      if (e.key === "ArrowRight") onNext?.();
-    };
-    document.addEventListener("keydown", fn);
-    return () => document.removeEventListener("keydown", fn);
-  }, [onClose, onPrev, onNext]);
+export default function Lightbox({
+  artworks = [],
+  currentIndex = 0,
+  onChange,
+  onClose,
+}) {
+  const total = artworks.length;
+  const art = artworks[currentIndex];
+
+  const showPrevious = () => {
+    if (total <= 1) return;
+
+    const previousIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
+
+    onChange(previousIndex);
+  };
+
+  const showNext = () => {
+    if (total <= 1) return;
+
+    const nextIndex = currentIndex === total - 1 ? 0 : currentIndex + 1;
+
+    onChange(nextIndex);
+  };
 
   useEffect(() => {
     if (!art) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevious();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [art, currentIndex, total, onClose, onChange]);
+
+  useEffect(() => {
+    if (!art) return;
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
     };
   }, [art]);
 
-  if (!art) return null;
+  if (!art || typeof document === "undefined") {
+    return null;
+  }
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[999] flex flex-col items-center justify-center px-6 py-10 overflow-y-auto"
-      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={art.title || "Artwork viewer"}
+      className="
+        fixed
+        inset-0
+        z-[9999]
+        isolate
+        overflow-y-auto
+      "
     >
-      {/* Backdrop layer — dark tint + blur on content behind it */}
+      {/* Background overlay */}
       <div
-        className="fixed inset-0 -z-10"
+        aria-hidden="true"
+        onClick={onClose}
+        className="fixed inset-0"
         style={{
-          backgroundColor: "rgba(46, 38, 32, 0.75)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
+          background: `
+            radial-gradient(
+              circle at 50% 42%,
+              rgba(var(--color-paper), 0.2) 0%,
+              rgba(var(--color-wine-deep), 0.82) 38%,
+              rgba(var(--color-wine-dark), 0.97) 78%
+            )
+          `,
+          backdropFilter: "blur(22px)",
+          WebkitBackdropFilter: "blur(22px)",
         }}
       />
 
+      {/* Close button */}
       <button
-        className="absolute top-6 right-6 sm:top-8 sm:right-8 w-11 h-11 rounded-full flex items-center justify-center transition"
-        style={{ color: "#F8F3E9", border: "1px solid rgba(248,243,233,0.4)" }}
-        aria-label="Close"
+        type="button"
+        aria-label="Close artwork viewer"
         onClick={onClose}
+        className="
+          fixed
+          right-5
+          top-5
+          z-30
+          flex
+          h-11
+          w-11
+          items-center
+          justify-center
+          rounded-full
+          transition-all
+          duration-300
+          hover:rotate-90
+          hover:bg-white/10
+          sm:right-8
+          sm:top-7
+        "
+        style={{
+          color: "var(--paper)",
+          border: "1px solid rgba(var(--color-gold), 0.42)",
+          background: "rgba(var(--color-wine-dark), 0.3)",
+        }}
       >
         <FiX size={20} />
       </button>
 
-      <div className="flex items-center justify-center gap-4 sm:gap-8 w-full max-w-[1400px]">
-        {onPrev && (
-          <button
-            className="hidden sm:flex shrink-0 w-11 h-11 rounded-full items-center justify-center transition"
-            style={{ color: "#F8F3E9", border: "1px solid rgba(248,243,233,0.4)" }}
-            aria-label="Previous"
-            onClick={(e) => { e.stopPropagation(); onPrev(); }}
-          >
-            <FiChevronLeft size={20} />
-          </button>
-        )}
+      <div
+        className="
+          relative
+          z-10
+          flex
+          min-h-full
+          w-full
+          items-center
+          justify-center
+          px-4
+          py-20
+          sm:px-8
+          sm:py-16
+        "
+      >
+        <div className="w-full max-w-[1400px]">
+          {/* Image and desktop navigation */}
+          <div className="flex w-full items-center justify-center gap-5 sm:gap-8">
+            {total > 1 && (
+              <button
+                type="button"
+                aria-label="Previous artwork"
+                onClick={showPrevious}
+                className="
+                  hidden
+                  h-12
+                  w-12
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  transition-all
+                  duration-300
+                  hover:-translate-x-1
+                  hover:bg-white/10
+                  sm:flex
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.38)",
+                  background: "rgba(var(--color-wine-deep), 0.28)",
+                }}
+              >
+                <FiChevronLeft size={23} />
+              </button>
+            )}
 
-        <img
-          src={art.src}
-          alt={art.title}
-          onClick={(e) => e.stopPropagation()}
-          className="max-h-[68vh] max-w-full object-contain"
-          style={{ boxShadow: "0 34px 90px rgba(0,0,0,.55)" }}
-        />
+            <div className="flex min-w-0 justify-center">
+              <img
+                src={art.src}
+                alt={art.title || "Selected artwork"}
+                draggable="false"
+                className="
+                  block
+                  max-h-[68vh]
+                  max-w-full
+                  select-none
+                  object-contain
+                  sm:max-w-[75vw]
+                  lg:max-w-[62vw]
+                "
+                style={{
+                  boxShadow: `
+                    0 10px 35px rgba(var(--color-wine-dark), 0.48),
+                    0 35px 90px rgba(var(--color-wine-dark), 0.7),
+                    0 0 35px rgba(var(--color-gold), 0.12)
+                  `,
+                }}
+              />
+            </div>
 
-        {onNext && (
-          <button
-            className="hidden sm:flex shrink-0 w-11 h-11 rounded-full items-center justify-center transition"
-            style={{ color: "#F8F3E9", border: "1px solid rgba(248,243,233,0.4)" }}
-            aria-label="Next"
-            onClick={(e) => { e.stopPropagation(); onNext(); }}
-          >
-            <FiChevronRight size={20} />
-          </button>
-        )}
+            {total > 1 && (
+              <button
+                type="button"
+                aria-label="Next artwork"
+                onClick={showNext}
+                className="
+                  hidden
+                  h-12
+                  w-12
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  transition-all
+                  duration-300
+                  hover:translate-x-1
+                  hover:bg-white/10
+                  sm:flex
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.38)",
+                  background: "rgba(var(--color-wine-deep), 0.28)",
+                }}
+              >
+                <FiChevronRight size={23} />
+              </button>
+            )}
+          </div>
+
+          {/* Artwork information */}
+          <div className="mx-auto mt-7 max-w-2xl px-3 text-center">
+            <h3
+              className="
+                font-display
+                text-2xl
+                uppercase
+                tracking-[0.16em]
+                sm:text-3xl
+              "
+              style={{
+                color: "var(--paper)",
+                textShadow: "0 3px 18px rgba(var(--color-wine-dark), 0.9)",
+              }}
+            >
+              {art.title}
+            </h3>
+
+            {art.catLabel && (
+              <span
+                className="
+                  mt-4
+                  inline-block
+                  border
+                  px-4
+                  py-1.5
+                  font-caps
+                  text-[0.58rem]
+                  uppercase
+                  tracking-[0.2em]
+                "
+                style={{
+                  color: "var(--gold-bright)",
+                  borderColor: "rgba(var(--color-gold-bright), 0.5)",
+                  background: "rgba(var(--color-wine-deep), 0.25)",
+                }}
+              >
+                {art.catLabel}
+              </span>
+            )}
+
+            {art.desc && (
+              <p
+                className="
+                  mx-auto
+                  mt-4
+                  max-w-xl
+                  font-editorial
+                  text-[15px]
+                  italic
+                  leading-relaxed
+                  sm:text-base
+                "
+                style={{
+                  color: "rgba(var(--color-paper), 0.72)",
+                }}
+              >
+                {art.desc}
+              </p>
+            )}
+
+            {total > 1 && (
+              <p
+                className="
+                  mt-5
+                  font-caps
+                  text-[0.65rem]
+                  tracking-[0.22em]
+                "
+                style={{
+                  color: "rgba(var(--color-paper), 0.48)",
+                }}
+              >
+                {currentIndex + 1} / {total}
+              </p>
+            )}
+          </div>
+
+          {/* Mobile navigation */}
+          {total > 1 && (
+            <div className="mt-6 flex justify-center gap-4 sm:hidden">
+              <button
+                type="button"
+                aria-label="Previous artwork"
+                onClick={showPrevious}
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.4)",
+                  background: "rgba(var(--color-wine-deep), 0.35)",
+                }}
+              >
+                <FiChevronLeft size={21} />
+              </button>
+
+              <button
+                type="button"
+                aria-label="Next artwork"
+                onClick={showNext}
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.4)",
+                  background: "rgba(var(--color-wine-deep), 0.35)",
+                }}
+              >
+                <FiChevronRight size={21} />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-
-      <div className="mt-8 text-center max-w-xl" onClick={(e) => e.stopPropagation()}>
-        <h3
-          className="font-serif text-3xl sm:text-4xl tracking-[.03em] uppercase"
-          style={{ color: "#F8F3E9" }}
-        >
-          {art.title}
-        </h3>
-
-        <span
-          className="inline-block mt-4 font-caps text-[.62rem] tracking-[.2em] uppercase px-4 py-2 rounded-md"
-          style={{ color: "#C9A24A", border: "1px solid rgba(201,162,74,0.5)" }}
-        >
-          {art.catLabel}
-        </span>
-
-        {art.desc && (
-          <p
-            className="mt-5 font-serif italic text-[15px] leading-relaxed"
-            style={{ color: "rgba(248,243,233,0.75)" }}
-          >
-            {art.desc}
-          </p>
-        )}
-
-        {total > 1 && (
-          <p
-            className="mt-6 font-caps text-[.68rem] tracking-[.2em]"
-            style={{ color: "rgba(248,243,233,0.5)" }}
-          >
-            {currentIndex + 1} / {total}
-          </p>
-        )}
-      </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 // ArtistDesk.jsx
@@ -572,7 +1557,7 @@ export function ArtistDesk() {
         className="pointer-events-none absolute inset-0 blur-2xl opacity-70"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 52% 40%, rgba(228,168,168,.35), transparent 65%), radial-gradient(ellipse 40% 40% at 68% 55%, rgba(185,134,47,.20), transparent 70%)",
+            "radial-gradient(ellipse 55% 45% at 52% 40%, rgba(var(--color-rose-soft),.35), transparent 65%), radial-gradient(ellipse 40% 40% at 68% 55%, rgba(var(--color-gold),.20), transparent 70%)",
         }}
       />
 
@@ -583,29 +1568,29 @@ export function ArtistDesk() {
       >
         <defs>
           <linearGradient id="deskWood" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#8a5636" />
-            <stop offset="1" stopColor="#5f3a22" />
+            <stop offset="0" stopColor="var(--gold)" />
+            <stop offset="1" stopColor="var(--burgundy)" />
           </linearGradient>
           <linearGradient id="deskTop" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#a9764c" />
-            <stop offset=".5" stopColor="#c08e5e" />
-            <stop offset="1" stopColor="#8a5636" />
+            <stop offset="0" stopColor="var(--gold-bright)" />
+            <stop offset=".5" stopColor="var(--gold)" />
+            <stop offset="1" stopColor="var(--gold)" />
           </linearGradient>
           <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stopColor="#f7dfa3" stopOpacity=".9" />
-            <stop offset="1" stopColor="#f7dfa3" stopOpacity="0" />
+            <stop offset="0" stopColor="var(--gold-light)" stopOpacity=".9" />
+            <stop offset="1" stopColor="var(--gold-light)" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="paperGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#fdf8ef" />
-            <stop offset="1" stopColor="#f2e6d3" />
+            <stop offset="0" stopColor="var(--paper)" />
+            <stop offset="1" stopColor="var(--paper2)" />
           </linearGradient>
           <linearGradient id="inkGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#7A2430" />
-            <stop offset="1" stopColor="#5A1820" />
+            <stop offset="0" stopColor="var(--burgundy2)" />
+            <stop offset="1" stopColor="var(--burgundy)" />
           </linearGradient>
           <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#f0d08a" />
-            <stop offset="1" stopColor="#b9862f" />
+            <stop offset="0" stopColor="var(--gold-light)" />
+            <stop offset="1" stopColor="var(--gold)" />
           </linearGradient>
         </defs>
 
@@ -626,7 +1611,7 @@ export function ArtistDesk() {
             y1="30"
             x2="120"
             y2="60"
-            stroke="#b9862f"
+            stroke="var(--gold)"
             strokeWidth="1"
             opacity=".5"
           />
@@ -637,7 +1622,7 @@ export function ArtistDesk() {
             height="42"
             rx="2"
             fill="url(#paperGrad)"
-            stroke="#d9c4a8"
+            stroke="var(--cream-dim)"
             strokeWidth="1"
             transform="rotate(-4 121 81)"
           />
@@ -646,7 +1631,7 @@ export function ArtistDesk() {
             y1="72"
             x2="132"
             y2="72"
-            stroke="#c9b79a"
+            stroke="var(--cream-dim)"
             strokeWidth="1.2"
             transform="rotate(-4 121 81)"
           />
@@ -655,7 +1640,7 @@ export function ArtistDesk() {
             y1="80"
             x2="130"
             y2="80"
-            stroke="#c9b79a"
+            stroke="var(--cream-dim)"
             strokeWidth="1.2"
             transform="rotate(-4 121 81)"
           />
@@ -664,7 +1649,7 @@ export function ArtistDesk() {
             y1="88"
             x2="128"
             y2="88"
-            stroke="#c9b79a"
+            stroke="var(--cream-dim)"
             strokeWidth="1.2"
             transform="rotate(-4 121 81)"
           />
@@ -675,7 +1660,7 @@ export function ArtistDesk() {
             y1="30"
             x2="300"
             y2="55"
-            stroke="#b9862f"
+            stroke="var(--gold)"
             strokeWidth="1"
             opacity=".5"
           />
@@ -686,7 +1671,7 @@ export function ArtistDesk() {
             height="38"
             rx="2"
             fill="url(#paperGrad)"
-            stroke="#d9c4a8"
+            stroke="var(--cream-dim)"
             strokeWidth="1"
             transform="rotate(5 301 74)"
           />
@@ -694,7 +1679,7 @@ export function ArtistDesk() {
           <path
             d="M301 68 c-3-4-9-1-9 3 c0 4 9 9 9 9 c0 0 9-5 9-9 c0-4-6-7-9-3z"
             fill="none"
-            stroke="#c63a3a"
+            stroke="var(--brand)"
             strokeWidth="1.2"
             opacity=".7"
             transform="rotate(5 301 74)"
@@ -709,7 +1694,7 @@ export function ArtistDesk() {
             y1="10"
             x2="0"
             y2="150"
-            stroke="#6b4326"
+            stroke="var(--burgundy)"
             strokeWidth="5"
             strokeLinecap="round"
           />
@@ -718,7 +1703,7 @@ export function ArtistDesk() {
             y1="10"
             x2="120"
             y2="150"
-            stroke="#6b4326"
+            stroke="var(--burgundy)"
             strokeWidth="5"
             strokeLinecap="round"
           />
@@ -730,7 +1715,7 @@ export function ArtistDesk() {
             height="128"
             rx="3"
             fill="url(#paperGrad)"
-            stroke="#e0d0b4"
+            stroke="var(--paper-deep)"
             strokeWidth="1.5"
           />
           {/* the sketch being drawn — a face, draws itself in a loop */}
@@ -751,7 +1736,14 @@ export function ArtistDesk() {
             />
             <path className="draw draw-3" d="M60 62 l0 14 M52 86 q10 8 22 0" />
           </g>
-          <rect x="30" y="130" width="60" height="6" rx="3" fill="#6b4326" />
+          <rect
+            x="30"
+            y="130"
+            width="60"
+            height="6"
+            rx="3"
+            fill="var(--burgundy)"
+          />
         </g>
 
         {/* ============ DESK TOP ============ */}
@@ -769,7 +1761,7 @@ export function ArtistDesk() {
           width="380"
           height="8"
           rx="2"
-          fill="#5f3a22"
+          fill="var(--burgundy)"
           opacity=".55"
         />
         {/* desk legs */}
@@ -800,14 +1792,14 @@ export function ArtistDesk() {
             rx="6"
             fill="url(#inkGrad)"
           />
-          <rect x="10" y="6" width="22" height="16" rx="3" fill="#3a1016" />
+          <rect x="10" y="6" width="22" height="16" rx="3" fill="var(--wine)" />
           <rect
             x="8"
             y="2"
             width="26"
             height="8"
             rx="3"
-            fill="#c63a3a"
+            fill="var(--brand)"
             opacity=".85"
           />
           {/* moving shine */}
@@ -817,7 +1809,7 @@ export function ArtistDesk() {
             width="8"
             height="36"
             rx="4"
-            fill="#ffffff"
+            fill="var(--paper)"
             opacity=".22"
             className="ink-shine"
           />
@@ -831,7 +1823,7 @@ export function ArtistDesk() {
             width="40"
             height="44"
             rx="6"
-            fill="#b9862f"
+            fill="var(--gold)"
             opacity=".85"
           />
           <rect
@@ -840,7 +1832,7 @@ export function ArtistDesk() {
             width="40"
             height="10"
             rx="4"
-            fill="#f0d08a"
+            fill="var(--gold-light)"
             opacity=".8"
           />
           <g className="float-a">
@@ -850,12 +1842,12 @@ export function ArtistDesk() {
               width="5"
               height="46"
               rx="2.5"
-              fill="#7A2430"
+              fill="var(--burgundy2)"
               transform="rotate(-8 10 20)"
             />
             <path
               d="M8 -8 l5 4 l-2 -8z"
-              fill="#f0d08a"
+              fill="var(--gold-light)"
               transform="rotate(-8 10 20)"
             />
           </g>
@@ -866,12 +1858,12 @@ export function ArtistDesk() {
               width="5"
               height="50"
               rx="2.5"
-              fill="#5f3a22"
+              fill="var(--burgundy)"
               transform="rotate(4 22 20)"
             />
             <path
               d="M20 -12 l5 4 l-2 -8z"
-              fill="#f0d08a"
+              fill="var(--gold-light)"
               transform="rotate(4 22 20)"
             />
           </g>
@@ -882,12 +1874,12 @@ export function ArtistDesk() {
               width="5"
               height="44"
               rx="2.5"
-              fill="#c63a3a"
+              fill="var(--brand)"
               transform="rotate(11 32 20)"
             />
             <path
               d="M30 -6 l5 4 l-2 -8z"
-              fill="#f0d08a"
+              fill="var(--gold-light)"
               transform="rotate(11 32 20)"
             />
           </g>
@@ -902,7 +1894,7 @@ export function ArtistDesk() {
             height="14"
             rx="2"
             fill="url(#paperGrad)"
-            stroke="#e0d0b4"
+            stroke="var(--paper-deep)"
             strokeWidth="1"
             transform="rotate(-3 60 7)"
           />
@@ -911,14 +1903,14 @@ export function ArtistDesk() {
             y1="6"
             x2="104"
             y2="6"
-            stroke="#d3c1a4"
+            stroke="var(--cream-dim)"
             strokeWidth="1"
             transform="rotate(-3 60 7)"
           />
         </g>
 
         {/* ============ FLOATING GOLDEN DUST ============ */}
-        <g fill="#e9c877">
+        <g fill="var(--gold-bright)">
           <circle className="dust dust-1" cx="90" cy="180" r="2.2" />
           <circle className="dust dust-2" cx="260" cy="150" r="1.8" />
           <circle className="dust dust-3" cx="330" cy="210" r="2.4" />
@@ -928,7 +1920,7 @@ export function ArtistDesk() {
         </g>
 
         {/* ============ FLOATING FLOWER PETALS (rose) ============ */}
-        <g fill="#e4a8a8" opacity=".85">
+        <g fill="var(--rose-soft)" opacity=".85">
           <path
             className="petal petal-1"
             d="M0 0 q6 -6 12 0 q-6 6 -12 0z"

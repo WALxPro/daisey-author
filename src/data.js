@@ -19,6 +19,15 @@ export const artworks = [
     span: '',
     note: 'Couple Illustration — Sports Romance, 2025',
   },
+   {
+    id: 'skylinehold',
+    src: '/images/Close-up-version.jpg',
+    title: 'Skyline Hold',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
   {
     id: 'redcarpet',
     src: '/images/couple-redcarpet.jpg',
@@ -118,15 +127,7 @@ export const artworks = [
     span: '',
     note: 'Couple Illustration — Young Adult Romance, 2025',
   },
-  {
-    id: 'skylinehold',
-    src: '/images/Close-up-version.jpg',
-    title: 'Skyline Hold',
-    cat: 'couple',
-    catLabel: 'Couple',
-    span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
-  },
+ 
 
   // NOTE: 2 more couple artworks to be added here once images are provided.
 
@@ -153,6 +154,16 @@ export const artworks = [
     catLabel: 'Full Body Character',
     span: '',
     note: 'Full-Body Character — Fantasy, 2025',
+  },
+   {
+    id: 'wolfpendant',
+    src: '/images/Beta-Final-File.png',
+    title: 'Wolf Pendant',
+    cat: 'character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
+    span: '',
+    note: 'Character Portrait — Contemporary, 2025',
   },
   {
     id: 'goldenboy',
@@ -201,16 +212,7 @@ export const artworks = [
   },
   
   
-  {
-    id: 'wolfpendant',
-    src: '/images/Beta-Final-File.png',
-    title: 'Wolf Pendant',
-    cat: 'character',
-    subcat: 'portrait',
-    catLabel: 'Character Portrait',
-    span: '',
-    note: 'Character Portrait — Contemporary, 2025',
-  },
+ 
 
   // =========================================
   // 4. GROUP CHARACTER ART
@@ -269,7 +271,7 @@ export const artworks = [
     note: 'Custom Book Cover — Mystery Romance, 2025',
   },
 ];
-export const heroSlides = ['swanston', 'icerink', 'wolfborn', 'waltz', 'roseline']
+export const heroSlides = ['icerink', 'redcarpet', 'shanemaddie', 'royalbastards']
   .map((id) => artworks.find((a) => a.id === id))
 
 export const filters = [

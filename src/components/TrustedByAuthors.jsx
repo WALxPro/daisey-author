@@ -43,7 +43,7 @@ export function TrustedByAuthors() {
       <p className="font-caps text-[.6rem] tracking-[.3em] uppercase text-goldbright text-center mb-3 reveal">
         Client Feedback
       </p>
-      <h3 className="font-serif text-2xl sm:text-3xl text-[#FBF2E6] text-center mb-10 sm:mb-14 reveal">
+      <h3 className="font-serif text-2xl sm:text-3xl text-[var(--paper)] text-center mb-10 sm:mb-14 reveal">
         Trusted by Authors Worldwide
       </h3>
 
@@ -58,7 +58,7 @@ export function TrustedByAuthors() {
               border border-goldbright/25
               rounded-lg
               p-6 sm:p-7
-              shadow-[0_16px_38px_rgba(0,0,0,.28)]
+              shadow-[0_16px_38px_rgba(var(--color-wine-dark),.28)]
             "
           >
             <StarRow />
@@ -75,7 +75,7 @@ export function TrustedByAuthors() {
                   flex items-center justify-center
                   font-caps text-[.7rem]
                   text-winedark
-                  bg-gradient-to-br from-goldbright to-[#A87A2C]
+                  bg-gradient-to-br from-goldbright to-[var(--gold)]
                   flex-none
                 "
                 aria-hidden="true"
@@ -83,7 +83,7 @@ export function TrustedByAuthors() {
                 {t.initials}
               </div>
               <div className="min-w-0">
-                <div className="text-[.9rem] font-medium text-[#FBF2E6] truncate">
+                <div className="text-[.9rem] font-medium text-[var(--paper)] truncate">
                   {t.name}
                 </div>
                 <div className="text-[.72rem] text-goldlight truncate">
@@ -105,10 +105,10 @@ export function TrustedByAuthors() {
             href={INSTAGRAM}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2.5 font-caps text-[.7rem] tracking-[.2em] uppercase text-white px-8 py-4 rounded-full transition-transform hover:scale-105 shadow-[0_12px_30px_rgba(0,0,0,.35)]"
+            className="inline-flex items-center gap-2.5 font-caps text-[.7rem] tracking-[.2em] uppercase text-white px-8 py-4 rounded-full transition-transform hover:scale-105 shadow-[0_12px_30px_rgba(var(--color-wine-dark),.35)]"
             style={{
               background:
-                "linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",
+                "linear-gradient(45deg,var(--brand),var(--burgundy),var(--burgundy2),var(--brand),var(--gold-bright))",
             }}
           >
             <FaInstagram className="text-base" /> Follow {IG_HANDLE}

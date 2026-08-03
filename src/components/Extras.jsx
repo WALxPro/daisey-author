@@ -7,6 +7,7 @@ import { FiPlus, FiChevronDown, FiStar, FiMail } from 'react-icons/fi'
 import { FaInstagram } from 'react-icons/fa6'
 import { services, faqs, testimonials, taggedBy, INSTAGRAM, IG_HANDLE, artworks } from '../data'
 import { SectionHead } from './Sections'
+import PrimaryButton from './Button'
 
 /* ---------- Services accordion (Services page + overview) ---------- */
 export function ServicesAccordion() {
@@ -15,14 +16,14 @@ export function ServicesAccordion() {
     <div className="max-w-[900px] mx-auto grid gap-4">
       {services.map((s, i) => (
         <div key={s.title}
-          className={`reveal bg-white border transition-all duration-300 ${s.featured ? 'border-2 border-gold shadow-[0_14px_38px_rgba(185,134,47,.25)]' : 'border-gold/35 shadow-[0_10px_26px_rgba(90,24,32,.08)]'} ${open === i ? '' : 'hover:border-gold'}`}>
+          className={`reveal bg-white border transition-all duration-300 ${s.featured ? 'border-2 border-gold shadow-[0_14px_38px_rgba(var(--color-gold),.25)]' : 'border-gold/35 shadow-[0_10px_26px_rgba(var(--color-burgundy),.08)]'} ${open === i ? '' : 'hover:border-gold'}`}>
           <button onClick={() => setOpen(open === i ? -1 : i)} className="w-full flex items-center gap-4 p-4 md:p-5 text-left">
             <img src={s.img} alt="" loading="lazy" className="w-16 h-16 object-cover object-top border border-gold/40 flex-none" />
             <span className="flex-1 min-w-0">
               <span className="font-serif text-xl md:text-2xl text-burgundy block">{s.title}</span>
-              <span className="text-[.85rem] text-inksoft block truncate">{s.summary}</span>
+              <span className="text-[.85rem] text-inksoft block truncate font-semibold">{s.summary}</span>
             </span>
-            <span className="font-serif italic text-gold whitespace-nowrap hidden sm:block">{s.start}</span>
+            <span className="font-serif italic text-gold text-lg font-bold whitespace-nowrap hidden sm:block">{s.start}</span>
             <FiChevronDown className={`text-gold text-xl flex-none transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} />
           </button>
           <div className={`grid transition-all duration-500 ease-in-out ${open === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
@@ -30,13 +31,13 @@ export function ServicesAccordion() {
               <div className="px-5 pb-6 pt-1 grid md:grid-cols-2 gap-6 text-[.92rem] text-inksoft">
                 <div>
                   <p>{s.description}</p>
-                  <h4 className="font-caps text-[.6rem] tracking-[.22em] uppercase text-gold mt-4 mb-2">What's included</h4>
+                  <h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mt-4 mb-2">What's included</h4>
                   <ul className="grid gap-1.5">{s.included.map((it) => <li key={it}><span className="text-gold mr-2">✦</span>{it}</li>)}</ul>
                 </div>
                 <div className="grid gap-3 content-start">
-                  <div><h4 className="font-caps text-[.6rem] tracking-[.22em] uppercase text-gold mb-1">Revisions</h4>{s.revisions}</div>
-                  <div><h4 className="font-caps text-[.6rem] tracking-[.22em] uppercase text-gold mb-1">What I need from you</h4>{s.references}</div>
-                  <div><h4 className="font-caps text-[.6rem] tracking-[.22em] uppercase text-gold mb-1">Turnaround</h4>{s.turnaround}</div>
+                  <div><h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mb-1">Revisions</h4>{s.revisions}</div>
+                  <div><h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mb-1">What I need from you</h4>{s.references}</div>
+                  <div><h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mb-1">Turnaround</h4>{s.turnaround}</div>
                 </div>
               </div>
             </div>
@@ -52,8 +53,8 @@ export function FAQ() {
   const [open, setOpen] = useState(0)
   return (
     <div className="max-w-[760px] mx-auto mt-14">
-      <h3 className="reveal font-serif text-3xl text-burgundy text-center mb-6">Frequently Asked</h3>
-      <div className="reveal bg-white border border-gold/30 shadow-[0_16px_40px_rgba(90,24,32,.1)] px-6 md:px-8">
+      <h3 className="reveal font-display text-3xl text-ink text-center mb-6">Frequently Asked</h3>
+      <div className="reveal bg-white border border-gold/30 shadow-[0_16px_40px_rgba(var(--color-burgundy),.1)] px-6 md:px-8">
         {faqs.map((f, i) => (
           <div key={f.q} className={i < faqs.length - 1 ? 'border-b border-burgundy/12' : ''}>
             <button onClick={() => setOpen(open === i ? -1 : i)} className="w-full flex justify-between items-center gap-4 py-4 text-left font-serif text-lg md:text-xl text-burgundy hover:text-brand transition-colors">
@@ -61,7 +62,7 @@ export function FAQ() {
               <FiPlus className={`text-gold flex-none transition-transform duration-300 ${open === i ? 'rotate-45' : ''}`} />
             </button>
             <div className={`grid transition-all duration-400 ${open === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-              <p className="overflow-hidden text-[.92rem] text-inksoft pb-4">{f.a}</p>
+              <p className="overflow-hidden text-[1rem] text-inksoft pb-4">{f.a}</p>
             </div>
           </div>
         ))}
@@ -77,7 +78,7 @@ export function Stars() {
 
 export function TestimonialCard({ t }) {
   return (
-    <figure className="reveal group bg-white border border-gold/35 p-5 shadow-[0_10px_28px_rgba(90,24,32,.09)] transition-all duration-400 hover:-translate-y-1.5 hover:border-goldbright hover:shadow-[0_20px_45px_rgba(90,24,32,.18)] flex gap-4">
+    <figure className="reveal group bg-white border border-gold/35 p-5 shadow-[0_10px_28px_rgba(var(--color-burgundy),.09)] transition-all duration-400 hover:-translate-y-1.5 hover:border-goldbright hover:shadow-[0_20px_45px_rgba(var(--color-burgundy),.18)] flex gap-4">
       <img src={t.img} alt="" loading="lazy" className="w-20 h-24 object-cover object-top border border-gold/40 flex-none" />
       <div className="min-w-0">
         <Stars />
@@ -161,7 +162,7 @@ function IgScatter() {
       {cards.map((a, i) => (
         <a key={a.id} href={INSTAGRAM} target="_blank" rel="noreferrer"
           className="ig-card absolute left-1/2 top-1/2 w-[min(170px,26vw)] aspect-[1/1.28] p-1 md:p-1.5 bg-paper border border-goldbright/60 shadow-[0_20px_50px_rgba(0,0,0,.5)] z-[5] will-change-transform group">
-          <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-[2] shadow" style={{ background: 'radial-gradient(circle at 35% 30%,#F0D08A,#B9862F 60%,#8A5E1B)' }} />
+          <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-[2] shadow" style={{ background: 'radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold) 60%,var(--gold))' }} />
           <img src={a.src} alt={a.title} loading="lazy" className="w-full h-full object-cover object-top" />
           <span className="absolute inset-1.5 bg-winedark/0 group-hover:bg-winedark/45 transition-colors flex items-center justify-center">
             <FaInstagram className="text-white text-lg opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -173,11 +174,11 @@ function IgScatter() {
       <div className="ig-center absolute inset-0 z-[20] flex flex-col items-center justify-center text-center px-6 pointer-events-none">
         <div className="pointer-events-auto">
           <span className="font-script text-goldbright text-2xl md:text-4xl block -rotate-2">what clients think…</span>
-          <h2 className="font-serif font-medium text-[#FBF2E6] text-3xl sm:text-4xl md:text-6xl mt-2 md:mt-3 leading-tight">Loved on <span className="shimmer">Instagram</span></h2>
+          <h2 className="font-serif font-medium text-[var(--paper)] text-3xl sm:text-4xl md:text-6xl mt-2 md:mt-3 leading-tight">Loved on <span className="shimmer">Instagram</span></h2>
           <p className="text-creamdim text-sm md:text-base max-w-[34ch] md:max-w-[46ch] mx-auto mt-3 md:mt-4 leading-relaxed">Authors from all over the world tag me in their cover reveals and character art — here's the love, straight from their pages.</p>
           <a href={INSTAGRAM} target="_blank" rel="noreferrer"
             className="inline-flex items-center gap-2 md:gap-2.5 mt-6 md:mt-8 font-caps text-[.6rem] md:text-[.7rem] tracking-[.18em] md:tracking-[.2em] uppercase text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full transition-transform hover:scale-105 shadow-[0_12px_30px_rgba(0,0,0,.4)]"
-            style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
+            style={{ background: 'linear-gradient(45deg,var(--brand),var(--burgundy),var(--burgundy2),var(--brand),var(--gold-bright))' }}>
             <FaInstagram className="text-base" /> Follow {IG_HANDLE}
           </a>
         </div>
@@ -189,84 +190,9 @@ function IgScatter() {
 /* ---------- Instagram section ---------- */
 export function InstagramSection({ compact }) {
   return (
-    <section className={`${compact ? 'py-16 md:py-24' : 'pb-16 md:pb-24'} text-cream relative overflow-hidden`} style={{ background: 'linear-gradient(140deg,#4A141B,#5A1820 55%,#3A1119)' }}>
+    <section className={`${compact ? 'py-16 md:py-24' : 'pb-16 md:pb-24'} text-cream relative overflow-hidden`} style={{ background: 'linear-gradient(140deg,var(--burgundy),var(--burgundy) 55%,var(--wine))' }}>
       {!compact && <IgScatter />}
-      <div className="max-w-[1240px] mx-auto px-5 md:px-8">
-        {/* Trusted-by testimonials — static grid replacing the old marquee */}
-        <p className="font-caps text-[.6rem] tracking-[.3em] uppercase text-goldbright text-center mb-3 reveal">
-          Client Feedback
-        </p>
-        <h3 className="font-serif text-2xl sm:text-3xl text-[#FBF2E6] text-center mb-10 sm:mb-14 reveal">
-          Trusted by Authors Worldwide
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 reveal">
-          {testimonials.map((t, i) => (
-            <figure
-              key={i}
-              className="
-                relative
-                flex flex-col
-                bg-white/5
-                border border-goldbright/25
-                rounded-lg
-                p-6 sm:p-7
-                shadow-[0_16px_38px_rgba(0,0,0,.28)]
-              "
-            >
-              <div className="flex gap-1 text-goldbright text-sm mb-3" aria-hidden="true">
-                {"★★★★★".split("").map((s, j) => (
-                  <span key={j}>{s}</span>
-                ))}
-              </div>
-
-              <blockquote className="text-[.92rem] leading-relaxed text-creamdim italic mb-6 flex-1">
-                "{t.quote}"
-              </blockquote>
-
-              <figcaption className="flex items-center gap-3 pt-5 border-t border-goldbright/15">
-                <div
-                  className="
-                    w-11 h-11
-                    rounded-full
-                    flex items-center justify-center
-                    font-caps text-[.7rem]
-                    text-winedark
-                    bg-gradient-to-br from-goldbright to-[#A87A2C]
-                    flex-none
-                  "
-                  aria-hidden="true"
-                >
-                  {t.initials}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[.9rem] font-medium text-[#FBF2E6] truncate">
-                    {t.name}
-                  </div>
-                  <div className="text-[.72rem] text-goldlight truncate">
-                    {t.role}
-                  </div>
-                </div>
-              </figcaption>
-
-              <div className="mt-3 text-[.68rem] tracking-[.1em] uppercase text-creamdim/60">
-                {t.project}
-              </div>
-            </figure>
-          ))}
-        </div>
-
-        <div className="text-center mt-12 reveal">
-          {compact && (
-            <a href={INSTAGRAM} target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2.5 font-caps text-[.7rem] tracking-[.2em] uppercase text-white px-8 py-4 rounded-full transition-transform hover:scale-105 shadow-[0_12px_30px_rgba(0,0,0,.35)]"
-              style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
-              <FaInstagram className="text-base" /> Follow {IG_HANDLE}
-            </a>
-          )}
-          <p className="text-[.72rem] text-creamdim mt-4 tracking-[.15em] uppercase">Trusted by authors around the world</p>
-        </div>
-      </div>
+      
     </section>
   )
 }
@@ -274,28 +200,483 @@ export function InstagramSection({ compact }) {
 /* ---------- Final CTA banner ---------- */
 export function CTABanner({ title = 'Ready to See Your Characters Come to Life?', sub = 'Get a personalized quote in 24-48 hours.', btn = 'Get a Custom Quote', to = '/contact' }) {
   return (
-    <section className="py-16 md:py-20 text-center text-cream relative overflow-hidden"
-      style={{ background: 'linear-gradient(120deg,#5A1820,#7A2430 45%,#5A1820)' }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(100deg,transparent 30%,rgba(240,208,138,.12) 50%,transparent 70%)', backgroundSize: '200% 100%', animation: 'shine 6s linear infinite' }} />
+    <section className="py-16 md:py-20 text-center bg-white relative overflow-hidden">
+      
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(100deg,transparent 30%,rgba(var(--color-gold-light),.12) 50%,transparent 70%)', backgroundSize: '200% 100%', animation: 'shine 6s linear infinite' }} />
       <div className="relative z-[1] max-w-[720px] mx-auto px-5 reveal">
-        <h2 className="font-serif font-medium text-[#FBF2E6] text-4xl md:text-5xl">{title}</h2>
-        <p className="text-creamdim mt-3">{sub}</p>
-        <Link to={to} className="btn-main inline-block mt-8">{btn} ✦</Link>
+        <h2 className="font-serif text-ink text-4xl md:text-5xl">{title}</h2>
+        <p className="text-inksoft mt-3">{sub}</p>
+        <PrimaryButton to={to} className="mt-8">{btn} ✦</PrimaryButton>
       </div>
     </section>
   )
 }
 
 /* ---------- small page hero ---------- */
-export function PageHero({ eyebrow, title, shimmerWord, script }) {
+const PAGE_HERO_SPARKLES = [
+  { top: "14%", left: "7%", delay: "0s", size: "text-sm" },
+  { top: "30%", left: "38%", delay: "1.4s", size: "text-xs" },
+  { top: "72%", left: "13%", delay: "2.6s", size: "text-base" },
+  { top: "80%", left: "42%", delay: "3.4s", size: "text-xs" },
+  { top: "18%", left: "88%", delay: "0.8s", size: "text-sm" },
+  { top: "62%", left: "76%", delay: "2s", size: "text-xs" },
+];
+
+const PAGE_HERO_DUST = [
+  {
+    top: "22%",
+    left: "18%",
+    size: 3,
+    duration: "16s",
+    delay: "0s",
+    drift: 18,
+  },
+  {
+    top: "40%",
+    left: "60%",
+    size: 2,
+    duration: "22s",
+    delay: "3s",
+    drift: -24,
+  },
+  {
+    top: "72%",
+    left: "30%",
+    size: 4,
+    duration: "19s",
+    delay: "1.5s",
+    drift: 22,
+  },
+  {
+    top: "35%",
+    left: "82%",
+    size: 2,
+    duration: "24s",
+    delay: "5s",
+    drift: -16,
+  },
+  {
+    top: "60%",
+    left: "8%",
+    size: 3,
+    duration: "20s",
+    delay: "2.2s",
+    drift: 20,
+  },
+  {
+    top: "85%",
+    left: "68%",
+    size: 2,
+    duration: "26s",
+    delay: "4s",
+    drift: -20,
+  },
+  {
+    top: "15%",
+    left: "50%",
+    size: 3,
+    duration: "18s",
+    delay: "6s",
+    drift: 14,
+  },
+  {
+    top: "50%",
+    left: "40%",
+    size: 2,
+    duration: "23s",
+    delay: "1s",
+    drift: -18,
+  },
+];
+
+export function PageHero({
+  eyebrow,
+  title,
+  shimmerWord,
+  script,
+}) {
   return (
-    <header className="pt-36 pb-14 md:pb-20 text-center text-cream relative overflow-hidden"
-      style={{ background: `radial-gradient(ellipse 60% 60% at 70% 20%, rgba(198,58,58,.22), transparent 60%), linear-gradient(170deg,#241016,#3A1119 60%,#1C0A0F)` }}>
-      <div className="max-w-[800px] mx-auto px-5">
-        <span className="eyebrow">{eyebrow}</span>
-        <h1 className="font-serif font-medium text-[#FBF2E6] text-4xl md:text-6xl mt-4">{title} <span className="shimmer">{shimmerWord}</span></h1>
-        {script && <p className="font-script text-goldbright text-2xl md:text-3xl mt-4">{script}</p>}
+    <header
+      className="
+        aurora
+        relative
+        isolate
+        overflow-hidden
+        px-5
+        pb-14
+        pt-36
+        text-center
+        text-cream
+        md:pb-20
+      "
+    >
+      {/* Moving aurora background */}
+      <div
+        aria-hidden="true"
+        className="
+          pagehero-aurora
+          pointer-events-none
+          absolute
+          inset-0
+          z-0
+        "
+        style={{
+          background: `
+            radial-gradient(
+              120% 80% at 15% 20%,
+              rgba(120, 60, 130, 0.12),
+              transparent 55%
+            ),
+            radial-gradient(
+              100% 90% at 85% 80%,
+              rgba(200, 130, 180, 0.14),
+              transparent 60%
+            )
+          `,
+        }}
+      />
+
+      {/* Left violet glow */}
+      <div
+        aria-hidden="true"
+        className="
+          pagehero-glow-a
+          pointer-events-none
+          absolute
+          -left-24
+          top-10
+          z-0
+          h-72
+          w-72
+          rounded-full
+          blur-[90px]
+        "
+        style={{
+          backgroundColor:
+            "rgba(var(--color-burgundy), 0.18)",
+        }}
+      />
+
+      {/* Right rose glow */}
+      <div
+        aria-hidden="true"
+        className="
+          pagehero-glow-b
+          pointer-events-none
+          absolute
+          -right-20
+          bottom-0
+          z-0
+          h-80
+          w-80
+          rounded-full
+          blur-[100px]
+        "
+        style={{
+          backgroundColor:
+            "rgba(var(--color-rose), 0.22)",
+        }}
+      />
+
+      {/* Center breathing glow */}
+      <div
+        aria-hidden="true"
+        className="
+          pagehero-glow-c
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          z-0
+          h-96
+          w-96
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          blur-[120px]
+        "
+        style={{
+          backgroundColor: "rgba(139, 92, 160, 0.22)",
+        }}
+      />
+
+      {/* Roaming plum glow */}
+      <div
+        aria-hidden="true"
+        className="
+          pagehero-glow-d
+          pointer-events-none
+          absolute
+          left-[35%]
+          top-[10%]
+          z-0
+          h-64
+          w-64
+          rounded-full
+          blur-[110px]
+        "
+        style={{
+          backgroundColor: "rgba(190, 120, 170, 0.2)",
+        }}
+      />
+
+      {/* Sparkles */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[1]
+        "
+      >
+        {PAGE_HERO_SPARKLES.map((sparkle, index) => (
+          <span
+            key={index}
+            className={`
+              sparkle
+              absolute
+              text-burgundy2/45
+              ${sparkle.size}
+            `}
+            style={{
+              top: sparkle.top,
+              left: sparkle.left,
+              animationDelay: sparkle.delay,
+            }}
+          >
+            ✦
+          </span>
+        ))}
       </div>
+
+      {/* Floating dust */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[1]
+        "
+      >
+        {PAGE_HERO_DUST.map((dust, index) => (
+          <span
+            key={index}
+            className="
+              pagehero-dust
+              absolute
+              rounded-full
+            "
+            style={{
+              top: dust.top,
+              left: dust.left,
+              width: `${dust.size}px`,
+              height: `${dust.size}px`,
+              backgroundColor:
+                "rgba(var(--color-burgundy), 0.5)",
+              boxShadow:
+                "0 0 6px rgba(var(--color-burgundy), 0.45)",
+              animationDuration: dust.duration,
+              animationDelay: dust.delay,
+              "--pagehero-drift": `${dust.drift}px`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Page hero content */}
+      <div className="relative z-10 mx-auto max-w-[800px]">
+      
+        <span
+            className="
+              shine inline-flex items-center gap-2
+              overflow-hidden rounded-full
+              border border-burgundy/20
+              bg-paper-deep/75
+              px-4 py-1.5
+              font-sans text-[0.6rem]
+              uppercase tracking-[0.28em]
+              text-burgundy
+              shadow-[var(--shadow-paper)]
+              sm:text-[0.7rem]
+            "
+          >
+            <span aria-hidden="true" className="text-burgundy2">
+              ✦
+            </span>
+            {eyebrow}
+          </span>
+
+        <h1
+          className="
+            mt-4
+            font-display
+            text-4xl
+            text-ink
+            md:text-6xl
+          "
+        >
+          {title}{" "}
+          {shimmerWord && (
+            <span className=" text-burgundy">
+              {shimmerWord}
+            </span>
+            
+          )}
+        </h1>
+
+        {script && (
+          <p
+            className="
+              mt-4
+              font-script
+              text-2xl
+              text-burgundy
+              md:text-3xl
+            "
+          >
+            {script}
+          </p>
+        )}
+      </div>
+
+      <style>{`
+        @keyframes pagehero-aurora-motion {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+
+          50% {
+            transform: translate3d(2%, -1.5%, 0)
+              scale(1.05);
+          }
+        }
+
+        @keyframes pagehero-glow-a-motion {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
+
+          50% {
+            transform: translate3d(30px, -20px, 0);
+          }
+        }
+
+        @keyframes pagehero-glow-b-motion {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
+
+          50% {
+            transform: translate3d(-25px, 25px, 0);
+          }
+        }
+
+        @keyframes pagehero-glow-c-motion {
+          0%,
+          100% {
+            transform:
+              translate(-50%, -50%)
+              scale(1);
+            opacity: 0.7;
+          }
+
+          50% {
+            transform:
+              translate(-50%, -50%)
+              scale(1.18);
+            opacity: 0.9;
+          }
+        }
+
+        @keyframes pagehero-glow-d-motion {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
+
+          50% {
+            transform: translate3d(40px, 30px, 0);
+          }
+        }
+
+        @keyframes pagehero-dust-motion {
+          0% {
+            transform: translate3d(0, 0, 0);
+            opacity: 0;
+          }
+
+          15% {
+            opacity: 1;
+          }
+
+          85% {
+            opacity: 1;
+          }
+
+          100% {
+            transform: translate3d(
+              var(--pagehero-drift, 20px),
+              -60px,
+              0
+            );
+            opacity: 0;
+          }
+        }
+
+        .pagehero-aurora {
+          animation:
+            pagehero-aurora-motion
+            18s ease-in-out infinite;
+        }
+
+        .pagehero-glow-a {
+          animation:
+            pagehero-glow-a-motion
+            9s ease-in-out infinite;
+        }
+
+        .pagehero-glow-b {
+          animation:
+            pagehero-glow-b-motion
+            11s ease-in-out infinite;
+        }
+
+        .pagehero-glow-c {
+          animation:
+            pagehero-glow-c-motion
+            8s ease-in-out infinite;
+        }
+
+        .pagehero-glow-d {
+          animation:
+            pagehero-glow-d-motion
+            13s ease-in-out infinite;
+        }
+
+        .pagehero-dust {
+          animation-name: pagehero-dust-motion;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          filter: blur(0.5px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .pagehero-aurora,
+          .pagehero-glow-a,
+          .pagehero-glow-b,
+          .pagehero-glow-c,
+          .pagehero-glow-d,
+          .pagehero-dust {
+            animation: none;
+          }
+        }
+      `}</style>
     </header>
-  )
+  );
 }
+

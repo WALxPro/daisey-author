@@ -1,38 +1,75 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
-import { Marquee, About, Flourish } from '../components/Sections'
-import { Gallery, Commissions } from '../components/Content'
-import { Lightbox } from '../components/Contact'
+import Marquee, {  About, Flourish } from '../components/Sections'
+import { Gallery } from '../components/Content'
+import Lightbox from '../components/Contact'
+import { artworks } from '../data'
 import { InstagramSection, CTABanner } from '../components/Extras'
 import TestimonialSlider from '../components/TestimonialSlider'
 import { SectionHead } from '../components/Sections'
 import Pinned from '../components/Pinned'
 import { useGsapReveal } from '../hooks'
-import { HomeCommissionStack } from '../components/HomeCommissionStack'
+import Commissions from '../components/Commissions'
+import MiniHead from '../components/MiniHead'
+import Heading from '../components/Heading'
 
 
 export default function Home() {
-  const [lightbox, setLightbox] = useState(null)
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+  const openLightbox = (artworkId) => {
+    const index = artworks.findIndex((artwork) => artwork.id === artworkId)
+    if (index !== -1) setLightboxIndex(index)
+  }
   useGsapReveal([])
   return (
     <>
-      <Hero onOpenLightbox={setLightbox} />
-      <Marquee onOpenLightbox={setLightbox} />
+      <Marquee  />
+      <Hero onOpenLightbox={openLightbox} />
+      <Marquee onOpenLightbox={openLightbox} />
       <About />
       {/* <Pinned /> */}
-      <Gallery onOpenLightbox={setLightbox} preview />
+      <Gallery onOpenLightbox={openLightbox} preview />
       <Commissions />
-      <section className="py-20 md:py-28 px-5" style={{ background: 'radial-gradient(ellipse 60% 50% at 15% 15%, rgba(228,168,168,.4), transparent 60%), #F6EDE4' }}>
-        <SectionHead eyebrow="Testimonials" title="Kind Words From" shimmerWord="Clients">
-          Nothing means more than hearing your characters came to life the way you imagined.
-        </SectionHead>
-        <div className="reveal"><TestimonialSlider /></div>
-      </section>
+    <section className="aurora px-5 py-20 text-center md:py-28">
+  <MiniHead text="Testimonials" />
+
+  <Heading text="Kind Words From" highlight="Clients" />
+
+  <p
+    className="
+      mx-auto
+      mt-5
+      w-full
+      max-w-[56ch]
+      text-center
+      text-sm
+      leading-relaxed
+      text-inksoft
+      sm:text-[1.2rem]
+      sm:leading-[1.6]
+    mb-10
+    "
+  >
+    Nothing means more than hearing your characters came to life the way you
+    imagined.
+  </p>
+
+  <div className="reveal">
+    <TestimonialSlider />
+  </div>
+</section>
       <InstagramSection />
       <CTABanner />
       
-      <Lightbox art={lightbox} onClose={() => setLightbox(null)} />
+      {lightboxIndex !== null && (
+        <Lightbox
+          artworks={artworks}
+          currentIndex={lightboxIndex}
+          onChange={setLightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
     </>
   )
 }

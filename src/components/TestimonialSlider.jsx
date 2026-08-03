@@ -42,8 +42,8 @@ export default function TestimonialSlider({ items = testimonials, dark = false }
   }, [cur])
 
   const frame = dark
-    ? 'border-goldbright/50 bg-winedeep/60 text-cream shadow-[0_26px_60px_rgba(0,0,0,.45)]'
-    : 'border-gold/40 bg-white text-ink shadow-[0_26px_60px_rgba(90,24,32,.16)]'
+    ? 'border-goldbright/50 bg-winedeep/60 text-cream shadow-[0_26px_60px_rgba(var(--color-wine-dark),.45)]'
+    : 'border-gold/40 bg-white text-ink shadow-[0_26px_60px_rgba(var(--color-burgundy),.16)]'
 
   return (
     <div ref={cardRef} className="relative max-w-[880px] mx-auto" onMouseEnter={stop} onMouseLeave={start}>
@@ -51,15 +51,15 @@ export default function TestimonialSlider({ items = testimonials, dark = false }
       <span className={`absolute -top-10 left-2 font-serif italic text-[7rem] leading-none select-none pointer-events-none ${dark ? 'text-goldbright/15' : 'text-gold/15'}`}>"</span>
 
       <figure className={`ts-card relative border p-6 md:p-9 flex flex-col sm:flex-row gap-6 items-center backdrop-blur ${frame}`}>
-        <div className="ts-img relative flex-none w-32 h-40 md:w-40 md:h-52 p-1.5 bg-paper border border-gold/50 shadow-[0_16px_36px_rgba(0,0,0,.3)] -rotate-2">
-          <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full z-[2] shadow" style={{ background: 'radial-gradient(circle at 35% 30%,#F0D08A,#B9862F 60%,#8A5E1B)' }} />
+        <div className="ts-img relative flex-none w-32 h-40 md:w-40 md:h-52 p-1.5 bg-paper border border-gold/50 shadow-[0_16px_36px_rgba(var(--color-wine-dark),.3)] -rotate-2">
+          <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full z-[2] shadow" style={{ background: 'radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold) 60%,var(--gold))' }} />
           <img src={t.img} alt="" className="w-full h-full object-cover object-top" loading="lazy" />
         </div>
         <div className="min-w-0 text-center sm:text-left">
           <span className="flex justify-center sm:justify-start gap-1 text-goldbright">
             {[...Array(5)].map((_, i) => <FiStar key={i} className="ts-star fill-goldbright" />)}
           </span>
-          <blockquote className={`ts-quote font-serif italic text-lg md:text-2xl leading-snug mt-3 ${dark ? 'text-[#FBF2E6]' : 'text-ink'}`}>
+          <blockquote className={`ts-quote font-serif italic text-lg md:text-2xl leading-snug mt-3 ${dark ? 'text-[var(--paper)]' : 'text-ink'}`}>
             "{t.quote}"
           </blockquote>
           <figcaption className="mt-4">
@@ -83,7 +83,7 @@ export default function TestimonialSlider({ items = testimonials, dark = false }
       <div className="flex justify-center gap-2 mt-7">
         {list.map((x, i) => (
           <button key={x.handle} onClick={() => go(i, i > cur ? 1 : -1)} aria-label={`Review ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-400 ${i === cur ? 'w-7 bg-goldbright shadow-[0_0_10px_rgba(217,172,85,.8)]' : `w-1.5 ${dark ? 'bg-goldbright/30' : 'bg-gold/30'}`}`} />
+            className={`h-1.5 rounded-full transition-all duration-400 ${i === cur ? 'w-7 bg-goldbright shadow-[0_0_10px_rgba(var(--color-gold-bright),.8)]' : `w-1.5 ${dark ? 'bg-goldbright/30' : 'bg-gold/30'}`}`} />
         ))}
       </div>
     </div>

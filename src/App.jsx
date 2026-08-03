@@ -1,8 +1,8 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import { Footer } from './components/Contact'
 import Home from './pages/Home'
+import { Footer } from './components/Footer'
 
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))

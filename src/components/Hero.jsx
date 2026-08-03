@@ -1,186 +1,108 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Link } from "react-router-dom";
 
 import { heroSlides } from "../data";
 import { useReducedMotion } from "../hooks";
+import { Link } from "react-router-dom";
 
-const tags = [
-  "Character Art",
-  "Couples",
-  "Romance Fantasy",
-  "Book Covers",
+const STATS = [
+  { value: "120+", label: "Commissions" },
+  { value: "8 yrs", label: "Hand-drawn" },
+  { value: "0%", label: "AI used" },
 ];
 
-function Stars({ count = 26 }) {
-  const stars = useMemo(
-    () =>
-      Array.from({ length: count }, (_, index) => ({
-        id: index,
-        size: 1.5 + Math.random() * 2.5,
-        left: Math.random() * 100,
-        top: Math.random() * 55,
-        duration: 2.2 + Math.random() * 3,
-        delay: Math.random() * 3,
-      })),
-    [count],
-  );
-
-  return stars.map((star) => (
-    <span
-      key={star.id}
-      className="absolute rounded-full bg-goldlight animate-twinkle pointer-events-none"
-      style={{
-        width: star.size,
-        height: star.size,
-        left: `${star.left}%`,
-        top: `${star.top}%`,
-        animationDuration: `${star.duration}s`,
-        animationDelay: `${star.delay}s`,
-      }}
-    />
-  ));
-}
-
-function Dust({ count = 16 }) {
-  const dust = useMemo(
-    () =>
-      Array.from({ length: count }, (_, index) => ({
-        id: index,
-        size: 2 + Math.random() * 4,
-        left: Math.random() * 100,
-        duration: 9 + Math.random() * 10,
-        delay: -Math.random() * 14,
-      })),
-    [count],
-  );
-
-  return dust.map((particle) => (
-    <span
-      key={particle.id}
-      className="absolute rounded-full animate-drift pointer-events-none opacity-50"
-      style={{
-        width: particle.size,
-        height: particle.size,
-        left: `${particle.left}%`,
-        bottom: -10,
-        background: "radial-gradient(circle,#F0D08A,#B9862F)",
-        animationDuration: `${particle.duration}s`,
-        animationDelay: `${particle.delay}s`,
-      }}
-    />
-  ));
-}
-
-function Watchers() {
-  return (
-    <svg
-      className="absolute left-2 md:left-16 bottom-[-6px] w-[150px] md:w-[220px] z-[4] opacity-95 hidden sm:block"
-      viewBox="0 0 220 150"
-      aria-hidden="true"
-    >
-      <rect
-        x="18"
-        y="118"
-        width="184"
-        height="9"
-        rx="4"
-        fill="#0F0406"
-      />
-
-      <rect
-        x="34"
-        y="127"
-        width="10"
-        height="20"
-        fill="#0F0406"
-      />
-
-      <rect
-        x="176"
-        y="127"
-        width="10"
-        height="20"
-        fill="#0F0406"
-      />
-
-      <circle cx="86" cy="58" r="15" fill="#140609" />
-
-      <path
-        d="M64 122 C64 90 72 76 86 76 C100 76 108 90 108 122 Z"
-        fill="#140609"
-      />
-
-      <circle cx="126" cy="66" r="13" fill="#1B0A0E" />
-
-      <path
-        d="M106 122 C106 94 113 82 126 82 C139 82 146 94 146 122 Z"
-        fill="#1B0A0E"
-      />
-
-      <path
-        d="M112 70 Q118 60 122 62"
-        stroke="#1B0A0E"
-        strokeWidth="6"
-        fill="none"
-        strokeLinecap="round"
-      />
-
-      <path
-        className="animate-heart"
-        d="M106 34 c-3-6-12-4-12 2 c0 5 7 9 12 13 c5-4 12-8 12-13 c0-6-9-8-12-2z"
-        fill="#C63A3A"
-      />
-    </svg>
-  );
-}
-
-const H1_WORDS = [
-  ["Bringing", "Your", "Characters", "to", "Life"],
-  ["One", "Sketch", "at", "a", "Time"],
+const SPARKLES = [
+  { top: "12%", left: "6%", delay: "0s", size: "text-sm" },
+  { top: "28%", left: "44%", delay: "1.4s", size: "text-xs" },
+  { top: "68%", left: "12%", delay: "2.6s", size: "text-base" },
+  { top: "82%", left: "38%", delay: "3.4s", size: "text-xs" },
+  { top: "18%", left: "88%", delay: "0.8s", size: "text-sm" },
+  { top: "58%", left: "72%", delay: "2s", size: "text-xs" },
 ];
 
-export default function Hero({ onOpenLightbox }) {
+// Extra drifting dust particles for a more "alive" background
+const DUST = [
+  { top: "22%", left: "18%", size: 3, dur: "16s", delay: "0s", drift: 18 },
+  { top: "40%", left: "60%", size: 2, dur: "22s", delay: "3s", drift: -24 },
+  { top: "72%", left: "30%", size: 4, dur: "19s", delay: "1.5s", drift: 22 },
+  { top: "35%", left: "82%", size: 2, dur: "24s", delay: "5s", drift: -16 },
+  { top: "60%", left: "8%", size: 3, dur: "20s", delay: "2.2s", drift: 20 },
+  { top: "85%", left: "68%", size: 2, dur: "26s", delay: "4s", drift: -20 },
+  { top: "15%", left: "50%", size: 3, dur: "18s", delay: "6s", drift: 14 },
+  { top: "50%", left: "40%", size: 2, dur: "23s", delay: "1s", drift: -18 },
+];
+
+const HEADING_WORDS = ["Bringing", "Your", "Characters", "to", "Life"];
+
+export default function Hero({}) {
   const reducedMotion = useReducedMotion();
 
+  const slides = heroSlides.slice(0, 4);
+  const slideCount = slides.length;
+
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [progressKey, setProgressKey] = useState(0);
 
   const rootRef = useRef(null);
 
+  // Entrance animations
   useEffect(() => {
     if (reducedMotion) return undefined;
 
     const context = gsap.context(() => {
       const timeline = gsap.timeline({
         defaults: {
-          ease: "back.out(1.8)",
+          ease: "power4.out",
         },
       });
 
       timeline
-        .from(".h-word", {
-          y: 70,
+        .from(".h-eyebrow-line", {
+          scaleX: 0,
           opacity: 0,
-          rotate: 3,
-          duration: 0.8,
-          stagger: 0.09,
+          duration: 0.7,
+          transformOrigin: "left center",
+          ease: "power2.out",
         })
         .from(
           ".h-script",
           {
-            y: 24,
+            y: 20,
             opacity: 0,
-            duration: 0.5,
+            duration: 0.6,
             ease: "power3.out",
           },
-          "-=0.55",
+          "-=0.35",
+        )
+        .from(
+          ".h-word",
+          {
+            y: 60,
+            opacity: 0,
+            rotate: 2,
+            duration: 0.9,
+            stagger: 0.07,
+            ease: "back.out(1.6)",
+          },
+          "-=0.25",
         )
         .from(
           ".h-sub",
           {
-            y: 24,
+            y: 20,
             opacity: 0,
-            duration: 0.55,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "-=0.5",
+        )
+        .from(
+          ".h-btn",
+          {
+            y: 16,
+            scale: 0.94,
+            duration: 0.5,
+            stagger: 0.09,
             ease: "power3.out",
           },
           "-=0.3",
@@ -188,7 +110,7 @@ export default function Hero({ onOpenLightbox }) {
         .from(
           ".h-tag",
           {
-            y: 12,
+            y: 10,
             opacity: 0,
             duration: 0.35,
             stagger: 0.05,
@@ -199,458 +121,728 @@ export default function Hero({ onOpenLightbox }) {
         .from(
           ".h-frame",
           {
-            y: 40,
+            y: 50,
             opacity: 0,
-            rotate: -3,
-            duration: 0.9,
-            ease: "power3.out",
+            scale: 0.96,
+            rotate: -4,
+            duration: 1.1,
+            ease: "power4.out",
           },
-          0.35,
+          0.3,
         );
+
+      // Frame floating animation
+      gsap.to(".h-frame", {
+        y: -10,
+        duration: 4.5,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 1.2,
+      });
+
+      // Background glow animations
+      gsap.to(".h-glow-a", {
+        x: 30,
+        y: -20,
+        duration: 9,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+
+      gsap.to(".h-glow-b", {
+        x: -25,
+        y: 25,
+        duration: 11,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+
+      // Extra slow-breathing center glow
+      gsap.to(".h-glow-c", {
+        scale: 1.18,
+        opacity: 0.9,
+        duration: 8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+
+      // Third roaming glow for depth
+      gsap.to(".h-glow-d", {
+        x: 40,
+        y: 30,
+        duration: 13,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
     }, rootRef);
 
     return () => context.revert();
   }, [reducedMotion]);
 
+  // Automatic slider
   useEffect(() => {
-    if (reducedMotion || heroSlides.length <= 1) {
+    if (reducedMotion || slideCount <= 1) {
       return undefined;
     }
 
-    const interval = window.setInterval(() => {
-      setCurrentSlide(
-        (current) => (current + 1) % heroSlides.length,
-      );
-    }, 3800);
+    const intervalId = window.setInterval(() => {
+      setCurrentSlide((current) => (current + 1) % slideCount);
 
-    return () => window.clearInterval(interval);
-  }, [reducedMotion]);
+      setProgressKey((current) => current + 1);
+    }, 4200);
 
-  const activeSlide = heroSlides[currentSlide];
+    return () => window.clearInterval(intervalId);
+  }, [reducedMotion, slideCount]);
+
+  const activeSlide = slides[currentSlide];
+
+  const handleDotClick = (index) => (event) => {
+    event.stopPropagation();
+
+    setCurrentSlide(index);
+    setProgressKey((current) => current + 1);
+  };
 
   return (
-    <header
+    <section
       ref={rootRef}
       id="home"
-      className="min-h-screen flex items-center pt-28 sm:pt-32 pb-24 relative overflow-hidden text-cream"
-      style={{
-        background: `
-          radial-gradient(
-            ellipse 70% 55% at 68% 30%,
-            rgba(198,58,58,.24),
-            transparent 65%
-          ),
-          radial-gradient(
-            ellipse 55% 45% at 12% 75%,
-            rgba(122,44,54,.5),
-            transparent 65%
-          ),
-          linear-gradient(
-            180deg,
-            #241016 0%,
-            #3A1119 45%,
-            #1C0A0F 100%
-          )
-        `,
-      }}
+      className="
+        aurora relative overflow-hidden
+        px-5 pb-16 pt-12
+        sm:px-8 sm:pb-20 sm:pt-14
+        lg:min-h-[calc(100vh-80px)]
+        lg:px-12 lg:pb-20 lg:pt-16
+      "
     >
-      {/* Spotlight beam */}
+      {/* Slow drifting aurora wash */}
       <div
-        className="absolute top-0 right-[6%] w-[46%] h-full pointer-events-none z-[2]"
+        aria-hidden="true"
+        className="h-aurora-shift pointer-events-none absolute inset-0 -z-[1]"
         style={{
-          background:
-            "radial-gradient(ellipse 60% 90% at 50% 0%, rgba(240,208,138,.14), transparent 70%)",
+          background: `
+            radial-gradient(
+              120% 80% at 15% 20%,
+              rgba(120, 60, 130, 0.12),
+              transparent 55%
+            ),
+            radial-gradient(
+              100% 90% at 85% 80%,
+              rgba(200, 130, 180, 0.14),
+              transparent 60%
+            )
+          `,
         }}
       />
 
-      {/* Background hills */}
-      <svg
-        className="absolute inset-x-0 bottom-0 w-full h-[34%] z-[1] opacity-90"
-        viewBox="0 0 1440 220"
-        preserveAspectRatio="none"
+      {/* Violet background glow */}
+      <div
         aria-hidden="true"
-      >
-        <path
-          d="M0,220 L0,140 L180,90 L340,150 L520,80 L700,160 L900,100 L1100,170 L1280,110 L1440,150 L1440,220 Z"
-          fill="#160709"
-          opacity=".9"
-        />
+        className="
+          h-glow-a pointer-events-none
+          absolute -left-24 top-10
+          h-72 w-72 rounded-full
+          bg-burgundy/16 blur-[90px]
+        "
+      />
 
-        <path
-          d="M0,220 L0,180 L220,140 L430,190 L640,150 L880,200 L1120,160 L1320,200 L1440,175 L1440,220 Z"
-          fill="#0F0406"
-        />
-      </svg>
+      {/* Rose background glow */}
+      <div
+        aria-hidden="true"
+        className="
+          h-glow-b pointer-events-none
+          absolute -right-20 bottom-0
+          h-80 w-80 rounded-full
+          bg-rose/20 blur-[100px]
+        "
+      />
 
-      {!reducedMotion && <Stars />}
+      {/* Breathing center glow */}
+      <div
+        aria-hidden="true"
+        className="
+          h-glow-c pointer-events-none
+          absolute left-1/2 top-1/2
+          h-96 w-96 -translate-x-1/2 -translate-y-1/2
+          rounded-full
+          blur-[120px]
+          opacity-70
+        "
+        style={{
+          backgroundColor: "rgba(139, 92, 160, 0.22)",
+        }}
+      />
 
-      {!reducedMotion && <Dust />}
+      {/* Roaming plum glow */}
+      <div
+        aria-hidden="true"
+        className="
+          h-glow-d pointer-events-none
+          absolute left-[35%] top-[10%]
+          h-64 w-64 rounded-full
+          blur-[110px]
+        "
+        style={{
+          backgroundColor: "rgba(190, 120, 170, 0.20)",
+        }}
+      />
 
-      <Watchers />
+      {/* Floating sparkles */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        {SPARKLES.map((sparkle, index) => (
+          <span
+            key={index}
+            className={`
+              sparkle absolute
+              text-burgundy2/45
+              ${sparkle.size}
+            `}
+            style={{
+              top: sparkle.top,
+              left: sparkle.left,
+              animationDelay: sparkle.delay,
+            }}
+          >
+            ✦
+          </span>
+        ))}
+      </div>
 
+      {/* Drifting dust particles */}
+      {!reducedMotion && (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          {DUST.map((dust, index) => (
+            <span
+              key={index}
+              className="h-dust absolute rounded-full"
+              style={{
+                top: dust.top,
+                left: dust.left,
+                width: `${dust.size}px`,
+                height: `${dust.size}px`,
+                backgroundColor: "rgba(139, 92, 160, 0.55)",
+                boxShadow: "0 0 6px rgba(139, 92, 160, 0.5)",
+                animationDuration: dust.dur,
+                animationDelay: dust.delay,
+                "--drift": `${dust.drift}px`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Flex layout */}
       <div
         className="
-          relative z-[5]
-          grid w-full
-          max-w-[1240px]
-          mx-auto
-          px-5 sm:px-8 lg:px-10
-          gap-10 lg:gap-14
-          items-center
-          lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)]
+          container relative mx-auto
+          flex flex-col items-center
+          gap-10
+          lg:flex-row
+          lg:items-center
+          lg:justify-between
+          lg:gap-6
         "
       >
-        {/* Left content */}
+        {/* Left content: 50% */}
         <div
           className="
-            min-w-0
-            w-full
-            max-w-[560px]
-            mx-auto lg:mx-0
-            mt-5 lg:mt-0
-            text-center lg:text-left
+            w-full max-w-xl
+            text-center
+            lg:max-w-none
+            lg:flex-[1_1_50%]
+            lg:text-left
           "
         >
+          {/* Badge */}
           <span
             className="
-              h-script
-              block
-              font-script
-              text-goldbright
-              text-xl md:text-2xl
-              leading-[1.15]
-              tracking-normal
-              -rotate-2
-              origin-center lg:origin-left
+              shine inline-flex items-center gap-2
+              overflow-hidden rounded-full
+              border border-burgundy/20
+              bg-paper-deep/75
+              px-4 py-1.5
+              font-sans text-[0.6rem]
+              uppercase tracking-[0.28em]
+              text-burgundy
+              shadow-[var(--shadow-paper)]
+              sm:text-[0.7rem]
             "
           >
+            <span aria-hidden="true" className="text-burgundy2">
+              ✦
+            </span>
             Hand-drawn • Fully custom • Made with love
           </span>
 
-          <h1 className="font-serif font-medium text-[#FBF2E6] mt-2 mb-6">
-            {H1_WORDS.map((line, lineIndex) => (
-              <span
-                key={lineIndex}
-                className={`
-                  block overflow-hidden
-                  ${
-                    lineIndex === 1
-                      ? "mt-3 text-[1.45rem] sm:text-[1.7rem] leading-[1.15]"
-                      : "text-[2rem] sm:text-[2.1rem] leading-[1.2]"
-                  }
-                  md:text-3xl
-                  md:leading-[1.15]
-                  lg:text-5xl
-                `}
-              >
-                {line.map((word) => (
-                  <span
-                    key={`${lineIndex}-${word}`}
-                    className={`
-                      h-word
-                      inline-block
-                      mr-[0.22em]
-                      ${lineIndex === 1 ? "shimmer" : ""}
-                    `}
-                  >
-                    {word}
-                  </span>
-                ))}
+          {/* Heading */}
+          <h1
+            className="
+              mt-6 flex flex-wrap
+              justify-center gap-x-[0.28em]
+              font-display
+              text-[2rem] leading-[1.08]
+              uppercase tracking-[0.08em]
+              text-ink
+              sm:text-[3rem]
+              lg:justify-start
+              lg:text-[3.25rem]
+              xl:text-[4.6rem]
+            "
+          >
+            {HEADING_WORDS.map((word) => (
+              <span key={word} className="h-word inline-block">
+                {word}
               </span>
             ))}
           </h1>
 
+          {/* Line */}
+          <div
+            aria-hidden="true"
+            className="
+              h-eyebrow-line
+              mx-auto mt-6 h-px w-40
+              bg-gradient-to-r
+              from-transparent
+              via-burgundy/70
+              to-transparent
+              lg:mx-0
+            "
+          />
+
+          {/* Script heading */}
           <p
             className="
-              h-sub
-              max-w-[46ch]
-              mx-auto lg:mx-0
-              text-creamdim
-              text-sm sm:text-[1.03rem]
+              h-script mt-5
+              font-script text-3xl
+              text-burgundy
+              sm:text-5xl
+              xl:text-6xl
+            "
+          >
+            One Sketch at a Time
+          </p>
+
+          {/* Description */}
+          <p
+            className="
+              h-sub mx-auto mt-6
+              max-w-lg
+              font-editorial text-lg
+              leading-relaxed text-ink-soft
+              sm:text-xl
+              lg:mx-0 lg:text-xl
             "
           >
             Custom illustrations, couple art, and book covers for authors who
             want their story to be seen, not just read.
           </p>
 
+          {/* Buttons */}
           <div
             className="
-              relative z-20
-              flex flex-wrap
-              items-center
-              justify-center lg:justify-start
-              gap-4
-              mt-9
+              mt-9 flex flex-wrap
+              justify-center gap-4
+              opacity-100
+              lg:justify-start
             "
           >
             <Link
-              to="/portfolio"
+              href="/portfolio"
               className="
-                h-btn
-                inline-flex
-                items-center
-                justify-center
-                px-5 md:px-7
-                py-3
-                rounded-full
-                bg-[#D9AC55]
-                text-[#241016]
-                text-sm
-                font-semibold
-                tracking-wide
-                border
-                border-[#F0D08A]
-                hover:bg-[#F0D08A]
-                transition-all
-                duration-300
+                h-btn gradient-violet group
+                relative inline-flex
+                items-center justify-center
+                overflow-hidden rounded-full
+                px-7 py-3.5
+                font-sans text-[0.66rem]
+                uppercase tracking-[0.22em]
+                text-paper opacity-100
+                shadow-[var(--shadow-paper)]
+                transition-all duration-500
+                hover:-translate-y-1
+                hover:shadow-[0_18px_45px_rgba(var(--color-burgundy),0.24)]
               "
             >
-              View Portfolio
+              <span className="relative z-10">View the Gallery ✦</span>
+
+              <span
+                aria-hidden="true"
+                className="
+                  absolute inset-y-0 -left-full
+                  w-1/2 skew-x-[-20deg]
+                  bg-paper/25
+                  transition-all duration-700
+                  group-hover:left-full
+                "
+              />
             </Link>
 
             <Link
               to="/pricing"
               className="
-                h-btn
-                inline-flex
-                items-center
-                justify-center
-                px-5 md:px-7
-                py-3
+                h-btn inline-flex
+                items-center justify-center
                 rounded-full
-                bg-white/10
-                text-[#FBF2E6]
-                text-sm
-                font-semibold
-                tracking-wide
-                border
-                border-[#D9AC55]
-                hover:bg-[#D9AC55]
-                hover:text-[#241016]
-                transition-all
-                duration-300
+                border border-burgundy/30
+                px-7 py-3.5
+                font-sans text-[0.66rem]
+                uppercase tracking-[0.22em]
+                text-burgundy opacity-100
+                transition-all duration-500
+                hover:-translate-y-1
+                hover:border-burgundy2
+                hover:bg-paper-deep
               "
             >
-              Commission Me
+              Commission Prices
             </Link>
           </div>
 
-          <div
-            className="
-              flex flex-wrap
-              justify-center lg:justify-start
-              gap-2.5
-              mt-8
-            "
-          >
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="
-                  h-tag
-                  text-[.68rem]
-                  tracking-[.15em]
-                  uppercase
-                  text-[#EDD6C4]
-                  border
-                  border-goldbright/45
-                  bg-white/5
-                  px-3.5
-                  py-1.5
-                  rounded-full
-                "
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          
         </div>
 
-        {/* Artwork frame */}
+        {/* Right frame: 50% */}
         <div
           className="
-            h-frame
-            relative z-[5]
-            order-first lg:order-none
-            w-full
-            max-w-[620px]
-            mx-auto
-            p-2.5 sm:p-3.5
-            rotate-0 lg:-rotate-[1.2deg]
-            shadow-[0_40px_90px_rgba(0,0,0,.6),0_0_70px_rgba(217,172,85,.28)]
+            relative w-full
+            max-w-[660px]
+            pb-12
+            lg:ml-auto
+            lg:flex-[1_1_50%]
           "
-          style={{
-            background:
-              "linear-gradient(140deg,#8A5E1B,#D9AC55 30%,#8A5E1B 55%,#F0D08A 80%,#8A5E1B)",
-          }}
         >
-          <div className="bg-winedeep p-2 relative">
-            <div
-              className="
-                relative
-                overflow-hidden
-                bg-winedark
-                h-[420px]
-                sm:h-[520px]
-                lg:h-[580px]
-                xl:h-[620px]
-              "
-            >
-              {heroSlides.map((slide, index) => {
-                const isActive = index === currentSlide;
+          {/* Frame glow */}
+          <div
+            aria-hidden="true"
+            className="
+              gradient-violet
+              absolute -inset-7 -z-10
+              rounded-[2rem]
+              opacity-15 blur-2xl
+            "
+          />
 
-                return (
-                  <div
-                    key={slide.id}
-                    className={`
-                      absolute inset-0
-                      transition-opacity
-                      duration-[1100ms]
-                      ${
-                        isActive
-                          ? "opacity-100 pointer-events-auto"
-                          : "opacity-0 pointer-events-none"
-                      }
-                    `}
-                    aria-hidden={!isActive}
-                  >
-                    {/* Blurred background fills extra frame space */}
-                    <div
-                      className="
-                        absolute
-                        -inset-8
-                        bg-cover
-                        bg-center
-                        blur-2xl
-                        scale-110
-                        opacity-35
-                      "
-                      style={{
-                        backgroundImage: `url("${slide.src}")`,
-                      }}
-                      aria-hidden="true"
-                    />
-
-                    <div
-                      className="absolute inset-0 bg-winedark/55"
-                      aria-hidden="true"
-                    />
-
-                    {/* Complete artwork stays visible */}
-                    <img
-                      src={slide.src}
-                      alt={slide.title}
-                      className="
-                        relative z-[1]
-                        block
-                        w-full
-                        h-full
-                        object-contain
-                        p-1 sm:p-2
-                      "
-                      loading={index === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                      onClick={() => {
-                        if (onOpenLightbox) {
-                          onOpenLightbox(slide);
-                        }
-                      }}
-                    />
-                  </div>
-                );
-              })}
-
-              {/* Glass highlight */}
-              <div
-                className="absolute inset-0 z-[2] pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(200deg,rgba(255,255,255,.10),transparent 35%)",
-                }}
-              />
-
-              {/* Slider dots */}
-              <div className="absolute right-3 top-3 flex gap-1.5 z-[3]">
-                {heroSlides.map((slide, index) => {
-                  const isActive = index === currentSlide;
-
-                  return (
-                    <button
-                      key={slide.id}
-                      type="button"
-                      aria-label={`Show ${slide.title}`}
-                      aria-current={isActive ? "true" : undefined}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setCurrentSlide(index);
-                      }}
-                      className={`
-                        w-[7px]
-                        h-[7px]
-                        rounded-full
-                        cursor-pointer
-                        transition-all
-                        ${
-                          isActive
-                            ? "bg-goldlight shadow-[0_0_8px_#F0D08A]"
-                            : "bg-goldlight/35"
-                        }
-                      `}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Artwork title plate */}
-          {activeSlide && (
-            <div
-              className="
-                absolute
-                left-1/2
-                -translate-x-1/2
-                -bottom-6
-                max-w-[90%]
-                text-winedark
-                font-caps
-                text-[.6rem]
-                tracking-[.24em]
-                uppercase
-                text-center
-                px-6
-                py-2
-                whitespace-nowrap
-                overflow-hidden
-                text-ellipsis
-                shadow-[0_8px_20px_rgba(0,0,0,.45)]
-              "
-              style={{
-                background:
-                  "linear-gradient(120deg,#8A5E1B,#D9AC55,#8A5E1B)",
-              }}
-            >
-              {activeSlide.title}
-            </div>
-          )}
-
-          {/* Bottom glow */}
+          {/* Main frame */}
           <div
             className="
-              absolute
-              left-[8%]
-              right-[8%]
-              -bottom-[52px]
-              h-10
-              blur-md
+              h-frame relative z-[5]
+              w-full max-w-[620px]
+              p-[10px]
+              sm:p-[14px]
+              lg:ml-auto
+              lg:-rotate-[1deg]
             "
-            style={{
-              background:
-                "radial-gradient(ellipse 50% 100% at 50% 0%, rgba(240,208,138,.22), transparent 70%)",
-            }}
-          />
+          >
+            {/* White mount */}
+            <div
+              className="
+                relative bg-paper
+                p-2 sm:p-3
+                shadow-[inset_0_0_25px_rgba(var(--color-burgundy),0.08)]
+              "
+            >
+              {/* Plum inner frame */}
+              <div
+                className="relative p-2 sm:p-2.5"
+                style={{
+                  background: `
+                    linear-gradient(
+                      145deg,
+                      var(--wine-deep),
+                      var(--wine-dark)
+                    )
+                  `,
+                }}
+              >
+                {/* Image viewport */}
+                <div
+                  className="
+                    relative overflow-hidden
+                    h-[420px]
+                    sm:h-[520px]
+                    lg:h-[580px]
+                    xl:h-[620px]
+                  "
+                  style={{
+                    backgroundColor: "var(--wine-dark)",
+                  }}
+                >
+                  {slides.map((slide, index) => {
+                    const isActive = index === currentSlide;
+
+                    return (
+                      <div
+                        key={slide.id}
+                        aria-hidden={!isActive}
+                        className={`
+                          absolute inset-0
+                          transition-[opacity,transform]
+                          duration-[1200ms]
+                          ease-[cubic-bezier(0.22,1,0.36,1)]
+                          ${
+                            isActive
+                              ? "pointer-events-auto scale-100 opacity-100"
+                              : "pointer-events-none scale-[1.03] opacity-0"
+                          }
+                        `}
+                      >
+                        {/* Blurred background */}
+                        <div
+                          aria-hidden="true"
+                          className={`
+                            absolute -inset-10
+                            bg-cover bg-center
+                            opacity-30 blur-2xl
+                            transition-transform
+                            duration-[6000ms]
+                            ease-linear
+                            ${
+                              isActive && !reducedMotion
+                                ? "scale-125"
+                                : "scale-110"
+                            }
+                          `}
+                          style={{
+                            backgroundImage: `url("${slide.src}")`,
+                          }}
+                        />
+
+                        {/* Dark overlay */}
+                        <div
+                          aria-hidden="true"
+                          className="absolute inset-0"
+                          style={{
+                            backgroundColor:
+                              "rgba(var(--color-wine-deep), 0.52)",
+                          }}
+                        />
+
+                        {/* Full image without cropping */}
+                        <img
+                          src={slide.src}
+                          alt={slide.title}
+                          loading={index === 0 ? "eager" : "lazy"}
+                          decoding="async"
+                          className="
+                            relative z-[1]
+  block h-full w-full
+  object-contain
+  p-1.5 sm:p-2
+                          "
+                        />
+                      </div>
+                    );
+                  })}
+
+                  {/* Glass reflection */}
+                  <div
+                    aria-hidden="true"
+                    className="
+                      pointer-events-none
+                      absolute inset-0 z-[2]
+                    "
+                    style={{
+                      background: `
+                        linear-gradient(
+                          200deg,
+                          rgba(var(--color-paper), 0.16),
+                          transparent 34%
+                        )
+                      `,
+                    }}
+                  />
+
+                  {/* Violet inner glow */}
+                  <div
+                    aria-hidden="true"
+                    className="
+                      pointer-events-none
+                      absolute inset-0 z-[2]
+                    "
+                    style={{
+                      boxShadow:
+                        "inset 0 0 35px rgba(var(--color-burgundy), 0.16)",
+                    }}
+                  />
+
+                  {/* Slider dots */}
+                  {slideCount > 1 && (
+                    <div
+                      className="
+                        absolute right-3 top-3
+                        z-[3] flex gap-2
+                      "
+                    >
+                      {slides.map((slide, index) => {
+                        const isActive = index === currentSlide;
+
+                        return (
+                          <button
+                            key={slide.id}
+                            type="button"
+                            aria-label={`Show ${slide.title}`}
+                            aria-current={isActive ? "true" : undefined}
+                            onClick={handleDotClick(index)}
+                            className="
+                              relative h-[9px]
+                              w-[9px] cursor-pointer
+                            "
+                          >
+                            <span
+                              className={`
+                                absolute inset-0
+                                rounded-full
+                                transition-all duration-300
+                                ${
+                                  isActive
+                                    ? "scale-110 bg-burgundy2 shadow-[0_0_10px_rgba(var(--color-burgundy2),0.9)]"
+                                    : "bg-rose/45 hover:bg-burgundy2/70"
+                                }
+                              `}
+                            />
+
+                            {isActive && !reducedMotion && (
+                              <span
+                                key={progressKey}
+                                className="
+                                    absolute -inset-1.5
+                                    rounded-full
+                                    border border-burgundy2/70
+                                  "
+                                style={{
+                                  animation:
+                                    "h-dot-progress 4.2s linear forwards",
+                                }}
+                              />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Title plate */}
+            {activeSlide && (
+              <div
+                className="
+                  absolute -bottom-6 left-1/2
+                  z-30 max-w-[90%]
+                  -translate-x-1/2
+                  overflow-hidden
+                  text-ellipsis whitespace-nowrap
+                  border border-white/20
+                  px-6 py-2
+                  text-center
+                  font-caps text-[0.6rem]
+                  uppercase tracking-[0.24em]
+                  text-white
+                "
+                style={{
+                  background: `
+                    linear-gradient(
+                      120deg,
+                      var(--wine-deep),
+                      var(--burgundy),
+                      var(--burgundy2)
+                    )
+                  `,
+                  boxShadow: "0 10px 25px rgba(var(--color-wine-deep), 0.28)",
+                }}
+              >
+                {activeSlide.title}
+              </div>
+            )}
+
+            {/* Bottom shadow */}
+            <div
+              aria-hidden="true"
+              className="
+                pointer-events-none
+                absolute
+                -bottom-[52px]
+                left-[8%] right-[8%]
+                h-10 blur-md
+              "
+              style={{
+                background: `
+                  radial-gradient(
+                    ellipse 50% 100% at 50% 0%,
+                    rgba(var(--color-burgundy2), 0.24),
+                    transparent 72%
+                  )
+                `,
+              }}
+            />
+          </div>
         </div>
       </div>
-    </header>
+
+      <style>{`
+        @keyframes h-dot-progress {
+          from {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+          }
+
+          to {
+            clip-path: inset(0 0 0 100%);
+            opacity: 1;
+          }
+        }
+
+        @keyframes h-aurora-shift {
+          0%, 100% {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+          50% {
+            transform: translate3d(2%, -1.5%, 0) scale(1.05);
+          }
+        }
+
+        .h-aurora-shift {
+          animation: h-aurora-shift 18s ease-in-out infinite;
+        }
+
+        @keyframes h-dust-float {
+          0% {
+            transform: translate3d(0, 0, 0);
+            opacity: 0;
+          }
+          15% {
+            opacity: 1;
+          }
+          85% {
+            opacity: 1;
+          }
+          100% {
+            transform: translate3d(var(--drift, 20px), -60px, 0);
+            opacity: 0;
+          }
+        }
+
+        .h-dust {
+          animation-name: h-dust-float;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          filter: blur(0.5px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .h-aurora-shift,
+          .h-dust {
+            animation: none;
+          }
+        }
+      `}</style>
+    </section>
   );
 }

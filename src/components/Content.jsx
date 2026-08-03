@@ -7,10 +7,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { artworks, filters, processSteps, terms, tiers } from "../data";
 import { SectionHead } from "./Sections";
+import MiniHead from "./MiniHead";
+import Heading from "./Heading";
+import GalleryCard from "./GalleryCard";
+import PrimaryButton from "./Button";
+
 
 export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
   const [filter, setFilter] = useState("all");
   const [numCols, setNumCols] = useState(3);
+
   const gridRef = useRef(null);
 
   useEffect(() => {
@@ -59,106 +65,77 @@ export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
     return buckets;
   }
 
-  const renderTile = (a) => (
-    <figure
-      key={a.id}
-      onClick={() => onOpenLightbox?.(a)}
+const renderGrid = (list) => {
+  const columns = distribute(list, numCols);
+
+  return (
+    <div
       className="
-        g-tile
-        group
-        relative
-        w-full
-        overflow-hidden
-        cursor-pointer
-        bg-[var(--paper-deep)]
-        border
-        border-[var(--gold-soft)]
-        mb-[25px]
-        shadow-[0_10px_28px_rgba(43,28,20,.12)]
-        transition-shadow
-        duration-300
-        hover:shadow-[0_16px_38px_rgba(43,28,20,.2)]
+        mx-auto
+        flex
+        max-w-[1200px]
+        gap-5
+        px-5
+        sm:gap-[50px]
+        sm:px-0
       "
     >
-      <img
-        src={a.src}
-        alt={a.title}
-        loading="lazy"
-        decoding="async"
-        className="block w-full h-auto transition-transform duration-700 group-hover:scale-[1.025]"
-      />
-
-      {/* Burgundy hover gradient */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to top, var(--burgundy-deep) 0%, rgba(85,22,32,.55) 40%, transparent 68%)",
-        }}
-      />
-
-      {/* Caption block: title / category / short desc */}
-      <figcaption
-        className="
-          absolute left-5 right-5 bottom-5 z-[2]
-          opacity-0 translate-y-3
-          group-hover:opacity-100 group-hover:translate-y-0
-          transition-all duration-400
-        "
-      >
-        <h3 className="font-serif text-xl text-[var(--paper)]">{a.title}</h3>
-        <span className="block italic text-sm text-[var(--gold)] mt-0.5">
-          {a.catLabel}
-        </span>
-        {a.desc && (
-          <span className="block text-xs text-[var(--paper)]/75 mt-1">
-            {a.desc}
-          </span>
-        )}
-      </figcaption>
-
-      <span
-        className="
-          absolute inset-0 border border-transparent
-          group-hover:inset-2 group-hover:border-[var(--gold)]/60
-          transition-all duration-300 pointer-events-none z-[2]
-        "
-      />
-    </figure>
+      {columns.map((col, columnIndex) => (
+        <div
+          key={columnIndex}
+          className="
+            flex
+            min-w-0
+            flex-1
+            flex-col
+            gap-5
+            sm:gap-6
+          "
+        >
+          {col.map((artwork, artworkIndex) => (
+            <GalleryCard
+              key={artwork.id}
+              artwork={artwork}
+              index={artworkIndex}
+              onOpen={(artworkId) => onOpenLightbox?.(artworkId)}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
   );
-
-  const renderGrid = (list) => {
-    const columns = distribute(list, numCols);
-    return (
-      <div className="flex gap-5 sm:gap-[50px] max-w-[1350px] mx-auto  px-5 sm-px-0">
-        {columns.map((col, idx) => (
-          <div key={idx} className="flex-1 flex flex-col gap-5 sm:gap-6 min-w-0">
-            {col.map((a) => renderTile(a))}
-          </div>
-        ))}
-      </div>
-    );
-  };
+};
 
   return (
     <section
       id="portfolio"
-      className="py-20 md:py-32 "
-      style={{
-        background: `radial-gradient(ellipse 70% 50% at 80% 0%, rgba(198,58,58,.2), transparent 60%),
-        radial-gradient(ellipse 55% 45% at 5% 100%, rgba(217,172,85,.12), transparent 60%),
-        linear-gradient(180deg,#241016,#1C0A0F 60%,#241016)`,
-      }}
+      className="py-20 md:py-32 aurora"
+     
     >
       <div className="w-full" ref={gridRef}>
         {!bare && (
-          <SectionHead
-            eyebrow="The Gallery"
-            title={preview ? "A Glimpse Into My" : "Selected"}
-            shimmerWord={preview ? "World" : "Works"}
+         <>
+          <div className="text-center">
+            <MiniHead text=" the Gallery" />
+            <Heading
+              text="A Glimpse Into My World"
+            />
+             <p
+            className="
+              my-5 
+              text-sm leading-relaxed
+              text-inksoft
+              sm:text-[1.2rem]
+              sm:leading-[1.6]
+              text-center
+            "
           >
-            Every piece tells a story. Click any piece to view it full size.
-          </SectionHead>
+           Every piece tells a story. Click any piece to view it full size.
+          </p>
+          </div>
+          
+
+          </>
         )}
 
         <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mb-8 sm:mb-12" role="tablist">
@@ -168,7 +145,7 @@ export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
               onClick={() => setFilter(f.key)}
               className={`font-caps text-[.58rem] sm:text-[.68rem] tracking-[.14em] sm:tracking-[.2em] uppercase px-3 py-2 sm:px-5 sm:py-2.5 border rounded-full transition-all ${
                 filter === f.key
-                  ? "text-[var(--paper)] border-[var(--burgundy)] bg-[var(--burgundy)] shadow-[0_6px_16px_rgba(122,34,48,.35)]"
+                  ? "text-[var(--paper)] border-[var(--burgundy)] bg-[var(--burgundy)] shadow-[0_6px_16px_rgba(var(--color-burgundy),.35)]"
                   : "bg-[var(--paper-deep)] border-[var(--gold-soft)] text-[var(--ink-soft)] hover:text-[var(--burgundy)] hover:border-[var(--gold)]"
               }`}
             >
@@ -181,12 +158,8 @@ export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
 
         {preview && (
           <div className="text-center mt-10">
-            <Link
-              to="/portfolio"
-              className="btn border-[var(--gold-soft)] text-[var(--ink)] bg-[var(--paper-deep)] hover:bg-[var(--gold)] hover:text-[var(--paper)] hover:border-[var(--gold)]"
-            >
-              See Full Portfolio ✦
-            </Link>
+           
+            <PrimaryButton to="/portfolio">See Full Portfolio ✦</PrimaryButton>
           </div>
         )}
       </div>
@@ -194,137 +167,137 @@ export function Gallery({ onOpenLightbox, preview = false, bare = false }) {
   );
 }
 
-export function Commissions({ bare = false }) {
+// export function Commissions({ bare = false }) {
 
-  const [flipped, setFlipped] = useState(-1);
-  return (
-    <section
-      id="commissions"
-      className="py-20 md:py-32"
-      style={{
-        background: `radial-gradient(ellipse 70% 60% at 50% 0%, rgba(224,178,178,.5), transparent 70%),
-        radial-gradient(ellipse 55% 50% at 8% 100%, rgba(228,168,168,.42), transparent 62%),
-        radial-gradient(ellipse 50% 45% at 96% 70%, rgba(198,58,58,.1), transparent 60%), #FBF6EF`,
-      }}
-    >
-      <div className="max-w-[1200px] mx-auto px-5 md:px-10">
-        {!bare && (
-          <SectionHead
-            eyebrow="Commissions Open"
-            title="Commission Your Own"
-            shimmerWord="Artwork"
-          >
-            Bring your character, your couple, or your novel to life. Every
-            piece is hand-drawn and fully custom.
-          </SectionHead>
-        )}
+//   const [flipped, setFlipped] = useState(-1);
+//   return (
+//     <section
+//       id="commissions"
+//       className="py-20 md:py-32"
+//       style={{
+//         background: `radial-gradient(ellipse 70% 60% at 50% 0%, rgba(var(--color-rose) / .5), transparent 70%),
+//         radial-gradient(ellipse 55% 50% at 8% 100%, rgba(var(--color-rose-soft) / .42), transparent 62%),
+//         radial-gradient(ellipse 50% 45% at 96% 70%, rgba(var(--color-brand) / .1), transparent 60%), var(--paper)`,
+//       }}
+//     >
+//       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
+//         {!bare && (
+//           <SectionHead
+//             eyebrow="Commissions Open"
+//             title="Commission Your Own"
+//             shimmerWord="Artwork"
+//           >
+//             Bring your character, your couple, or your novel to life. Every
+//             piece is hand-drawn and fully custom.
+//           </SectionHead>
+//         )}
 
-        {/* flip cards: 3 per row, last 2 auto-centered */}
-        <div className="flex flex-wrap justify-center gap-6 mt-12 [perspective:1400px]">
-          {tiers.map((t, i) => {
-            const isFlipped = flipped === i;
-            return (
-              <div
-                key={t.title}
-                className="reveal basis-[290px] max-w-[320px] grow-0 h-[400px] cursor-pointer group"
-                onClick={() => setFlipped(isFlipped ? -1 : i)}
-              >
-                <div
-                  className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : "group-hover:[transform:rotateY(8deg)_translateY(-6px)]"}`}
-                >
-                  {/* FRONT — price only */}
-                  <div
-                    className={`absolute inset-0 [backface-visibility:hidden] overflow-hidden ${t.featured ? "border-2 border-gold" : "border border-gold/45"} shadow-[0_18px_45px_rgba(90,24,32,.22)]`}
-                  >
-                    <img
-                      src={t.img}
-                      alt={t.title}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover object-top"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(190deg,rgba(36,16,22,.15) 30%,rgba(18,6,8,.88) 78%)",
-                      }}
-                    />
-                    {t.featured && (
-                      <span className="absolute top-4 -right-9 rotate-45 text-white font-caps text-[.55rem] tracking-[.22em] uppercase px-12 py-1.5 z-[3] shadow bg-gradient-to-r from-brand to-[#A82626]">
-                        Most Loved
-                      </span>
-                    )}
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-center">
-                      <h3 className="font-serif text-[#FBF2E6] text-2xl">
-                        {t.title}
-                      </h3>
-                      <div className="font-serif italic text-goldlight text-4xl mt-1.5 [text-shadow:0_4px_16px_rgba(217,172,85,.4)]">
-                        {t.price}
-                      </div>
-                      <span className="inline-block mt-4 font-caps text-[.56rem] tracking-[.26em] uppercase text-creamdim border border-goldbright/40 rounded-full px-4 py-1.5 group-hover:text-goldlight group-hover:border-goldlight transition-colors">
-                        Tap for details ✦
-                      </span>
-                    </div>
-                  </div>
+//         {/* flip cards: 3 per row, last 2 auto-centered */}
+//         <div className="flex flex-wrap justify-center gap-6 mt-12 [perspective:1400px]">
+//           {tiers.map((t, i) => {
+//             const isFlipped = flipped === i;
+//             return (
+//               <div
+//                 key={t.title}
+//                 className="reveal basis-[290px] max-w-[320px] grow-0 h-[400px] cursor-pointer group"
+//                 onClick={() => setFlipped(isFlipped ? -1 : i)}
+//               >
+//                 <div
+//                   className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : "group-hover:[transform:rotateY(8deg)_translateY(-6px)]"}`}
+//                 >
+//                   {/* FRONT — price only */}
+//                   <div
+//                     className={`absolute inset-0 [backface-visibility:hidden] overflow-hidden ${t.featured ? "border-2 border-gold" : "border border-gold/45"} shadow-[0_18px_45px_rgba(var(--color-burgundy),.22)]`}
+//                   >
+//                     <img
+//                       src={t.img}
+//                       alt={t.title}
+//                       loading="lazy"
+//                       className="absolute inset-0 w-full h-full object-cover object-top"
+//                     />
+//                     <div
+//                       className="absolute inset-0"
+//                       style={{
+//                         background:
+//                           "linear-gradient(190deg,rgba(var(--color-wine),.15) 30%,rgba(var(--color-wine-dark),.88) 78%)",
+//                       }}
+//                     />
+//                     {t.featured && (
+//                       <span className="absolute top-4 -right-9 rotate-45 text-white font-caps text-[.55rem] tracking-[.22em] uppercase px-12 py-1.5 z-[3] shadow bg-gradient-to-r from-brand to-[var(--brand)]">
+//                         Most Loved
+//                       </span>
+//                     )}
+//                     <div className="absolute inset-x-0 bottom-0 p-6 text-center">
+//                       <h3 className="font-serif text-[var(--paper)] text-2xl">
+//                         {t.title}
+//                       </h3>
+//                       <div className="font-serif italic text-goldlight text-4xl mt-1.5 [text-shadow:0_4px_16px_rgba(var(--color-gold-bright),.4)]">
+//                         {t.price}
+//                       </div>
+//                       <span className="inline-block mt-4 font-caps text-[.56rem] tracking-[.26em] uppercase text-creamdim border border-goldbright/40 rounded-full px-4 py-1.5 group-hover:text-goldlight group-hover:border-goldlight transition-colors">
+//                         Tap for details ✦
+//                       </span>
+//                     </div>
+//                   </div>
 
-                  {/* BACK — full details */}
-                  <div
-                    className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-gold flex flex-col p-4 text-cream"
-                    style={{
-                      background: `radial-gradient(ellipse 70% 50% at 75% 10%, rgba(198,58,58,.3), transparent 60%), linear-gradient(160deg,#3A1119,#241016 60%,#1C0A0F)`,
-                    }}
-                  >
-                    <h3 className="font-serif text-xl text-[#FBF2E6]">
-                      {t.title}
-                    </h3>
-                    <div className="font-serif italic text-goldbright text-lg ">
-                      {t.price}
-                    </div>
-                    <span className="block w-14 h-px bg-goldbright/50 my-4" />
-                    <ul className="grid gap-2 text-[.8rem] text-creamdim">
-                      {t.points.map((p) => (
-                        <li key={p}>
-                          <span className="text-goldbright mr-2">✦</span>
-                          {p}
-                        </li>
-                      ))}
-                      <li>
-                        <span className="text-goldbright mr-2">✦</span>
-                        High-resolution final files
-                      </li>
-                      <li>
-                        <span className="text-goldbright mr-2">✦</span>Sketch
-                        approval stage included
-                      </li>
-                    </ul>
-                    <Link
-                      to="/contact"
-                      onClick={(e) => e.stopPropagation()}
-                      className="mt-auto text-center font-caps text-[.64rem] tracking-[.2em] uppercase border border-goldbright text-goldlight py-3 transition-colors hover:bg-goldbright hover:text-winedark"
-                    >
-                      Commission This ✦
-                    </Link>
-                    <span className="text-center text-[.62rem] text-creamdim/70 mt-2 uppercase tracking-[.2em]">
-                      tap to flip back
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+//                   {/* BACK — full details */}
+//                   <div
+//                     className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] border border-gold flex flex-col p-4 text-cream"
+//                     style={{
+//                       background: `radial-gradient(ellipse 70% 50% at 75% 10%, rgba(var(--color-brand) / .3), transparent 60%), linear-gradient(160deg,var(--wine),var(--wine) 60%,var(--wine-deep))`,
+//                     }}
+//                   >
+//                     <h3 className="font-serif text-xl text-[var(--paper)]">
+//                       {t.title}
+//                     </h3>
+//                     <div className="font-serif italic text-goldbright text-lg ">
+//                       {t.price}
+//                     </div>
+//                     <span className="block w-14 h-px bg-goldbright/50 my-4" />
+//                     <ul className="grid gap-2 text-[.8rem] text-creamdim">
+//                       {t.points.map((p) => (
+//                         <li key={p}>
+//                           <span className="text-goldbright mr-2">✦</span>
+//                           {p}
+//                         </li>
+//                       ))}
+//                       <li>
+//                         <span className="text-goldbright mr-2">✦</span>
+//                         High-resolution final files
+//                       </li>
+//                       <li>
+//                         <span className="text-goldbright mr-2">✦</span>Sketch
+//                         approval stage included
+//                       </li>
+//                     </ul>
+//                     <Link
+//                       to="/contact"
+//                       onClick={(e) => e.stopPropagation()}
+//                       className="mt-auto text-center font-caps text-[.64rem] tracking-[.2em] uppercase border border-goldbright text-goldlight py-3 transition-colors hover:bg-goldbright hover:text-winedark"
+//                     >
+//                       Commission This ✦
+//                     </Link>
+//                     <span className="text-center text-[.62rem] text-creamdim/70 mt-2 uppercase tracking-[.2em]">
+//                       tap to flip back
+//                     </span>
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           })}
+//         </div>
 
-        <p className="reveal text-center mt-10 text-[.88rem] text-inksoft">
-          Prices may vary with character complexity, detailed outfits,
-          backgrounds, or lighting.{" "}
-          <b className="text-burgundy font-medium">
-            Commercial usage rights: +30% of the artwork price.
-          </b>
-        </p>
-      </div>
-    </section>
-  );
-}
+//         <p className="reveal text-center mt-10 text-[.88rem] text-inksoft">
+//           Prices may vary with character complexity, detailed outfits,
+//           backgrounds, or lighting.{" "}
+//           <b className="text-burgundy font-medium">
+//             Commercial usage rights: +30% of the artwork price.
+//           </b>
+//         </p>
+//       </div>
+//     </section>
+//   );
+// }
 
 export function Process() {
   return (
@@ -332,8 +305,8 @@ export function Process() {
       id="process"
       className="py-20 md:py-32"
       style={{
-        background: `radial-gradient(ellipse 60% 55% at 85% 20%, rgba(198,58,58,.09), transparent 62%),
-        radial-gradient(ellipse 50% 50% at 10% 90%, rgba(224,178,178,.45), transparent 60%), #F6EDE4`,
+        background: `radial-gradient(ellipse 60% 55% at 85% 20%, rgba(var(--color-brand) / .09), transparent 62%),
+        radial-gradient(ellipse 50% 50% at 10% 90%, rgba(var(--color-rose) / .45), transparent 60%), var(--paper2)`,
       }}
     >
       <div className="max-w-[1200px] mx-auto px-5 md:px-10">
@@ -346,7 +319,7 @@ export function Process() {
           <span className="hidden lg:block absolute top-[30px] left-[6%] right-[6%] h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
           {processSteps.map((s) => (
             <div key={s.num} className="reveal group text-center px-1.5">
-              <div className="w-[60px] h-[60px] mx-auto mb-5 border border-gold rounded-full flex items-center justify-center font-serif italic text-xl text-burgundy bg-paper2 relative z-[1] shadow-[0_0_0_6px_#F6EDE4,0_10px_22px_rgba(185,134,47,.25)] transition-all duration-[400ms] group-hover:bg-burgundy group-hover:text-goldlight group-hover:scale-110">
+              <div className="w-[60px] h-[60px] mx-auto mb-5 border border-gold rounded-full flex items-center justify-center font-serif italic text-xl text-burgundy bg-paper2 relative z-[1] shadow-[0_0_0_6px_var(--paper2),0_10px_22px_rgba(var(--color-gold),.25)] transition-all duration-[400ms] group-hover:bg-[var(--burgundy)] group-hover:text-[var(--gold-light)] group-hover:scale-110">
                 {s.num}
               </div>
               <h3 className="font-serif font-medium text-burgundy text-2xl mb-2">
@@ -373,9 +346,9 @@ export function Terms({ bare = false }) {
             shimmerWord="Service"
           />
         )}
-        <div className="reveal relative bg-white max-w-[860px] mx-auto mt-12 p-8 md:p-14 border border-gold/30 shadow-[0_26px_60px_rgba(90,24,32,.14)]">
+        <div className="reveal relative bg-[var(--paper)] max-w-[860px] mx-auto mt-12 p-8 md:p-14 border border-gold/30 shadow-[0_26px_60px_rgba(var(--color-burgundy),.14)]">
           <span
-            className="absolute -top-3.5 right-14 w-8 h-[78px] bg-gradient-to-b from-brand to-[#A82626]"
+            className="absolute -top-3.5 right-14 w-8 h-[78px] bg-gradient-to-b from-brand to-[var(--brand)]"
             style={{ clipPath: "polygon(0 0,100% 0,100% 100%,50% 82%,0 100%)" }}
           />
           {terms.map((t, i) => (
