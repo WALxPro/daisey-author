@@ -24,9 +24,10 @@ export function useReducedMotion() {
 export function useGsapReveal(deps = []) {
   useEffect(() => {
     const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const text = gsap.utils.toArray('.reveal, .reveal-text')
+    const standard = gsap.utils.toArray('.reveal')
+    const text = gsap.utils.toArray('.reveal-text')
     const cards = gsap.utils.toArray('.reveal-card')
-    const targets = [...new Set([...text, ...cards])]
+    const targets = [...new Set([...standard, ...text, ...cards])]
     if (!targets.length) return
 
     if (rm) {
@@ -35,13 +36,24 @@ export function useGsapReveal(deps = []) {
     }
 
     const context = gsap.context(() => {
-      const textOnly = text.filter((element) => !cards.includes(element))
+      gsap.set(standard, { autoAlpha: 0, y: 28, filter: 'blur(4px)' })
+      gsap.set(text, {
+        autoAlpha: 0,
+        y: 22,
+        filter: 'blur(7px)',
+        clipPath: 'inset(0 0 100% 0)',
+      })
+      gsap.set(cards, {
+        autoAlpha: 0,
+        y: 44,
+        scale: 0.94,
+        rotationX: -8,
+        transformPerspective: 900,
+        transformOrigin: 'center bottom',
+      })
 
-      gsap.set(textOnly, { autoAlpha: 0, y: 28, filter: 'blur(5px)' })
-      gsap.set(cards, { autoAlpha: 0, y: 36, scale: 0.96 })
-
-      if (textOnly.length) {
-        ScrollTrigger.batch(textOnly, {
+      if (standard.length) {
+        ScrollTrigger.batch(standard, {
           start: 'top 90%',
           once: true,
           onEnter: (batch) => gsap.to(batch, {
@@ -56,6 +68,23 @@ export function useGsapReveal(deps = []) {
         })
       }
 
+      if (text.length) {
+        ScrollTrigger.batch(text, {
+          start: 'top 90%',
+          once: true,
+          onEnter: (batch) => gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            clipPath: 'inset(0 0 0% 0)',
+            duration: 1,
+            ease: 'power4.out',
+            stagger: 0.12,
+            overwrite: true,
+          }),
+        })
+      }
+
       if (cards.length) {
         ScrollTrigger.batch(cards, {
           start: 'top 88%',
@@ -64,8 +93,9 @@ export function useGsapReveal(deps = []) {
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            duration: 0.9,
-            ease: 'back.out(1.25)',
+            rotationX: 0,
+            duration: 1,
+            ease: 'power4.out',
             stagger: 0.1,
             overwrite: true,
           }),

@@ -26,7 +26,7 @@ function Loader() {
 function ScrollAndFade({ children }) {
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
-  return <div key={pathname} className="route-fade">{children}</div>
+  return <div key={pathname} className="route-fade pt-[80px]">{children}</div>
 }
 
 export default function App() {

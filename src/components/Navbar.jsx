@@ -42,7 +42,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="sticky inset-x-0 top-0 z-50
+      className="fixed inset-x-0 top-0 z-50
         border-b border-[#ece8f2]
         bg-white/95 backdrop-blur-xl"
     >

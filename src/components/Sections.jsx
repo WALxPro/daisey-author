@@ -63,7 +63,7 @@ export function Flourish() {
 
 export function SectionHead({ eyebrow, title, shimmerWord, children, dark }) {
   return (
-    <div className="text-center max-w-[680px] mx-auto mb-12 reveal">
+    <div className="reveal-text text-center max-w-[680px] mx-auto mb-12">
       <span className="eyebrow">{eyebrow}</span>
       <h2
         className={`font-serif font-medium text-2xl md:text-5xl leading-tight mt-4 ${dark ? "text-[var(--paper)]" : "text-burgundy"}`}
