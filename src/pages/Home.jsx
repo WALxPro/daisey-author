@@ -7,7 +7,7 @@ import Hero from "../components/Hero";
 import Marquee, { About, Flourish } from "../components/Sections";
 
 import { HomeGallery } from "../components/Content";
-
+import ClientReviews from "../components/ClientReviews";
 import { artworks } from "../data";
 import { useGsapReveal } from "../hooks";
 
@@ -59,6 +59,7 @@ export default function Home() {
 
       <Marquee />
 
+      <ClientReviews/>
       <About />
 
 

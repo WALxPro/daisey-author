@@ -10,43 +10,98 @@ import { SectionHead } from './Sections'
 import PrimaryButton from './Button'
 
 /* ---------- Services accordion (Services page + overview) ---------- */
+
 export function ServicesAccordion() {
-  const [open, setOpen] = useState(0)
+  const [active, setActive] = useState(0)
+  const s = services[active]
+
   return (
-    <div className="max-w-[900px] mx-auto grid gap-4">
-      {services.map((s, i) => (
-        <div key={s.title}
-          className={`reveal bg-white border transition-all duration-300 ${s.featured ? 'border-2 border-gold shadow-[0_14px_38px_rgba(var(--color-gold),.25)]' : 'border-gold/35 shadow-[0_10px_26px_rgba(var(--color-burgundy),.08)]'} ${open === i ? '' : 'hover:border-gold'}`}>
-          <button onClick={() => setOpen(open === i ? -1 : i)} className="w-full flex items-center gap-4 p-4 md:p-5 text-left">
-            <img src={s.img} alt="" loading="lazy" className="w-16 h-16 object-cover object-top border border-gold/40 flex-none" />
-            <span className="flex-1 min-w-0">
-              <span className="font-serif text-xl md:text-2xl text-burgundy block">{s.title}</span>
-              <span className="text-[.85rem] text-inksoft block truncate font-semibold">{s.summary}</span>
-            </span>
-            <span className="font-serif italic text-gold text-lg font-bold whitespace-nowrap hidden sm:block">{s.start}</span>
-            <FiChevronDown className={`text-gold text-xl flex-none transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} />
-          </button>
-          <div className={`grid transition-all duration-500 ease-in-out ${open === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-            <div className="overflow-hidden">
-              <div className="px-5 pb-6 pt-1 grid md:grid-cols-2 gap-6 text-[.92rem] text-inksoft">
-                <div>
-                  <p>{s.description}</p>
-                  <h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mt-4 mb-2">What's included</h4>
-                  <ul className="grid gap-1.5">{s.included.map((it) => <li key={it}><span className="text-gold mr-2">✦</span>{it}</li>)}</ul>
-                </div>
-                <div className="grid gap-3 content-start">
-                  <div><h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mb-1">Revisions</h4>{s.revisions}</div>
-                  <div><h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mb-1">What I need from you</h4>{s.references}</div>
-                  <div><h4 className="font-caps text-[.8rem] tracking-[.22em] font-bold uppercase text-gold mb-1">Turnaround</h4>{s.turnaround}</div>
-                </div>
+    <div className="max-w-[1200px] mx-auto w-full">
+      <div className="grid md:grid-cols-[360px_1fr] rounded-2xl overflow-hidden border border-gold/30 bg-white shadow-[0_18px_45px_rgba(var(--color-burgundy),.14)]">
+
+        {/* ---- Tab list ---- */}
+        <div
+          className="flex md:flex-col gap-2 p-3 md:p-4 overflow-x-auto md:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          style={{ background: 'var(--gradient-violet)' }}
+          role="tablist"
+          aria-label="Services"
+        >
+          {services.map((svc, i) => {
+            const on = i === active
+            return (
+              <button
+                key={svc.title}
+                role="tab"
+                aria-selected={on}
+                onClick={() => setActive(i)}
+                className={`group flex-none md:flex-auto flex items-center gap-3 px-3 py-3 rounded-xl border text-left transition-all duration-300 ${
+                  on
+                    ? 'bg-gold border-gold text-wine-deep shadow-[0_8px_20px_rgba(var(--color-wine-dark),.35)]'
+                    : 'bg-white/10 border-white/10 text-paper hover:bg-white/20 hover:border-gold/40'
+                }`}
+              >
+                <img
+                  src={svc.img}
+                  alt=""
+                  loading="lazy"
+                  className={`w-11 h-11 md:w-20 md:h-20 rounded-lg object-cover object-top flex-none border ${on ? 'border-wine-deep/30' : 'border-gold/40'}`}
+                />
+                <span className="min-w-0 whitespace-nowrap md:whitespace-normal">
+                  <span className="font-serif text-[0.98] text-[1.3rem] leading-tight block">{svc.title}</span>
+                  <span className={`hidden md:block text-[.66rem] md:text-[0.98rem] font-semibold tracking-wide mt-0.5 ${on ? 'text-wine-deep/70' : 'text-gold-light'}`}>
+                    {svc.start}
+                  </span>
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* ---- Active panel ---- */}
+        <div key={active} className="p-6 sm:p-8 md:p-9 route-fade">
+          <h3 className="font-serif text-2xl md:text-[1.9rem] text-burgundy leading-tight">{s.title}</h3>
+          <p className="text-[.95rem] text-ink font-semibold mt-1.5">{s.summary}</p>
+          <p className="font-serif italic text-gold text-lg font-bold mt-2.5">{s.start}</p>
+
+          <div className="h-px w-full my-6 bg-gradient-to-r from-gold/50 via-burgundy/25 to-transparent" />
+
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-7 text-[.92rem] text-inksoft">
+            <div className="min-w-0">
+              <p className="leading-relaxed">{s.description}</p>
+              <h4 className="font-caps text-[.78rem] tracking-[.22em] font-bold uppercase text-gold mt-5 mb-2.5">What's included</h4>
+              <ul className="grid gap-2">
+                {s.included.map((it) => (
+                  <li key={it} className="flex gap-2.5">
+                    <span className="text-gold flex-none mt-0.5">✦</span>
+                    <span className="min-w-0">{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="grid gap-5 content-start min-w-0">
+              <div>
+                <h4 className="font-caps text-[.78rem] tracking-[.22em] font-bold uppercase text-gold mb-1.5">Revisions</h4>
+                <p>{s.revisions}</p>
+              </div>
+              <div>
+                <h4 className="font-caps text-[.78rem] tracking-[.22em] font-bold uppercase text-gold mb-1.5">What I need from you</h4>
+                <p>{s.references}</p>
+              </div>
+              <div>
+                <h4 className="font-caps text-[.78rem] tracking-[.22em] font-bold uppercase text-gold mb-1.5">Turnaround</h4>
+                <p>{s.turnaround}</p>
               </div>
             </div>
           </div>
         </div>
-      ))}
+
+      </div>
     </div>
   )
 }
+
+
 
 /* ---------- FAQ accordion ---------- */
 export function FAQ() {

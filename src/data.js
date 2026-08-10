@@ -17,7 +17,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Sports Romance, 2025',
+    note: 'Couple Illustration  Sports Romance, 2025',
   },
    {
     id: 'skylinehold',
@@ -26,7 +26,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'redcarpet',
@@ -35,7 +35,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'waltz',
@@ -44,7 +44,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Romance, 2025',
+    note: 'Couple Illustration  Romance, 2025',
   },
   {
     id: 'shanemaddie',
@@ -53,7 +53,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'michaelbianca',
@@ -62,7 +62,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'katiemichael',
@@ -71,7 +71,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'jefflyranna',
@@ -80,7 +80,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Fantasy Romance, 2025',
+    note: 'Couple Illustration  Fantasy Romance, 2025',
   },
   {
     id: 'royalbastards',
@@ -89,7 +89,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Motorcycle Club Romance, 2025',
+    note: 'Couple Illustration  Motorcycle Club Romance, 2025',
   },
   {
     id: 'behindglass',
@@ -98,7 +98,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Prison Romance, 2025',
+    note: 'Couple Illustration  Prison Romance, 2025',
   },
   {
     id: 'yellowcouch',
@@ -107,7 +107,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'streetlean',
@@ -116,7 +116,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Urban Romance, 2025',
+    note: 'Couple Illustration  Urban Romance, 2025',
   },
   {
     id: 'dockatdusk',
@@ -125,7 +125,7 @@ export const artworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Young Adult Romance, 2025',
+    note: 'Couple Illustration  Young Adult Romance, 2025',
   },
  
 
@@ -143,7 +143,7 @@ export const artworks = [
     subcat: 'fullbody',
     catLabel: 'Full Body Character',
     span: '',
-    note: 'Full-Body Character — Contemporary, 2025',
+    note: 'Full-Body Character  Contemporary, 2025',
   },
   {
     id: 'elvenqueen',
@@ -153,7 +153,7 @@ export const artworks = [
     subcat: 'fullbody',
     catLabel: 'Full Body Character',
     span: '',
-    note: 'Full-Body Character — Fantasy, 2025',
+    note: 'Full-Body Character  Fantasy, 2025',
   },
    {
     id: 'wolfpendant',
@@ -163,7 +163,7 @@ export const artworks = [
     subcat: 'portrait',
     catLabel: 'Character Portrait',
     span: '',
-    note: 'Character Portrait — Contemporary, 2025',
+    note: 'Character Portrait  Contemporary, 2025',
   },
   {
     id: 'goldenboy',
@@ -173,7 +173,7 @@ export const artworks = [
     subcat: 'fullbody',
     catLabel: 'Full Body Character',
     span: '',
-    note: 'Full-Body Character — Contemporary, 2025',
+    note: 'Full-Body Character  Contemporary, 2025',
   },
 
   // =========================================
@@ -188,7 +188,7 @@ export const artworks = [
     subcat: 'portrait',
     catLabel: 'Character Portrait',
     span: '',
-    note: 'Character Portrait — Fantasy, 2025',
+    note: 'Character Portrait  Fantasy, 2025',
   },
   {
     id: 'guardian',
@@ -198,7 +198,7 @@ export const artworks = [
     subcat: 'portrait',
     catLabel: 'Character Portrait',
     span: '',
-    note: 'Character Portrait — Urban Fantasy, 2025',
+    note: 'Character Portrait  Urban Fantasy, 2025',
   },
   {
     id: 'nightbalcony',
@@ -208,7 +208,7 @@ export const artworks = [
     subcat: 'portrait',
     catLabel: 'Character Portrait',
     span: '',
-    note: 'Character Portrait — Contemporary, 2025',
+    note: 'Character Portrait  Contemporary, 2025',
   },
   
   
@@ -226,7 +226,7 @@ export const artworks = [
     subcat: 'group',
     catLabel: 'Group Character Art',
     span: '',
-    note: 'Group Character Art — Urban Fantasy, 2025',
+    note: 'Group Character Art  Urban Fantasy, 2025',
   },
   {
     id: 'familynight',
@@ -236,7 +236,7 @@ export const artworks = [
     subcat: 'group',
     catLabel: 'Group Character Art',
     span: '',
-    note: 'Group Family Art — Slice of Life, 2025',
+    note: 'Group Family Art  Slice of Life, 2025',
   },
 
   // =========================================
@@ -250,7 +250,7 @@ export const artworks = [
     cat: 'cover',
     catLabel: 'Book Cover',
     span: '',
-    note: 'Custom Book Cover — Romance Fantasy, 2025',
+    note: 'Custom Book Cover  Romance Fantasy, 2025',
   },
   {
     id: 'multigirl',
@@ -259,7 +259,7 @@ export const artworks = [
     cat: 'cover',
     catLabel: 'Book Cover',
     span: '',
-    note: 'Custom Book Cover — Urban Fantasy, 2025',
+    note: 'Custom Book Cover  Urban Fantasy, 2025',
   },
   {
     id: 'twoworlds',
@@ -268,7 +268,7 @@ export const artworks = [
     cat: 'cover',
     catLabel: 'Book Cover',
     span: '',
-    note: 'Custom Book Cover — Mystery Romance, 2025',
+    note: 'Custom Book Cover  Mystery Romance, 2025',
   },
 ];
 export const Homeartworks = [
@@ -279,7 +279,7 @@ export const Homeartworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Sports Romance, 2025',
+    note: 'Couple Illustration  Sports Romance, 2025',
   },
    {
     id: 'skylinehold',
@@ -288,7 +288,7 @@ export const Homeartworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'redcarpet',
@@ -297,7 +297,7 @@ export const Homeartworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Contemporary Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
   {
     id: 'roseline',
@@ -307,7 +307,7 @@ export const Homeartworks = [
     subcat: 'fullbody',
     catLabel: 'Full Body Character',
     span: '',
-    note: 'Full-Body Character — Contemporary, 2025',
+    note: 'Full-Body Character  Contemporary, 2025',
   },
   {
     id: 'waltz',
@@ -316,7 +316,7 @@ export const Homeartworks = [
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration — Romance, 2025',
+    note: 'Couple Illustration  Romance, 2025',
   },
   
  {
@@ -327,7 +327,7 @@ export const Homeartworks = [
     subcat: 'fullbody',
     catLabel: 'Full Body Character',
     span: '',
-    note: 'Full-Body Character — Contemporary, 2025',
+    note: 'Full-Body Character  Contemporary, 2025',
   },
    {
     id: 'swanston',
@@ -336,7 +336,7 @@ export const Homeartworks = [
     cat: 'cover',
     catLabel: 'Book Cover',
     span: '',
-    note: 'Custom Book Cover — Romance Fantasy, 2025',
+    note: 'Custom Book Cover  Romance Fantasy, 2025',
   },
   
   {
@@ -347,7 +347,7 @@ export const Homeartworks = [
     subcat: 'fullbody',
     catLabel: 'Full Body Character',
     span: '',
-    note: 'Full-Body Character — Fantasy, 2025',
+    note: 'Full-Body Character  Fantasy, 2025',
   },
 
  
@@ -358,7 +358,7 @@ export const Homeartworks = [
     cat: 'cover',
     catLabel: 'Book Cover',
     span: '',
-    note: 'Custom Book Cover — Urban Fantasy, 2025',
+    note: 'Custom Book Cover  Urban Fantasy, 2025',
   },
   
 ];
@@ -476,21 +476,21 @@ export const services = [
   },
   {
     title: 'Full-Body Illustration', start: 'Starting at $130', img: '/images/character-roseline.webp',
-    summary: 'The complete character — full outfit and pose detail, with an optional simple background.',
+    summary: 'The complete character  full outfit and pose detail, with an optional simple background.',
     description: 'Your character head to toe: stance, styling, story. Great for pin-ups, character sheets, and swag art.',
     included: ['Full-body fully rendered illustration', 'Complete costume design', 'Simple scenic background', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Character description + outfit & pose references', turnaround: '2–3 weeks',
   },
   {
     title: 'Couple Illustration', start: 'Starting at $250', img: '/images/couple-icerink.webp', featured: true,
-    summary: 'Two characters together in a romance-focused composition — my most-loved service for romance authors.',
-    description: 'The kiss, the almost-kiss, the dance, the quiet moment — I build the whole scene around the emotion between your two characters.',
+    summary: 'Two characters together in a romance-focused composition  my most-loved service for romance authors.',
+    description: 'The kiss, the almost-kiss, the dance, the quiet moment  I build the whole scene around the emotion between your two characters.',
     included: ['Two fully rendered characters', 'Romance-focused composition', 'Full scene, mood & lighting', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Both character references + the moment/scene you want captured', turnaround: '2–3 weeks',
   },
   {
     title: 'Book Cover Design', start: 'Starting at $200', img: '/images/book-cover-swanston.webp',
-    summary: 'Full cover composition — character art plus title typography, formatted to print & ebook specs.',
+    summary: 'Full cover composition  character art plus title typography, formatted to print & ebook specs.',
     description: 'A complete, market-ready cover: custom illustration, title treatment that matches your genre, and files sized for KDP, IngramSpark, or your printer of choice.',
     included: ['Full custom cover illustration', 'Title & author-name typography treatment', 'Ebook + print-ready formats', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Blurb or synopsis, character references, comp titles you love', turnaround: '3 weeks',
@@ -500,7 +500,7 @@ export const services = [
     summary: 'Licensing for commercial use of any piece above.',
     description: 'Planning to use the art on merch, marketing, or anything beyond the cover itself? Commercial usage rights are available for an additional 30% fee based on the original artwork price.',
     included: ['Commercial license for the commissioned piece', 'Use on merchandise, ads & promotions'],
-    revisions: '—', references: 'Just tell me how you plan to use the piece', turnaround: 'Instant — added to any commission',
+    revisions: '', references: 'Just tell me how you plan to use the piece', turnaround: 'Instant  added to any commission',
   },
 ]
 
@@ -588,3 +588,4 @@ export const taggedBy = [
   { handle: '@ltranwrites', quote: 'every tattoo is canon-accurate', img: '/images/character-roseline.webp' },
   { handle: '@rcastillobooks', quote: 'trilogy art part one!!', img: '/images/character-trio.webp' },
 ]
+

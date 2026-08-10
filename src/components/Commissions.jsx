@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const PACKAGES = [
   {
     title: "Book Cover Art",
@@ -97,20 +99,33 @@ function Commissions() {
       className="commissions-section plum-panel relative overflow-hidden px-5 py-20 sm:px-10 lg:px-16 lg:py-28"
     >
       <header className="reveal-text mx-auto max-w-2xl text-center">
-        <p className="font-sans text-[0.62rem] uppercase tracking-[0.3em] text-gold">
+        <p
+          className="  font-caps text-[0.7rem]
+              uppercase tracking-[0.34em]  text-gold"
+        >
           Commissions Open
         </p>
 
-        <h2 className="mt-6 font-display text-2xl uppercase leading-snug tracking-[0.12em] text-paper sm:text-[2rem]">
+        <h2
+          className="my-5
+        font-serif
+        text-2xl
+        leading-tight
+        
+        md:text-5xl text-paper"
+        >
           Commission your own artwork
         </h2>
 
-        <div
-          aria-hidden="true"
-          className="rule-gold mx-auto mt-6 h-px w-40"
-        />
+        <div aria-hidden="true" className="rule-gold mx-auto mt-6 h-px w-40" />
 
-        <p className="mt-6 font-editorial text-lg leading-relaxed text-paper/70">
+        <p
+          className="my-5 max-w-[56ch]
+              text-sm leading-relaxed
+              text-paper/70
+              sm:text-[1.2rem]
+              sm:leading-[1.6] "
+        >
           Bring your character, your couple, or your novel to life. Every piece
           is hand-drawn and fully custom.
         </p>
@@ -161,13 +176,21 @@ function Commissions() {
         ))}
       </div>
 
-      <p className="reveal-text mx-auto mt-12 max-w-2xl text-center font-editorial text-base leading-relaxed text-paper/60">
+      <p
+        className="reveal-text my-5 max-w-[56ch]
+              text-sm leading-relaxed
+              text-paper/70
+              sm:text-[1.2rem]
+              sm:leading-[1.6] text-center mx-auto"
+      >
         Prices may vary with character complexity, detailed outfits,
         backgrounds, animation or lighting.
         <strong className="mt-2 block text-gold">
           Commercial usage rights: +30% of the artwork price.
         </strong>
       </p>
+
+   
     </section>
   );
 }

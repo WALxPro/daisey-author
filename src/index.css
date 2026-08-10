@@ -763,3 +763,38 @@ html { scrollbar-color: var(--burgundy) var(--paper2); scrollbar-width: thin; }
     -webkit-backdrop-filter: none !important;
   }
 }
+
+/* =========================================================
+   INSTAGRAM SECTION — PERFORMANCE (pairs with the
+   optimized InstagramSection.jsx). Added at the end so it
+   wins over earlier rules where needed.
+========================================================= */
+
+/* 1. Skip layout/paint for the whole section while it is scrolled
+      off-screen — the single biggest win. The marquee + background
+      glows stop painting until the section is near the viewport. */
+.instagram-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px;
+}
+
+/* 2. Only promote an image to its own compositor layer while it is
+      actually being hovered — not permanently. Prevents dozens of
+      idle layers from piling up on the grid. */
+@media (hover: hover) and (pointer: fine) {
+  .instagram-section a.group:hover .ig-thumb {
+    will-change: transform;
+  }
+}
+
+/* 3. Keep the marquee compositor-friendly and transform-only. */
+.instagram-section .marquee-track {
+  will-change: transform;
+}
+
+/* 4. Reduced-motion: freeze the marquee entirely. */
+@media (prefers-reduced-motion: reduce) {
+  .instagram-section .marquee-track {
+    animation: none !important;
+  }
+}
