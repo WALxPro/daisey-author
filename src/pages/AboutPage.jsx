@@ -14,7 +14,8 @@ function Timeline() {
   const ref = useRef(null)
   useLayoutEffect(() => {
     const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (rm) return
+    const mobile = window.matchMedia('(max-width: 767px)').matches
+    if (rm || mobile) return
     const ctx = gsap.context(() => {
       gsap.fromTo('.tl-line', { scaleY: 0 }, {
         scaleY: 1, transformOrigin: 'top', ease: 'none',

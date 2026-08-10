@@ -1,14 +1,329 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+// import { useCallback, useEffect, useRef, useState } from "react";
+// import { gsap } from "gsap";
+
+// export default function GalleryCard({
+//   artwork,
+//   index = 0,
+//   onOpen,
+//   registerRef,
+// }) {
+//   const [loaded, setLoaded] = useState(false);
+//   const [aspectRatio, setAspectRatio] = useState("4 / 5");
+
+//   const cardRef = useRef(null);
+//   const imageRef = useRef(null);
+//   const skeletonRef = useRef(null);
+
+//   const captionId = `artwork-caption-${artwork.id}`;
+
+//   const handleImageLoad = () => {
+//     const image = imageRef.current;
+//     if (image?.naturalWidth && image?.naturalHeight) {
+//       setAspectRatio(`${image.naturalWidth} / ${image.naturalHeight}`);
+//     }
+//     setLoaded(true);
+//   };
+
+//   const handleOpen = () => {
+//     onOpen?.(artwork.id);
+//   };
+
+//   const setCardRef = useCallback(
+//     (element) => {
+//       cardRef.current = element;
+//       registerRef?.(artwork.id, element);
+//     },
+//     [artwork.id, registerRef],
+//   );
+
+//   useEffect(() => {
+//     setLoaded(false);
+
+//     const image = imageRef.current;
+//     if (
+//       image?.complete &&
+//       image.naturalWidth > 0 &&
+//       image.naturalHeight > 0
+//     ) {
+//       setAspectRatio(`${image.naturalWidth} / ${image.naturalHeight}`);
+//       setLoaded(true);
+//     }
+//   }, [artwork.src]);
+
+//   useEffect(() => {
+//     const reduceMotion = window.matchMedia(
+//       "(prefers-reduced-motion: reduce)",
+//     ).matches;
+//     const mobile = window.matchMedia("(max-width: 767px)").matches;
+
+//     if (!loaded) {
+//       const skeleton = skeletonRef.current;
+//       if (!skeleton) return undefined;
+
+//       const shimmerTween = gsap.fromTo(
+//         skeleton,
+//         { backgroundPosition: "200% 0" },
+//         {
+//           backgroundPosition: "-200% 0",
+//           duration: reduceMotion || mobile ? 0 : 1.5,
+//           repeat: reduceMotion || mobile ? 0 : -1,
+//           ease: "none",
+//         },
+//       );
+
+//       return () => shimmerTween.kill();
+//     }
+
+//     const image = imageRef.current;
+//     if (!image) return undefined;
+
+//     if (reduceMotion || mobile) {
+//       setAspectRatio(`${image.naturalWidth} / ${image.naturalHeight}`);
+//       return undefined;
+//     }
+
+//     const imageTween = gsap.fromTo(
+//       image,
+//       {
+//         autoAlpha: 0,
+//         scale: 0.985,
+//         filter: "blur(7px) brightness(1) saturate(1)",
+//       },
+//       {
+//         autoAlpha: 1,
+//         scale: 1,
+//         filter: "blur(0px) brightness(1) saturate(1)",
+//         duration: 0.9,
+//         ease: "power3.out",
+//         overwrite: "auto",
+//       },
+//     );
+
+//     setAspectRatio(`${image.naturalWidth} / ${image.naturalHeight}`);
+
+//     return () => imageTween.kill();
+//   }, [loaded]);
+
+//   return (
+//     <figure
+//       ref={setCardRef}
+//       data-artwork-id={artwork.id}
+//       data-category={artwork.cat}
+//       data-subcategory={artwork.subcat || ""}
+//       className={`
+//         g-tile
+//         gsap-art-card
+//         relative
+//         overflow-hidden
+//         rounded-sm
+//         p-2
+//         sm:p-2.5
+//         transition-transform duration-500 ease-out
+//         hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(31,12,64,0.12)]
+//         ${artwork.span || ""}
+//       `}
+//     >
+//       <button
+//         type="button"
+//         onClick={handleOpen}
+//         aria-label={`Open ${artwork.title} in fullscreen viewer`}
+//         aria-describedby={captionId}
+//         className="
+//           relative
+//           block
+//           w-full
+//           cursor-zoom-in
+//           overflow-hidden
+//           rounded-sm
+//           focus-visible:outline-none
+//           focus-visible:ring-2
+//           focus-visible:ring-[var(--gold)]
+//           focus-visible:ring-offset-2
+//           focus-visible:ring-offset-[var(--paper)]
+//         "
+//       >
+//         <span
+//           className="
+//             relative
+//             block
+//             w-full
+//             overflow-hidden
+//             rounded-sm
+//           "
+//           style={{
+//             aspectRatio,
+//             background: `
+//               linear-gradient(
+//                 135deg,
+//                 var(--paper2),
+//                 rgba(var(--color-rose), 0.2),
+//                 var(--paper)
+//               )
+//             `,
+//           }}
+//         >
+//           {!loaded && (
+//             <span
+//               ref={skeletonRef}
+//               aria-hidden="true"
+//               className="
+//                 absolute
+//                 inset-0
+//                 z-10
+//               "
+//               style={{
+//                 backgroundImage: `
+//                   linear-gradient(
+//                     110deg,
+//                     var(--paper2) 20%,
+//                     rgba(var(--color-burgundy), 0.22) 45%,
+//                     rgba(var(--color-gold), 0.2) 55%,
+//                     var(--paper2) 80%
+//                   )
+//                 `,
+//                 backgroundSize: "220% 100%",
+//               }}
+//             />
+//           )}
+
+//           <img
+//             ref={imageRef}
+//             src={artwork.src}
+//             alt={artwork.title}
+//             loading={index < 3 ? "eager" : "lazy"}
+//             decoding="async"
+//             onLoad={handleImageLoad}
+//             className="
+//               absolute
+//               inset-0
+//               h-full
+//               w-full
+//               object-contain
+//               transition-transform duration-700 ease-[var(--ease-silk)]
+//               group-hover:scale-105
+//             "
+//             style={{
+//               opacity: 0,
+//               willChange: "transform, opacity, filter",
+//             }}
+//           />
+//         </span>
+//       </button>
+
+//       <figcaption
+//         id={captionId}
+//         className="
+//           pointer-events-none
+//           absolute
+//           inset-0
+//           z-20
+//           flex
+//           items-end
+//           overflow-hidden
+//           rounded-sm
+//           p-5
+//           sm:p-6
+//           opacity-0
+//           transition-all
+//           duration-500
+//           ease-out
+//           group-hover:opacity-100
+//           group-focus-within:opacity-100
+//         "
+//         style={{
+//           background: `
+//             linear-gradient(
+//               to top,
+//               rgba(69, 27, 112, 0.78) 0%,
+//               rgba(88, 43, 137, 0.64) 32%,
+//               rgba(119, 78, 166, 0.32) 52%,
+//               transparent 72%,
+//               transparent 100%
+//             )
+//           `,
+//           willChange: "opacity",
+//         }}
+//       >
+//         <div
+//           className="
+//             relative
+//             z-10
+//             w-full
+//             pt-12
+//             transition-all
+//             duration-500
+//             ease-out
+//             group-hover:translate-y-0
+//             group-focus-within:translate-y-0
+//           "
+//         >
+//           <h3
+//             className="
+//               font-serif
+//               text-xl
+//               font-medium
+//               uppercase
+//               tracking-[0.08em]
+//               sm:text-2xl
+//               opacity-0
+//               translate-y-3
+//               transition-all
+//               duration-500
+//               ease-out
+//               group-hover:opacity-100
+//               group-hover:translate-y-0
+//               group-focus-within:opacity-100
+//               group-focus-within:translate-y-0
+//             "
+//             style={{
+//               color: "var(--paper)",
+//               textShadow: "0 2px 10px rgba(0, 0, 0, 0.92)",
+//             }}
+//           >
+//             {artwork.title}
+//           </h3>
+
+//           <p
+//             className="
+//               mt-1.5
+//               font-serif
+//               text-sm
+//               font-medium
+//               italic
+//               opacity-0
+//               translate-y-3
+//               transition-all
+//               duration-500
+//               ease-out
+//               delay-75
+//               group-hover:opacity-100
+//               group-hover:translate-y-0
+//               group-focus-within:opacity-100
+//               group-focus-within:translate-y-0
+//             "
+//             style={{
+//               color: "var(--gold-bright)",
+//             }}
+//           >
+//             {artwork.catLabel}
+//           </p>
+
+//           {artwork.desc && (
+//             <p
+//               className="mt-2 font-serif text-sm leading-relaxed sm:text-[0.95rem] text-white/90"
+//             >
+//               {artwork.desc}
+//             </p>
+//           )}
+//         </div>
+//       </figcaption>
+//     </figure>
+//   );
+// }
+
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(useGSAP);
 
 export default function GalleryCard({
   artwork,
@@ -21,16 +336,29 @@ export default function GalleryCard({
 
   const cardRef = useRef(null);
   const imageRef = useRef(null);
-  const captionRef = useRef(null);
   const skeletonRef = useRef(null);
-  const hoverTimelineRef = useRef(null);
 
   const captionId = `artwork-caption-${artwork.id}`;
 
-  /*
-   * Local card ref aur optional parent ref
-   * dono ko same figure element deta hai.
-   */
+  const handleImageLoad = () => {
+    const image = imageRef.current;
+
+    if (image?.naturalWidth && image?.naturalHeight) {
+      setAspectRatio(`${image.naturalWidth} / ${image.naturalHeight}`);
+    }
+
+    setLoaded(true);
+  };
+
+  const handleImageError = () => {
+    // Loader/skeleton forever stuck na rahe
+    setLoaded(true);
+  };
+
+  const handleOpen = () => {
+    onOpen?.(artwork.id);
+  };
+
   const setCardRef = useCallback(
     (element) => {
       cardRef.current = element;
@@ -40,278 +368,127 @@ export default function GalleryCard({
     [artwork.id, registerRef],
   );
 
-  /*
-   * Artwork image change hone par loading reset.
-   * Cached image ke natural dimensions bhi read karta hai.
-   */
+  /* Reset when image changes */
   useEffect(() => {
     setLoaded(false);
 
     const image = imageRef.current;
 
-    if (
-      image?.complete &&
-      image.naturalWidth > 0 &&
-      image.naturalHeight > 0
-    ) {
-      setAspectRatio(
-        `${image.naturalWidth} / ${image.naturalHeight}`,
-      );
+    if (image?.complete && image.naturalWidth > 0 && image.naturalHeight > 0) {
+      setAspectRatio(`${image.naturalWidth} / ${image.naturalHeight}`);
 
       setLoaded(true);
     }
   }, [artwork.src]);
 
-  /*
-   * Hover, focus, card lift, image zoom
-   * aur overlay caption animation.
-   */
-  useGSAP(
-    () => {
-      const card = cardRef.current;
-      const image = imageRef.current;
-      const caption = captionRef.current;
+  /* Skeleton animation */
+  useEffect(() => {
+    if (loaded) return;
 
-      if (!card || !image || !caption) return;
+    const skeleton = skeletonRef.current;
 
-      const captionItems = caption.querySelectorAll(
-        "[data-caption-item]",
-      );
+    if (!skeleton) return;
 
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-      /*
-       * Initial card state.
-       */
-      gsap.set(card, {
-        transformOrigin: "center center",
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+
+    /*
+     * IMPORTANT:
+     * Mobile par GSAP shimmer mat chalao.
+     */
+    if (reduceMotion || mobile) {
+      gsap.set(skeleton, {
+        backgroundPosition: "50% 0",
       });
 
-      /*
-       * Initial hidden overlay state.
-       */
-      gsap.set(caption, {
-        autoAlpha: 0,
-      });
-
-      /*
-       * Initial hidden caption text state.
-       */
-      gsap.set(captionItems, {
-        autoAlpha: 0,
-        y: 18,
-      });
-
-      /*
-       * Initial image state.
-       */
-      gsap.set(image, {
-        scale: 1,
-        filter:
-          "blur(0px) brightness(1) saturate(1)",
-      });
-
-      /*
-       * Hover par timeline play hogi.
-       * Mouse leave par reverse hogi.
-       */
-      const hoverTimeline = gsap.timeline({
-        paused: true,
-
-        defaults: {
-          overwrite: "auto",
-        },
-      });
-
-      hoverTimeline
-        /*
-         * Card lift aur strong hover shadow.
-         */
-        .to(
-          card,
-          {
-            y: -18,
-            scale: 1.025,
-
-            boxShadow: `
-              0 10px 20px rgba(31, 12, 64, 0.17),
-              0 26px 52px rgba(31, 12, 64, 0.28),
-              0 46px 88px rgba(21, 8, 48, 0.24),
-              0 0 38px rgba(var(--color-burgundy), 0.3)
-            `,
-
-            duration: reduceMotion ? 0 : 0.62,
-            ease: "power3.out",
-          },
-          0,
-        )
-
-        /*
-         * Image zoom aur darkening.
-         */
-        .to(
-          image,
-          {
-            scale: 1.045,
-
-            filter:
-              "blur(0px) brightness(1) saturate(1)",
-
-            duration: reduceMotion ? 0 : 0.78,
-            ease: "power3.out",
-          },
-          0,
-        )
-
-        /*
-         * Full overlay fade-in.
-         */
-        .to(
-          caption,
-          {
-            autoAlpha: 1,
-            duration: reduceMotion ? 0 : 0.4,
-            ease: "power2.out",
-          },
-          0.02,
-        )
-
-        /*
-         * Caption text stagger.
-         */
-        .to(
-          captionItems,
-          {
-            autoAlpha: 1,
-            y: 0,
-
-            duration: reduceMotion ? 0 : 0.46,
-            stagger: reduceMotion ? 0 : 0.07,
-            ease: "power3.out",
-          },
-          0.1,
-        );
-
-      hoverTimelineRef.current = hoverTimeline;
-
-      return () => {
-        hoverTimeline.kill();
-        hoverTimelineRef.current = null;
-      };
-    },
-    {
-      scope: cardRef,
-      dependencies: [artwork.id],
-      revertOnUpdate: true,
-    },
-  );
-
-  /*
-   * Skeleton shimmer aur image load reveal.
-   */
-  useGSAP(
-    () => {
-      const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      /*
-       * Image load hone se pehle shimmer.
-       */
-      if (!loaded) {
-        const skeleton = skeletonRef.current;
-
-        if (!skeleton) return;
-
-        const shimmerTween = gsap.fromTo(
-          skeleton,
-          {
-            backgroundPosition: "200% 0",
-          },
-          {
-            backgroundPosition: "-200% 0",
-            duration: reduceMotion ? 0 : 1.5,
-            repeat: reduceMotion ? 0 : -1,
-            ease: "none",
-          },
-        );
-
-        return () => {
-          shimmerTween.kill();
-        };
-      }
-
-      const image = imageRef.current;
-
-      if (!image) return;
-
-      /*
-       * Image load hone par blur-to-clear animation.
-       */
-      const imageTween = gsap.fromTo(
-        image,
-        {
-          autoAlpha: 0,
-          scale: 0.985,
-
-          filter:
-            "blur(7px) brightness(1) saturate(1)",
-        },
-        {
-          autoAlpha: 1,
-          scale: 1,
-
-          filter:
-            "blur(0px) brightness(1) saturate(1)",
-
-          duration: reduceMotion ? 0 : 0.9,
-          ease: "power3.out",
-          overwrite: "auto",
-        },
-      );
-
-      return () => {
-        imageTween.kill();
-      };
-    },
-    {
-      scope: cardRef,
-      dependencies: [loaded, artwork.src],
-      revertOnUpdate: true,
-    },
-  );
-
-  /*
-   * Image load hone par natural aspect ratio save karta hai.
-   */
-  const handleImageLoad = (event) => {
-    const image = event.currentTarget;
-
-    if (
-      image.naturalWidth > 0 &&
-      image.naturalHeight > 0
-    ) {
-      setAspectRatio(
-        `${image.naturalWidth} / ${image.naturalHeight}`,
-      );
+      return;
     }
 
-    setLoaded(true);
-  };
+    const shimmerTween = gsap.fromTo(
+      skeleton,
+      {
+        backgroundPosition: "200% 0",
+      },
+      {
+        backgroundPosition: "-200% 0",
+        duration: 1.5,
+        repeat: -1,
+        ease: "none",
+      },
+    );
 
-  const showHoverAnimation = () => {
-    hoverTimelineRef.current?.play();
-  };
+    return () => {
+      shimmerTween.kill();
+    };
+  }, [loaded]);
 
-  const hideHoverAnimation = () => {
-    hoverTimelineRef.current?.reverse();
-  };
+  /* Image reveal */
+  useEffect(() => {
+    if (!loaded) return;
 
-  const handleOpen = () => {
-    onOpen?.(artwork.id);
-  };
+    const image = imageRef.current;
+
+    if (!image) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+
+    /*
+     * MOBILE
+     *
+     * Image must explicitly be visible.
+     */
+    if (reduceMotion || mobile) {
+      gsap.set(image, {
+        autoAlpha: 1,
+        scale: 1,
+        clearProps: "transform,filter",
+      });
+
+      return;
+    }
+
+    /*
+     * DESKTOP ONLY
+     *
+     * No blur animation.
+     * Opacity + slight scale is much cheaper.
+     */
+    const imageTween = gsap.fromTo(
+      image,
+      {
+        autoAlpha: 0,
+        scale: 0.985,
+      },
+      {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 0.65,
+        ease: "power3.out",
+        overwrite: true,
+
+        onComplete: () => {
+          /*
+           * Remove GSAP inline transform so
+           * Tailwind group-hover:scale-105 works.
+           */
+          gsap.set(image, {
+            clearProps: "transform,willChange",
+          });
+        },
+      },
+    );
+
+    return () => {
+      imageTween.kill();
+    };
+  }, [loaded]);
 
   return (
     <figure
@@ -319,24 +496,26 @@ export default function GalleryCard({
       data-artwork-id={artwork.id}
       data-category={artwork.cat}
       data-subcategory={artwork.subcat || ""}
-      onPointerEnter={showHoverAnimation}
-      onPointerLeave={hideHoverAnimation}
       className={`
         g-tile
         gsap-art-card
+        group
         relative
         overflow-hidden
         rounded-sm
         p-2
         sm:p-2.5
+        transition-transform
+        duration-500
+        ease-out
+        hover:-translate-y-1
+        hover:shadow-[0_20px_45px_rgba(31,12,64,0.12)]
         ${artwork.span || ""}
       `}
     >
       <button
         type="button"
         onClick={handleOpen}
-        onFocus={showHoverAnimation}
-        onBlur={hideHoverAnimation}
         aria-label={`Open ${artwork.title} in fullscreen viewer`}
         aria-describedby={captionId}
         className="
@@ -363,7 +542,6 @@ export default function GalleryCard({
           "
           style={{
             aspectRatio,
-
             background: `
               linear-gradient(
                 135deg,
@@ -393,7 +571,6 @@ export default function GalleryCard({
                     var(--paper2) 80%
                   )
                 `,
-
                 backgroundSize: "220% 100%",
               }}
             />
@@ -401,30 +578,36 @@ export default function GalleryCard({
 
           <img
             ref={imageRef}
-            src={artwork.src}
+            src={artwork.thumb || artwork.src}
             alt={artwork.title}
-            loading={index < 3 ? "eager" : "lazy"}
+            loading={index < 2 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
             decoding="async"
             onLoad={handleImageLoad}
+            onError={handleImageError}
             className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              object-contain
-            "
-            style={{
-              opacity: 0,
+    absolute
+    inset-0
 
-              willChange:
-                "transform, opacity, filter",
+    h-full
+    w-full
+
+    object-contain
+
+    transition-transform
+    duration-700
+    ease-[var(--ease-silk)]
+
+    group-hover:scale-105
+  "
+            style={{
+              opacity: loaded ? undefined : 0,
             }}
           />
         </span>
       </button>
 
       <figcaption
-        ref={captionRef}
         id={captionId}
         className="
           pointer-events-none
@@ -437,10 +620,14 @@ export default function GalleryCard({
           rounded-sm
           p-5
           sm:p-6
+          opacity-0
+          transition-all
+          duration-500
+          ease-out
+          group-hover:opacity-100
+          group-focus-within:opacity-100
         "
         style={{
-          visibility: "hidden",
-
           background: `
             linear-gradient(
               to top,
@@ -451,20 +638,22 @@ export default function GalleryCard({
               transparent 100%
             )
           `,
-
-          willChange: "opacity",
         }}
       >
         <div
           className="
-          relative
-          z-10
-          w-full
-          pt-12
-        "
+            relative
+            z-10
+            w-full
+            pt-12
+            transition-all
+            duration-500
+            ease-out
+            group-hover:translate-y-0
+            group-focus-within:translate-y-0
+          "
         >
           <h3
-            data-caption-item
             className="
               font-serif
               text-xl
@@ -472,42 +661,51 @@ export default function GalleryCard({
               uppercase
               tracking-[0.08em]
               sm:text-2xl
+              opacity-0
+              translate-y-3
+              transition-all
+              duration-500
+              ease-out
+              group-hover:opacity-100
+              group-hover:translate-y-0
+              group-focus-within:opacity-100
+              group-focus-within:translate-y-0
             "
             style={{
               color: "var(--paper)",
-
-              textShadow:
-                "0 2px 10px rgba(0, 0, 0, 0.92)",
+              textShadow: "0 2px 10px rgba(0,0,0,.92)",
             }}
           >
             {artwork.title}
           </h3>
 
           <p
-            data-caption-item
             className="
               mt-1.5
               font-serif
               text-sm
               font-medium
               italic
+              opacity-0
+              translate-y-3
+              transition-all
+              duration-500
+              ease-out
+              delay-75
+              group-hover:opacity-100
+              group-hover:translate-y-0
+              group-focus-within:opacity-100
+              group-focus-within:translate-y-0
             "
             style={{
               color: "var(--gold-bright)",
-
-              textShadow:
-                "0 2px 8px rgba(0, 0, 0, 0.92)",
             }}
           >
             {artwork.catLabel}
           </p>
 
           {artwork.desc && (
-            <p
-              data-caption-item
-              className="mt-2 font-serif text-sm leading-relaxed sm:text-[0.95rem]"
-              style={{ color: "rgba(255, 255, 255, 0.88)" }}
-            >
+            <p className="mt-2 font-serif text-sm leading-relaxed sm:text-[0.95rem] text-white/90">
               {artwork.desc}
             </p>
           )}

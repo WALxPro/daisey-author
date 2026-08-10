@@ -1,84 +1,128 @@
-import { lazy, Suspense, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Hero from '../components/Hero'
-import Marquee, {  About, Flourish } from '../components/Sections'
-import { artworks } from '../data'
-import { useGsapReveal } from '../hooks'
-import MiniHead from '../components/MiniHead'
-import Heading from '../components/Heading'
-import DeferredSection from '../components/DeferredSection'
+import { lazy, Suspense, useState } from "react";
 
-const Gallery = lazy(() => import('../components/Content').then((module) => ({ default: module.Gallery })))
-const Lightbox = lazy(() => import('../components/Contact'))
-const Commissions = lazy(() => import('../components/Commissions'))
-const TestimonialSlider = lazy(() => import('../components/TestimonialSlider'))
-const InstagramSection = lazy(() => import('../components/InstagramSection'))
-const CTABanner = lazy(() => import('../components/Extras').then((module) => ({ default: module.CTABanner })))
+import { Link } from "react-router-dom";
+
+import Hero from "../components/Hero";
+
+import Marquee, { About, Flourish } from "../components/Sections";
+
+import { HomeGallery } from "../components/Content";
+
+import { artworks } from "../data";
+import { useGsapReveal } from "../hooks";
+
+import MiniHead from "../components/MiniHead";
+import Heading from "../components/Heading";
+
+import DeferredSection from "../components/DeferredSection";
+
+/* =========================================
+   LAZY COMPONENTS
+
+   HomeGallery intentionally NOT lazy.
+   ========================================= */
+
+const Lightbox = lazy(() => import("../components/Contact"));
+
+const Commissions = lazy(() => import("../components/Commissions"));
+
+const TestimonialSlider = lazy(() => import("../components/TestimonialSlider"));
+
+const InstagramSection = lazy(() => import("../components/InstagramSection"));
+
+const CTABanner = lazy(() =>
+  import("../components/Extras").then((module) => ({
+    default: module.CTABanner,
+  })),
+);
 
 export default function Home() {
-  const [lightboxIndex, setLightboxIndex] = useState(null)
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
   const openLightbox = (artworkId) => {
-    const index = artworks.findIndex((artwork) => artwork.id === artworkId)
-    if (index !== -1) setLightboxIndex(index)
-  }
-  useGsapReveal([])
+    const index = artworks.findIndex((artwork) => artwork.id === artworkId);
+
+    if (index !== -1) {
+      setLightboxIndex(index);
+    }
+  };
+
+  useGsapReveal([]);
+
   return (
     <>
-      <Marquee  />
-      <Hero onOpenLightbox={openLightbox} />
-      <Marquee onOpenLightbox={openLightbox} />
+      {/* HERO */}
+
+      <Hero />
+
+      {/* MARQUEE / ABOUT ETC */}
+
+      <Marquee />
+
       <About />
-      <DeferredSection minHeight="38rem">
-        <Suspense fallback={null}>
-          <Gallery onOpenLightbox={openLightbox} preview />
-        </Suspense>
-      </DeferredSection>
-      <DeferredSection minHeight="42rem">
-        <Suspense fallback={null}>
-          <Commissions />
-        </Suspense>
-      </DeferredSection>
+
+
+      <HomeGallery preview previewLimit={9} onOpenLightbox={openLightbox} />
+
+
+
+      <Suspense fallback={<div className="min-h-[42rem]" />}>
+        <Commissions />
+      </Suspense>
+
+      {/* =================================
+          TESTIMONIALS
+
+          Deferred + lazy is fine.
+          ================================= */}
+
       <DeferredSection minHeight="32rem">
-        <section className="aurora px-5 py-20 text-center md:py-28">
+        <section
+          className="
+            aurora
+            px-5
+            py-20
+            text-center
+            md:py-28
+          "
+        >
           <MiniHead text="Testimonials" />
 
           <Heading text="Kind Words From" highlight="Clients" />
 
-  <p
-    className="
-      mx-auto
-      mt-5
-      w-full
-      max-w-[56ch]
-      text-center
-      text-sm
-      leading-relaxed
-      text-inksoft
-      sm:text-[1.2rem]
-      sm:leading-[1.6]
-    mb-10
-    "
-  >
-    Nothing means more than hearing your characters came to life the way you
-    imagined.
-  </p>
-
-          <Suspense fallback={null}>
+          <Suspense fallback={<div className="min-h-[20rem]" />}>
             <TestimonialSlider />
           </Suspense>
         </section>
       </DeferredSection>
+
+      {/* =================================
+          INSTAGRAM
+          ================================= */}
+
       <DeferredSection minHeight="60rem">
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="min-h-[60rem]" />}>
           <InstagramSection />
         </Suspense>
       </DeferredSection>
+
+      {/* =================================
+          CTA
+          ================================= */}
+
       <DeferredSection minHeight="20rem">
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="min-h-[20rem]" />}>
           <CTABanner />
         </Suspense>
       </DeferredSection>
-      
+
+      {/* =================================
+          LIGHTBOX
+
+          Lazy is perfect here because it
+          isn't needed until user clicks.
+          ================================= */}
+
       {lightboxIndex !== null && (
         <Suspense fallback={null}>
           <Lightbox
@@ -90,5 +134,5 @@ export default function Home() {
         </Suspense>
       )}
     </>
-  )
+  );
 }

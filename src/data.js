@@ -12,7 +12,7 @@ export const artworks = [
 
   {
     id: 'icerink',
-    src: '/images/couple-icerink.jpg',
+    src: '/images/couple-icerink.webp',
     title: 'Rink-side Kiss',
     cat: 'couple',
     catLabel: 'Couple',
@@ -21,7 +21,7 @@ export const artworks = [
   },
    {
     id: 'skylinehold',
-    src: '/images/Close-up-version.jpg',
+    src: '/images/Close-up-version.webp',
     title: 'Skyline Hold',
     cat: 'couple',
     catLabel: 'Couple',
@@ -30,7 +30,7 @@ export const artworks = [
   },
   {
     id: 'redcarpet',
-    src: '/images/couple-redcarpet.jpg',
+    src: '/images/couple-redcarpet.webp',
     title: 'Red Carpet Night',
     cat: 'couple',
     catLabel: 'Couple',
@@ -39,7 +39,7 @@ export const artworks = [
   },
   {
     id: 'waltz',
-    src: '/images/couple-oliver-cindy.jpg',
+    src: '/images/couple-oliver-cindy.webp',
     title: 'Spotlight Waltz',
     cat: 'couple',
     catLabel: 'Couple',
@@ -48,7 +48,7 @@ export const artworks = [
   },
   {
     id: 'shanemaddie',
-    src: '/images/couple-shane-maddie.jpg',
+    src: '/images/couple-shane-maddie.webp',
     title: 'Storm on the Shore',
     cat: 'couple',
     catLabel: 'Couple',
@@ -57,7 +57,7 @@ export const artworks = [
   },
   {
     id: 'michaelbianca',
-    src: '/images/MICHAEL-BIANCA.jpg',
+    src: '/images/MICHAEL-BIANCA.webp',
     title: 'City Lights Embrace',
     cat: 'couple',
     catLabel: 'Couple',
@@ -66,7 +66,7 @@ export const artworks = [
   },
   {
     id: 'katiemichael',
-    src: '/images/Katie-Michael.jpg',
+    src: '/images/Katie-Michael.webp',
     title: 'Quiet Morning',
     cat: 'couple',
     catLabel: 'Couple',
@@ -75,7 +75,7 @@ export const artworks = [
   },
   {
     id: 'jefflyranna',
-    src: '/images/Jeff-and-Lyranna.jpg',
+    src: '/images/Jeff-and-Lyranna.webp',
     title: 'Between Worlds',
     cat: 'couple',
     catLabel: 'Couple',
@@ -84,7 +84,7 @@ export const artworks = [
   },
   {
     id: 'royalbastards',
-    src: '/images/Half-body-Couple-art.jpg',
+    src: '/images/Half-body-Couple-art.webp',
     title: 'Royal Bastards MC',
     cat: 'couple',
     catLabel: 'Couple',
@@ -93,7 +93,7 @@ export const artworks = [
   },
   {
     id: 'behindglass',
-    src: '/images/ADULT-CHARACTER-ILLUSTRATION.jpg.jpeg',
+    src: '/images/ADULT-CHARACTER-ILLUSTRATION.jpg.webp',
     title: 'Behind Glass',
     cat: 'couple',
     catLabel: 'Couple',
@@ -102,7 +102,7 @@ export const artworks = [
   },
   {
     id: 'yellowcouch',
-    src: '/images/Black-couple-art.jpg',
+    src: '/images/Black-couple-art.webp',
     title: 'Yellow Couch Nights',
     cat: 'couple',
     catLabel: 'Couple',
@@ -111,7 +111,7 @@ export const artworks = [
   },
   {
     id: 'streetlean',
-    src: '/images/Couple-character.jpeg',
+    src: '/images/Couple-character.webp',
     title: 'Street Lean',
     cat: 'couple',
     catLabel: 'Couple',
@@ -120,7 +120,7 @@ export const artworks = [
   },
   {
     id: 'dockatdusk',
-    src: '/images/TEEN-COUPLE-ILLUSTRATION.jpg.jpeg',
+    src: '/images/TEEN-COUPLE-ILLUSTRATION.jpg.webp',
     title: 'Dock at Dusk',
     cat: 'couple',
     catLabel: 'Couple',
@@ -137,7 +137,7 @@ export const artworks = [
 
   {
     id: 'roseline',
-    src: '/images/character-roseline.jpg',
+    src: '/images/character-roseline.webp',
     title: 'Roseline',
     cat: 'character',
     subcat: 'fullbody',
@@ -147,7 +147,7 @@ export const artworks = [
   },
   {
     id: 'elvenqueen',
-    src: '/images/Individdual-characters-female.jpg',
+    src: '/images/Individdual-characters-female.webp',
     title: 'Elven Queen',
     cat: 'character',
     subcat: 'fullbody',
@@ -157,7 +157,7 @@ export const artworks = [
   },
    {
     id: 'wolfpendant',
-    src: '/images/Beta-Final-File.png',
+    src: '/images/Beta-Final-File.webp',
     title: 'Wolf Pendant',
     cat: 'character',
     subcat: 'portrait',
@@ -167,7 +167,7 @@ export const artworks = [
   },
   {
     id: 'goldenboy',
-    src: '/images/golden-boy.jpg',
+    src: '/images/golden-boy.webp',
     title: 'Golden Hour',
     cat: 'character',
     subcat: 'fullbody',
@@ -182,7 +182,7 @@ export const artworks = [
 
   {
     id: 'wolfborn',
-    src: '/images/character-wolfborn.jpg',
+    src: '/images/character-wolfborn.webp',
     title: 'Wolfborn',
     cat: 'character',
     subcat: 'portrait',
@@ -192,7 +192,7 @@ export const artworks = [
   },
   {
     id: 'guardian',
-    src: '/images/character-dreadlock.jpg',
+    src: '/images/character-dreadlock.webp',
     title: 'The Guardian',
     cat: 'character',
     subcat: 'portrait',
@@ -202,7 +202,7 @@ export const artworks = [
   },
   {
     id: 'nightbalcony',
-    src: '/images/single-illustration.png',
+    src: '/images/single-illustration.webp',
     title: 'Night Balcony',
     cat: 'character',
     subcat: 'portrait',
@@ -220,7 +220,7 @@ export const artworks = [
 
   {
     id: 'trio',
-    src: '/images/character-trio.jpg',
+    src: '/images/character-trio.webp',
     title: 'The Trio',
     cat: 'character',
     subcat: 'group',
@@ -230,7 +230,7 @@ export const artworks = [
   },
   {
     id: 'familynight',
-    src: '/images/character-4.jpg',
+    src: '/images/character-4.webp',
     title: 'Family Night In',
     cat: 'character',
     subcat: 'group',
@@ -245,7 +245,7 @@ export const artworks = [
 
   {
     id: 'swanston',
-    src: '/images/book-cover-swanston.jpg',
+    src: '/images/book-cover-swanston.webp',
     title: 'The Last Lamb of Swanston St.',
     cat: 'cover',
     catLabel: 'Book Cover',
@@ -254,7 +254,7 @@ export const artworks = [
   },
   {
     id: 'multigirl',
-    src: '/images/multigirl-book-cover.jpeg',
+    src: '/images/multigirl-book-cover.webp',
     title: 'Multigirl',
     cat: 'cover',
     catLabel: 'Book Cover',
@@ -263,13 +263,104 @@ export const artworks = [
   },
   {
     id: 'twoworlds',
-    src: '/images/Comic-cover.jpg',
+    src: '/images/Comic-cover.webp',
     title: 'Two Worlds, One Window',
     cat: 'cover',
     catLabel: 'Book Cover',
     span: '',
     note: 'Custom Book Cover — Mystery Romance, 2025',
   },
+];
+export const Homeartworks = [
+  {
+    id: 'icerink',
+    src: '/images/couple-icerink.webp',
+    title: 'Rink-side Kiss',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Sports Romance, 2025',
+  },
+   {
+    id: 'skylinehold',
+    src: '/images/Close-up-version.webp',
+    title: 'Skyline Hold',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'redcarpet',
+    src: '/images/couple-redcarpet.webp',
+    title: 'Red Carpet Night',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Contemporary Romance, 2025',
+  },
+  {
+    id: 'roseline',
+    src: '/images/character-roseline.webp',
+    title: 'Roseline',
+    cat: 'character',
+    subcat: 'fullbody',
+    catLabel: 'Full Body Character',
+    span: '',
+    note: 'Full-Body Character — Contemporary, 2025',
+  },
+  {
+    id: 'waltz',
+    src: '/images/couple-oliver-cindy.webp',
+    title: 'Spotlight Waltz',
+    cat: 'couple',
+    catLabel: 'Couple',
+    span: '',
+    note: 'Couple Illustration — Romance, 2025',
+  },
+  
+ {
+    id: 'goldenboy',
+    src: '/images/golden-boy.webp',
+    title: 'Golden Hour',
+    cat: 'character',
+    subcat: 'fullbody',
+    catLabel: 'Full Body Character',
+    span: '',
+    note: 'Full-Body Character — Contemporary, 2025',
+  },
+   {
+    id: 'swanston',
+    src: '/images/book-cover-swanston.webp',
+    title: 'The Last Lamb of Swanston St.',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover — Romance Fantasy, 2025',
+  },
+  
+  {
+    id: 'elvenqueen',
+    src: '/images/Individdual-characters-female.webp',
+    title: 'Elven Queen',
+    cat: 'character',
+    subcat: 'fullbody',
+    catLabel: 'Full Body Character',
+    span: '',
+    note: 'Full-Body Character — Fantasy, 2025',
+  },
+
+ 
+  {
+    id: 'multigirl',
+    src: '/images/multigirl-book-cover.webp',
+    title: 'Multigirl',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover — Urban Fantasy, 2025',
+  },
+  
 ];
 export const heroSlides = ['icerink', 'redcarpet', 'shanemaddie', 'royalbastards']
   .map((id) => artworks.find((a) => a.id === id))
@@ -286,7 +377,7 @@ export const tiers = [
   {
     title: "Book Cover Art",
     price: "$449 – $1,199",
-    img: "/images/book-cover-swanston.jpg",
+    img: "/images/book-cover-swanston.webp",
     points: [
       "Custom book cover illustration",
       "Artwork based on your story and characters",
@@ -296,7 +387,7 @@ export const tiers = [
   {
     title: "Character Art",
     price: "$80 – $450",
-    img: "/images/character-dreadlock.jpg",
+    img: "/images/character-dreadlock.webp",
     points: [
       "Bust-up: $80 – $120",
       "Half body: $130 – $180",
@@ -308,7 +399,7 @@ export const tiers = [
   {
     title: "Scene Illustration",
     price: "$270 – $500",
-    img: "/images/character-roseline.jpg",
+    img: "/images/character-roseline.webp",
     points: [
       "Full illustrated scene",
       "One or multiple characters",
@@ -318,7 +409,7 @@ export const tiers = [
   {
     title: "Comic Illustration",
     price: "$150 – $400",
-    img: "/images/comic-illustration.jpg",
+    img: "/images/comic-illustration.webp",
     points: [
       "Black and white page: $150 – $250",
       "Coloured page: $250 – $400",
@@ -328,7 +419,7 @@ export const tiers = [
   {
     title: "Animation",
     price: "$400 – $1,000",
-    img: "/images/animation-service.jpg",
+    img: "/images/animation-service.webp",
     points: [
       "5-second animation: $400 – $600",
       "10-second animation: $650 – $1,000",
@@ -338,7 +429,7 @@ export const tiers = [
   {
     title: "Social Media Content",
     price: "$60 – $2,500",
-    img: "/images/social-media-content.jpg",
+    img: "/images/social-media-content.webp",
     points: [
       "Single social media post: $60 – $120",
       "7-day campaign: $700 – $1,200",
@@ -349,7 +440,7 @@ export const tiers = [
   {
     title: "Book Graphics",
     price: "$50 – $130",
-    img: "/images/book-graphics.jpg",
+    img: "/images/book-graphics.webp",
     points: [
       "Interior book graphics",
       "Decorative illustrations and visual elements",
@@ -359,7 +450,7 @@ export const tiers = [
   {
     title: "Merch Design & Production",
     price: "Custom Quote",
-    img: "/images/merch-design.jpg",
+    img: "/images/merch-design.webp",
     points: [
       "Custom merchandise artwork",
       "Design preparation for production",
@@ -370,42 +461,42 @@ export const tiers = [
 
 export const services = [
   {
-    title: 'Bust-Up Illustration', start: 'Starting at $50', img: '/images/character-dreadlock.jpg',
+    title: 'Bust-Up Illustration', start: 'Starting at $50', img: '/images/character-dreadlock.webp',
     summary: 'A close, expressive portrait focused on the face and shoulders.',
     description: 'Perfect for character profiles, avatars, and getting that one unforgettable expression exactly right. Every bust-up gets full attention on the eyes, hair, and personality of your character.',
     included: ['Fully rendered head & shoulders portrait', 'Simple color or soft-gradient background', 'High-resolution files for web & print'],
     revisions: '2 rounds of revisions included', references: 'Character description + face/hair references (photos, Picrews, or written details all welcome)', turnaround: '1–2 weeks',
   },
   {
-    title: 'Half-Body Illustration', start: 'Starting at $90', img: '/images/character-wolfborn.jpg',
+    title: 'Half-Body Illustration', start: 'Starting at $90', img: '/images/character-wolfborn.webp',
     summary: 'Waist-up, with more detail on outfit and pose.',
     description: 'Room for expressive hands, detailed costumes, and atmosphere. A favorite for character reveals and author newsletters.',
     included: ['Waist-up fully rendered illustration', 'Outfit & accessory detail', 'Atmospheric lighting', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Character description + outfit references', turnaround: '2 weeks',
   },
   {
-    title: 'Full-Body Illustration', start: 'Starting at $130', img: '/images/character-roseline.jpg',
+    title: 'Full-Body Illustration', start: 'Starting at $130', img: '/images/character-roseline.webp',
     summary: 'The complete character — full outfit and pose detail, with an optional simple background.',
     description: 'Your character head to toe: stance, styling, story. Great for pin-ups, character sheets, and swag art.',
     included: ['Full-body fully rendered illustration', 'Complete costume design', 'Simple scenic background', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Character description + outfit & pose references', turnaround: '2–3 weeks',
   },
   {
-    title: 'Couple Illustration', start: 'Starting at $250', img: '/images/couple-icerink.jpg', featured: true,
+    title: 'Couple Illustration', start: 'Starting at $250', img: '/images/couple-icerink.webp', featured: true,
     summary: 'Two characters together in a romance-focused composition — my most-loved service for romance authors.',
     description: 'The kiss, the almost-kiss, the dance, the quiet moment — I build the whole scene around the emotion between your two characters.',
     included: ['Two fully rendered characters', 'Romance-focused composition', 'Full scene, mood & lighting', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Both character references + the moment/scene you want captured', turnaround: '2–3 weeks',
   },
   {
-    title: 'Book Cover Design', start: 'Starting at $200', img: '/images/book-cover-swanston.jpg',
+    title: 'Book Cover Design', start: 'Starting at $200', img: '/images/book-cover-swanston.webp',
     summary: 'Full cover composition — character art plus title typography, formatted to print & ebook specs.',
     description: 'A complete, market-ready cover: custom illustration, title treatment that matches your genre, and files sized for KDP, IngramSpark, or your printer of choice.',
     included: ['Full custom cover illustration', 'Title & author-name typography treatment', 'Ebook + print-ready formats', 'High-resolution files'],
     revisions: '2 rounds of revisions included', references: 'Blurb or synopsis, character references, comp titles you love', turnaround: '3 weeks',
   },
   {
-    title: 'Commercial Usage Add-On', start: '+30% of artwork price', img: '/images/couple-redcarpet.jpg',
+    title: 'Commercial Usage Add-On', start: '+30% of artwork price', img: '/images/couple-redcarpet.webp',
     summary: 'Licensing for commercial use of any piece above.',
     description: 'Planning to use the art on merch, marketing, or anything beyond the cover itself? Commercial usage rights are available for an additional 30% fee based on the original artwork price.',
     included: ['Commercial license for the commissioned piece', 'Use on merchandise, ads & promotions'],
@@ -423,12 +514,12 @@ export const faqs = [
 
 // Sample reviews - replace with real client words as they come in!
 export const testimonials = [
-  { name: 'A. Rivers', handle: '@ariverswrites', cat: 'couple', img: '/images/couple-icerink.jpg', quote: 'She captured my hockey boys mid-kiss EXACTLY how I pictured them. My readers lost their minds. Worth every penny.' },
-  { name: 'M. Hale', handle: '@mhale_author', cat: 'cover', img: '/images/book-cover-swanston.jpg', quote: 'My cover looks like it belongs on a bestseller shelf. Communication was easy and the sketch stage made me feel involved the whole way.' },
-  { name: 'J. Okafor', handle: '@jokaforbooks', cat: 'character', img: '/images/character-dreadlock.jpg', quote: 'The Guardian came out better than the version in my head. Hand-drawn, soulful, and delivered right on schedule.' },
-  { name: 'S. Bennett', handle: '@sbennettromance', cat: 'couple', img: '/images/couple-oliver-cindy.jpg', quote: 'A cowboy dipping a ballerina - weird brief, perfect execution. She just gets romance.' },
-  { name: 'L. Tran', handle: '@ltranwrites', cat: 'character', img: '/images/character-roseline.jpg', quote: 'Every tattoo on my MC means something in the book, and she drew every single one accurately. That attention to detail is rare.' },
-  { name: 'R. Castillo', handle: '@rcastillobooks', cat: 'cover', img: '/images/character-trio.jpg', quote: "Commissioned group art for my urban fantasy trilogy. The lighting, the mood - chef's kiss. Already booked her for book two." },
+  { name: 'A. Rivers', handle: '@ariverswrites', cat: 'couple', img: '/images/couple-icerink.webp', quote: 'She captured my hockey boys mid-kiss EXACTLY how I pictured them. My readers lost their minds. Worth every penny.' },
+  { name: 'M. Hale', handle: '@mhale_author', cat: 'cover', img: '/images/book-cover-swanston.webp', quote: 'My cover looks like it belongs on a bestseller shelf. Communication was easy and the sketch stage made me feel involved the whole way.' },
+  { name: 'J. Okafor', handle: '@jokaforbooks', cat: 'character', img: '/images/character-dreadlock.webp', quote: 'The Guardian came out better than the version in my head. Hand-drawn, soulful, and delivered right on schedule.' },
+  { name: 'S. Bennett', handle: '@sbennettromance', cat: 'couple', img: '/images/couple-oliver-cindy.webp', quote: 'A cowboy dipping a ballerina - weird brief, perfect execution. She just gets romance.' },
+  { name: 'L. Tran', handle: '@ltranwrites', cat: 'character', img: '/images/character-roseline.webp', quote: 'Every tattoo on my MC means something in the book, and she drew every single one accurately. That attention to detail is rare.' },
+  { name: 'R. Castillo', handle: '@rcastillobooks', cat: 'cover', img: '/images/character-trio.webp', quote: "Commissioned group art for my urban fantasy trilogy. The lighting, the mood - chef's kiss. Already booked her for book two." },
 ]
 
 export const testimonialFilters = [
@@ -490,10 +581,10 @@ export const navLinks = [
 
 // "Tagged by authors" strip - sample handles, swap in real tags from Instagram
 export const taggedBy = [
-  { handle: '@ariverswrites', quote: 'cover reveal day!! look at this ART', img: '/images/couple-icerink.jpg' },
-  { handle: '@mhale_author', quote: 'still not over my cover', img: '/images/book-cover-swanston.jpg' },
-  { handle: '@jokaforbooks', quote: 'meet my MC, drawn by the best', img: '/images/character-dreadlock.jpg' },
-  { handle: '@sbennettromance', quote: 'she drew THE scene', img: '/images/couple-oliver-cindy.jpg' },
-  { handle: '@ltranwrites', quote: 'every tattoo is canon-accurate', img: '/images/character-roseline.jpg' },
-  { handle: '@rcastillobooks', quote: 'trilogy art part one!!', img: '/images/character-trio.jpg' },
+  { handle: '@ariverswrites', quote: 'cover reveal day!! look at this ART', img: '/images/couple-icerink.webp' },
+  { handle: '@mhale_author', quote: 'still not over my cover', img: '/images/book-cover-swanston.webp' },
+  { handle: '@jokaforbooks', quote: 'meet my MC, drawn by the best', img: '/images/character-dreadlock.webp' },
+  { handle: '@sbennettromance', quote: 'she drew THE scene', img: '/images/couple-oliver-cindy.webp' },
+  { handle: '@ltranwrites', quote: 'every tattoo is canon-accurate', img: '/images/character-roseline.webp' },
+  { handle: '@rcastillobooks', quote: 'trilogy art part one!!', img: '/images/character-trio.webp' },
 ]

@@ -61,7 +61,8 @@ export default function Pinned() {
 
   useLayoutEffect(() => {
     const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (rm) return
+    const mobile = window.matchMedia('(max-width: 767px)').matches
+    if (rm || mobile) return
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray('.stack-card')
 

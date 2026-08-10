@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import { Footer } from './components/Footer'
-
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react'
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage'))
 const ServicesPage = lazy(() => import('./pages/ServicesPage'))
 const PricingPage = lazy(() => import('./pages/PricingPage'))
@@ -48,20 +48,43 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const finishLoading = () => window.setTimeout(() => setLoading(false), 450)
-    if (document.readyState === 'complete') {
-      finishLoading()
-      return undefined
+    let timeoutId;
+    const finishLoading = () => {
+      clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => setLoading(false), 250);
+    };
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      finishLoading();
+      return () => clearTimeout(timeoutId);
     }
-    window.addEventListener('load', finishLoading, { once: true })
-    return () => window.removeEventListener('load', finishLoading)
+
+    const onReady = () => finishLoading();
+    const onLoad = () => finishLoading();
+
+    window.addEventListener('DOMContentLoaded', onReady, { once: true });
+    window.addEventListener('load', onLoad, { once: true });
+
+    timeoutId = window.setTimeout(finishLoading, 1200);
+
+    return () => {
+      window.removeEventListener('DOMContentLoaded', onReady);
+      window.removeEventListener('load', onLoad);
+      clearTimeout(timeoutId);
+    };
   }, [])
 
   return (
+    <> 
     <BrowserRouter>
       <RoutedApp />
       {loading && <LoadingScreen />}
     </BrowserRouter>
+     <TawkMessengerReact
+  propertyId="6a79687ce8ea2e1d4cd64837"
+  widgetId="1jvl409vq"
+/>
+    </>
   )
 }
 

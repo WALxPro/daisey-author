@@ -94,7 +94,7 @@ function Commissions() {
   return (
     <section
       id="commissions"
-      className="plum-panel relative overflow-hidden px-5 py-20 sm:px-10 lg:px-16 lg:py-28"
+      className="commissions-section plum-panel relative overflow-hidden px-5 py-20 sm:px-10 lg:px-16 lg:py-28"
     >
       <header className="reveal-text mx-auto max-w-2xl text-center">
         <p className="font-sans text-[0.62rem] uppercase tracking-[0.3em] text-gold">
@@ -120,7 +120,7 @@ function Commissions() {
         {PACKAGES.map((pkg) => (
           <article
             key={pkg.title}
-            className="reveal-card glass-card font-serif group relative flex h-full flex-col rounded-xl px-7 py-8 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2"
+            className="reveal-card glass-card font-serif group relative flex h-full flex-col rounded-xl px-7 py-8 md:transition-transform md:duration-500 md:ease-[cubic-bezier(0.22,1,0.36,1)] md:hover:-translate-y-2"
           >
             {pkg.badge && (
               <span

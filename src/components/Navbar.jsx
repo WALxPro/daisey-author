@@ -9,15 +9,22 @@ export default function Navbar() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+
     const onScroll = () => {
-      const html = document.documentElement;
+      if (ticking) return;
+      ticking = true;
 
-      const scrollPercentage =
-        (html.scrollTop /
-          Math.max(html.scrollHeight - html.clientHeight, 1)) *
-        100;
+      window.requestAnimationFrame(() => {
+        const html = document.documentElement;
+        const scrollPercentage =
+          (html.scrollTop /
+            Math.max(html.scrollHeight - html.clientHeight, 1)) *
+          100;
 
-      setProgress(scrollPercentage);
+        setProgress(scrollPercentage);
+        ticking = false;
+      });
     };
 
     onScroll();

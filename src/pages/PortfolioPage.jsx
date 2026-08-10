@@ -22,7 +22,7 @@ export default function PortfolioPage() {
         eyebrow="The Gallery"
         title="My"
         shimmerWord="Portfolio"
-        script="Every character has a story — here's a few of theirs."
+        script="Every character has a story here's a few of theirs."
       />
       <Gallery onOpenLightbox={openLightbox} bare />
       <CTABanner

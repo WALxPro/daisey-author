@@ -1,12 +1,7 @@
-import {
-  FaInstagram,
-  FaCheck,
-} from "react-icons/fa";
-
+import { FaInstagram, FaCheck } from "react-icons/fa";
 import { artworks } from "../data";
 
-const PROFILE_URL =
-  "https://www.instagram.com/daisyy_sketches";
+const PROFILE_URL = "https://www.instagram.com/daisyy_sketches";
 
 const reasons = [
   {
@@ -41,6 +36,7 @@ function InstagramSection() {
   return (
     <section
       className="
+        instagram-section
         plum-panel
         relative
         isolate
@@ -48,12 +44,12 @@ function InstagramSection() {
         overflow-hidden
         border-y
         border-gold/20
-        py-20
+        py-16
         text-paper
         md:py-28
       "
     >
-      {/* Left background glow */}
+      {/* Background glows — desktop only */}
       <div
         aria-hidden="true"
         className="
@@ -62,18 +58,18 @@ function InstagramSection() {
           -left-40
           top-10
           -z-10
+          hidden
           h-[480px]
           w-[480px]
           rounded-full
           blur-[145px]
+          md:block
         "
         style={{
-          backgroundColor:
-            "rgba(var(--color-burgundy2), 0.22)",
+          backgroundColor: "rgba(var(--color-burgundy2), 0.22)",
         }}
       />
 
-      {/* Right background glow */}
       <div
         aria-hidden="true"
         className="
@@ -82,18 +78,18 @@ function InstagramSection() {
           -right-36
           top-[30%]
           -z-10
+          hidden
           h-[440px]
           w-[440px]
           rounded-full
           blur-[135px]
+          md:block
         "
         style={{
-          backgroundColor:
-            "rgba(var(--color-rose), 0.16)",
+          backgroundColor: "rgba(var(--color-rose), 0.16)",
         }}
       />
 
-      {/* Bottom gold glow */}
       <div
         aria-hidden="true"
         className="
@@ -102,15 +98,16 @@ function InstagramSection() {
           bottom-0
           left-1/2
           -z-10
+          hidden
           h-[300px]
           w-[700px]
           -translate-x-1/2
           rounded-full
           blur-[150px]
+          md:block
         "
         style={{
-          backgroundColor:
-            "rgba(var(--color-gold), 0.08)",
+          backgroundColor: "rgba(var(--color-gold), 0.08)",
         }}
       />
 
@@ -176,18 +173,11 @@ function InstagramSection() {
             "
           >
             As Seen on Instagram
-            
           </h2>
 
           <div
             aria-hidden="true"
-            className="
-              rule-gold
-              mx-auto
-              mt-6
-              h-px
-              w-44
-            "
+            className="rule-gold mx-auto mt-6 h-px w-44"
           />
 
           <p
@@ -202,26 +192,33 @@ function InstagramSection() {
               sm:text-lg
             "
           >
-            Authors from all over the world tag me in their book
-            art, character illustrations and commissions. Here is
-            a glimpse of the love.
+            Authors from all over the world tag me in their book art,
+            character illustrations and commissions. Here is a glimpse
+            of the love.
           </p>
         </header>
 
-        {/* First 8 Instagram images */}
+        {/* Instagram images */}
         <ul
           className="
-            mt-14
+            mt-12
             grid
             grid-cols-2
             gap-3
             sm:grid-cols-3
             sm:gap-4
+            lg:mt-14
             lg:grid-cols-4
           "
         >
           {instagramPosts.map((post, index) => (
-            <li key={post.id || index}>
+            <li
+              key={post.id || index}
+              className="
+                [content-visibility:auto]
+                [contain-intrinsic-size:180px]
+              "
+            >
               <a
                 href={PROFILE_URL}
                 target="_blank"
@@ -238,12 +235,14 @@ function InstagramSection() {
                   overflow-hidden
                   rounded-xl
                   p-1.5
-                  shadow-[0_18px_45px_rgba(var(--color-wine-dark),0.38)]
-                  transition-all
-                  duration-500
-                  hover:-translate-y-2
-                  hover:border-gold/60
-                  hover:shadow-[0_28px_70px_rgba(var(--color-wine-dark),0.58)]
+
+                  shadow-[0_12px_30px_rgba(var(--color-wine-dark),0.3)]
+
+                  md:transition-[transform,border-color,box-shadow]
+                  md:duration-500
+                  md:hover:-translate-y-2
+                  md:hover:border-gold/60
+                  md:hover:shadow-[0_28px_70px_rgba(var(--color-wine-dark),0.58)]
                 "
               >
                 <div
@@ -267,43 +266,54 @@ function InstagramSection() {
                     height="768"
                     loading="lazy"
                     decoding="async"
+                    sizes="
+                      (max-width: 639px) 50vw,
+                      (max-width: 1023px) 33vw,
+                      25vw
+                    "
                     className="
                       h-full
                       w-full
                       object-cover
                       object-top
-                      transition-transform
-                      duration-700
-                      ease-[var(--ease-silk)]
-                      group-hover:scale-110
+
+                      md:transition-transform
+                      md:duration-700
+                      md:ease-[var(--ease-silk)]
+                      md:group-hover:scale-110
                     "
                   />
 
-                  {/* Hover dark overlay */}
+                  {/* Overlay - hover desktop only */}
                   <span
                     aria-hidden="true"
                     className="
+                      pointer-events-none
                       absolute
                       inset-0
                       bg-[var(--wine-dark)]/15
-                      transition-all
-                      duration-500
-                      group-hover:bg-[var(--wine-dark)]/68
+
+                      md:transition-colors
+                      md:duration-500
+                      md:group-hover:bg-[var(--wine-dark)]/68
                     "
                   />
 
-                  {/* Instagram hover icon */}
+                  {/* Instagram hover icon - desktop only */}
                   <span
                     className="
+                      pointer-events-none
                       absolute
                       inset-0
-                      flex
+                      hidden
                       items-center
                       justify-center
                       opacity-0
-                      transition-all
-                      duration-500
-                      group-hover:opacity-100
+
+                      md:flex
+                      md:transition-opacity
+                      md:duration-500
+                      md:group-hover:opacity-100
                     "
                   >
                     <span
@@ -321,7 +331,8 @@ function InstagramSection() {
                         text-gold
                         shadow-[0_14px_35px_rgba(var(--color-wine-dark),0.65)]
                         backdrop-blur-md
-                        transition-all
+
+                        transition-transform
                         duration-500
                         group-hover:translate-y-0
                         group-hover:scale-105
@@ -331,19 +342,23 @@ function InstagramSection() {
                     </span>
                   </span>
 
-                  {/* Decorative sparkle */}
+                  {/* Sparkle desktop only */}
                   <span
                     aria-hidden="true"
                     className="
+                      pointer-events-none
                       absolute
                       right-3
                       top-3
+                      hidden
                       text-xs
                       text-gold
                       opacity-0
-                      transition-opacity
-                      duration-500
-                      group-hover:opacity-80
+
+                      md:block
+                      md:transition-opacity
+                      md:duration-500
+                      md:group-hover:opacity-80
                     "
                   >
                     ✦
@@ -355,7 +370,7 @@ function InstagramSection() {
         </ul>
 
         {/* Reasons heading */}
-        <div className="mt-20 text-center">
+        <div className="mt-16 text-center md:mt-20">
           <p
             className="
               font-caps
@@ -384,19 +399,86 @@ function InstagramSection() {
 
           <div
             aria-hidden="true"
-            className="
-              rule-gold
-              mx-auto
-              mt-5
-              h-px
-              w-36
-            "
+            className="rule-gold mx-auto mt-5 h-px w-36"
           />
         </div>
       </div>
 
-      {/* Reasons marquee */}
-      <div className="group mt-10 w-full overflow-hidden">
+      {/* =================================
+          MOBILE - STATIC REASONS
+      ================================= */}
+      <div className="mx-auto mt-8 px-5 md:hidden">
+        <ul className="grid gap-3">
+          {reasons.map((reason) => (
+            <li
+              key={reason.title}
+              className="
+                glass-card
+                flex
+                items-start
+                gap-4
+                rounded-2xl
+                px-5
+                py-5
+                font-serif
+              "
+            >
+              <span
+                className="
+                  mt-0.5
+                  flex
+                  h-8
+                  w-8
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-gold/40
+                  bg-gold/10
+                  text-gold
+                "
+              >
+                <FaCheck className="text-xs" />
+              </span>
+
+              <span>
+                <span
+                  className="
+                    block
+                    font-display
+                    text-base
+                    uppercase
+                    leading-snug
+                    tracking-[0.06em]
+                    text-paper
+                  "
+                >
+                  {reason.title}
+                </span>
+
+                <span
+                  className="
+                    mt-2
+                    block
+                    font-editorial
+                    text-sm
+                    leading-relaxed
+                    text-paper/55
+                  "
+                >
+                  {reason.note}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* =================================
+          DESKTOP - ANIMATED MARQUEE
+      ================================= */}
+      <div className="group mt-10 hidden w-full overflow-hidden md:block">
         <div
           className="
             marquee-track
@@ -418,16 +500,15 @@ function InstagramSection() {
                   className="
                     glass-card
                     flex
-                    w-[18rem]
+                    w-[20rem]
                     shrink-0
                     items-start
                     gap-4
                     rounded-2xl
                     px-5
                     py-5
-                    shadow-[0_16px_38px_rgba(var(--color-wine-dark),0.28)]
-                    sm:w-[20rem]
                     font-serif
+                    shadow-[0_16px_38px_rgba(var(--color-wine-dark),0.28)]
                   "
                 >
                   <span
@@ -454,12 +535,11 @@ function InstagramSection() {
                       className="
                         block
                         font-display
-                        text-base
+                        text-lg
                         uppercase
                         leading-snug
                         tracking-[0.06em]
                         text-paper
-                        sm:text-lg
                       "
                     >
                       {reason.title}
@@ -485,19 +565,20 @@ function InstagramSection() {
         </div>
       </div>
 
-      {/* Instagram CTA */}
+      {/* CTA */}
       <div
         className="
           relative
           z-10
           mx-auto
-          mt-16
+          mt-12
           flex
           max-w-6xl
           flex-col
           items-center
           px-6
           text-center
+          md:mt-16
         "
       >
         <a
@@ -522,10 +603,11 @@ function InstagramSection() {
             tracking-[0.2em]
             text-[var(--wine-deep)]
             shadow-[0_16px_42px_rgba(var(--color-wine-dark),0.48)]
-            transition-all
-            duration-500
-            hover:-translate-y-1.5
-            hover:shadow-[0_22px_55px_rgba(var(--color-gold),0.24)]
+
+            md:transition-[transform,box-shadow]
+            md:duration-500
+            md:hover:-translate-y-1.5
+            md:hover:shadow-[0_22px_55px_rgba(var(--color-gold),0.24)]
           "
           style={{
             background:
@@ -538,19 +620,22 @@ function InstagramSection() {
             Follow @daisyy_sketches
           </span>
 
-          {/* Button shine */}
+          {/* Shine desktop only */}
           <span
             aria-hidden="true"
             className="
               absolute
               inset-y-0
               -left-full
+              hidden
               w-1/2
               skew-x-[-20deg]
               bg-white/45
-              transition-all
-              duration-700
-              group-hover:left-full
+
+              md:block
+              md:transition-all
+              md:duration-700
+              md:group-hover:left-full
             "
           />
         </a>

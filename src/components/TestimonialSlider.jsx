@@ -30,7 +30,8 @@ export default function TestimonialSlider({ items = testimonials, dark = false }
 
   // gsap entrance per slide: card slides, image tilts in, stars pop one-by-one
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const isMobile = window.matchMedia('(max-width: 767px)').matches
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isMobile) return
     const ctx = gsap.context(() => {
       const d = dirRef.current
       gsap.fromTo('.ts-card', { x: 60 * d, opacity: 0 }, { x: 0, opacity: 1, duration: .6, ease: 'power3.out' })
