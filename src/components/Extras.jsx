@@ -259,7 +259,7 @@ export function CTABanner({ title = 'Ready to See Your Characters Come to Life?'
       
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(100deg,transparent 30%,rgba(var(--color-gold-light),.12) 50%,transparent 70%)', backgroundSize: '200% 100%', animation: 'shine 6s linear infinite' }} />
       <div className="reveal-text relative z-[1] max-w-[720px] mx-auto px-5">
-        <h2 className="font-serif text-ink text-4xl md:text-5xl">{title}</h2>
+        <h2 className="font-serif text-ink text-2xl md:text-5xl">{title}</h2>
         <p className="text-inksoft mt-3">{sub}</p>
         <PrimaryButton to={to} className="mt-8">{btn} ✦</PrimaryButton>
       </div>

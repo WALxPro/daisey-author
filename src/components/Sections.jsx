@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import PrimaryButton from "./Button";
 import Heading from "./Heading";
 import MiniHead from "./MiniHead";
+import { SiLinktree } from "react-icons/si";
 
 const WORDS = [
   "HAND DRAWN",
@@ -873,18 +874,19 @@ export function About() {
           <p
             className="
               relative
-              text-center
+              
               font-editorial
-              text-xl italic
+              text-base italic
               leading-relaxed
               text-wine
               sm:text-2xl
+              
             "
           >
             to create artwork that captures emotion, tells a story, and leaves a
             lasting impression.
           </p>
-
+           
           {/* Count-up animation retained */}
           <div className="mb-[50px] mt-10 flex flex-wrap gap-9">
             <div className="border-l-2 border-gold/75 pl-4">
@@ -957,6 +959,8 @@ export function About() {
           </div>
 
           <PrimaryButton to="/about">✦ Read My Full Story</PrimaryButton>
+     
+
         </div>
       </div>
 

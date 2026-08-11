@@ -1,8 +1,9 @@
 import { FaInstagram, FaCheck } from "react-icons/fa";
 import { artworks } from "../data";
- 
+import { SiLinktree } from "react-icons/si";
+
 const PROFILE_URL = "https://www.instagram.com/daisyy_sketches";
- 
+
 const reasons = [
   {
     title: "500+ Commissions Completed",
@@ -29,10 +30,10 @@ const reasons = [
     note: "300 DPI covers with full commercial usage rights included.",
   },
 ];
- 
+
 function InstagramSection() {
   const instagramPosts = artworks.slice(0, 8);
- 
+
   return (
     <section
       className="
@@ -72,7 +73,7 @@ function InstagramSection() {
           willChange: "transform",
         }}
       />
- 
+
       <div
         aria-hidden="true"
         className="
@@ -94,7 +95,7 @@ function InstagramSection() {
           willChange: "transform",
         }}
       />
- 
+
       <div
         aria-hidden="true"
         className="
@@ -117,7 +118,7 @@ function InstagramSection() {
           willChange: "transform",
         }}
       />
- 
+
       <div
         className="
           relative
@@ -133,19 +134,22 @@ function InstagramSection() {
           <p className="font-caps text-[0.7rem] uppercase tracking-[0.34em] text-gold">
             Social Highlights
           </p>
- 
+
           <h2 className="my-5 font-serif text-2xl leading-tight md:text-5xl text-paper">
             As Seen on Instagram
           </h2>
- 
-          <div aria-hidden="true" className="rule-gold mx-auto mt-6 h-px w-40" />
- 
+
+          <div
+            aria-hidden="true"
+            className="rule-gold mx-auto mt-6 h-px w-40"
+          />
+
           <p className="my-5 max-w-[56ch] text-sm leading-relaxed text-paper/70 sm:text-[1.2rem] sm:leading-[1.6]">
             Authors from all over the world tag me in their book art, character
             illustrations and commissions. Here is a glimpse of the love.
           </p>
         </header>
- 
+
         {/* Instagram images */}
         <ul
           className="
@@ -226,7 +230,7 @@ function InstagramSection() {
                       md:group-hover:scale-105
                     "
                   />
- 
+
                   {/* Overlay - hover desktop only */}
                   <span
                     aria-hidden="true"
@@ -241,7 +245,7 @@ function InstagramSection() {
                       md:group-hover:bg-[var(--wine-dark)]/68
                     "
                   />
- 
+
                   {/* Instagram hover icon - desktop only */}
                   <span
                     className="
@@ -283,7 +287,7 @@ function InstagramSection() {
                       <FaInstagram className="text-2xl" />
                     </span>
                   </span>
- 
+
                   {/* Sparkle desktop only */}
                   <span
                     aria-hidden="true"
@@ -310,21 +314,24 @@ function InstagramSection() {
             </li>
           ))}
         </ul>
- 
+
         {/* Reasons heading */}
         <div className="mt-16 text-center md:mt-20">
           <p className="font-caps text-[0.7rem] uppercase tracking-[0.34em] text-gold">
             Why authors work with me
           </p>
- 
+
           <h2 className="my-5 font-serif text-2xl leading-tight md:text-5xl text-paper">
             Why authors keep coming back
           </h2>
- 
-          <div aria-hidden="true" className="rule-gold mx-auto mt-5 h-px w-36" />
+
+          <div
+            aria-hidden="true"
+            className="rule-gold mx-auto mt-5 h-px w-36"
+          />
         </div>
       </div>
- 
+
       {/* =================================
           MOBILE - STATIC REASONS
       ================================= */}
@@ -362,7 +369,7 @@ function InstagramSection() {
               >
                 <FaCheck className="text-xs" />
               </span>
- 
+
               <span>
                 <span
                   className="
@@ -377,7 +384,7 @@ function InstagramSection() {
                 >
                   {reason.title}
                 </span>
- 
+
                 <span
                   className="
                     mt-2
@@ -395,7 +402,7 @@ function InstagramSection() {
           ))}
         </ul>
       </div>
- 
+
       {/* =================================
           DESKTOP - ANIMATED MARQUEE
       ================================= */}
@@ -450,7 +457,7 @@ function InstagramSection() {
                   >
                     <FaCheck className="text-xs" />
                   </span>
- 
+
                   <span>
                     <span
                       className="
@@ -465,7 +472,7 @@ function InstagramSection() {
                     >
                       {reason.title}
                     </span>
- 
+
                     <span
                       className="
                         mt-2
@@ -485,7 +492,7 @@ function InstagramSection() {
           ))}
         </div>
       </div>
- 
+
       {/* CTA */}
       <div
         className="
@@ -500,13 +507,15 @@ function InstagramSection() {
           px-6
           text-center
           md:mt-16
+
         "
       >
-        <a
-          href={PROFILE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
+        <div className="flex items-center gap-3 flex-col md:flex-row">
+          <a
+            href={PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
             group
             relative
             inline-flex
@@ -515,10 +524,13 @@ function InstagramSection() {
             gap-3
             overflow-hidden
             rounded-full
-            px-8
-            py-4
+            md:px-8
+            md:py-4
+            px-6
+            py-3
             font-caps
-            text-[0.68rem]
+            text-[0.54rem]
+            md:text-[0.68rem]
             font-semibold
             uppercase
             tracking-[0.2em]
@@ -530,19 +542,19 @@ function InstagramSection() {
             md:hover:-translate-y-1.5
             md:hover:shadow-[0_22px_55px_rgba(var(--color-gold),0.24)]
           "
-          style={{
-            background:
-              "linear-gradient(115deg, var(--gold), var(--gold-bright), var(--gold-light))",
-          }}
-        >
-          <FaInstagram className="relative z-10 text-lg" />
- 
-          <span className="relative z-10">Follow @daisyy_sketches</span>
- 
-          {/* Shine desktop only */}
-          <span
-            aria-hidden="true"
-            className="
+            style={{
+              background:
+                "linear-gradient(115deg, var(--gold), var(--gold-bright), var(--gold-light))",
+            }}
+          >
+            <FaInstagram className="relative z-10 text-lg" />
+
+            <span className="relative z-10">Follow @daisyy_sketches</span>
+
+            {/* Shine desktop only */}
+            <span
+              aria-hidden="true"
+              className="
               absolute
               inset-y-0
               -left-full
@@ -556,12 +568,72 @@ function InstagramSection() {
               md:duration-700
               md:group-hover:left-full
             "
-          />
-        </a>
+            />
+          </a>
+          <a
+            href="https://linktr.ee/daisyysketches"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+            group
+            relative
+            inline-flex
+            items-center
+            justify-center
+            gap-3
+            overflow-hidden
+            rounded-full
+           md:px-8
+            md:py-4
+            px-6
+            py-3
+            font-caps
+            text-[0.54rem]
+            md:text-[0.68rem]
+            font-semibold
+            uppercase
+            tracking-[0.2em]
+            text-[var(--wine-deep)]
+            shadow-[0_16px_42px_rgba(var(--color-wine-dark),0.48)]
  
+            md:transition-[transform,box-shadow]
+            md:duration-500
+            md:hover:-translate-y-1.5
+            md:hover:shadow-[0_22px_55px_rgba(var(--color-gold),0.24)]
+          "
+            style={{
+              background:
+                "linear-gradient(115deg, var(--gold), var(--gold-bright), var(--gold-light))",
+            }}
+          >
+            <SiLinktree className="relative z-10 text-lg" />
+
+            <span className="relative z-10">Visit My Linktree</span>
+
+            {/* Shine desktop only */}
+            <span
+              aria-hidden="true"
+              className="
+              absolute
+              inset-y-0
+              -left-full
+              hidden
+              w-1/2
+              skew-x-[-20deg]
+              bg-white/45
+ 
+              md:block
+              md:transition-all
+              md:duration-700
+              md:group-hover:left-full
+            "
+            />
+          </a>
+        </div>
+
         <div className="mt-7 flex items-center gap-3">
           <span className="h-px w-8 bg-gold/40" />
- 
+
           <p
             className="
               font-caps
@@ -573,12 +645,12 @@ function InstagramSection() {
           >
             Trusted by 1,000+ authors
           </p>
- 
+
           <span className="h-px w-8 bg-gold/40" />
         </div>
       </div>
     </section>
   );
 }
- 
+
 export default InstagramSection;

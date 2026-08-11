@@ -97,7 +97,7 @@ export function MyJourneySection() {
         <>
           What started as sketching favorite characters from fantasy and
           romance novels slowly became something much bigger. I found myself
-          drawn to the emotions behind every story — the quiet moments, the
+          drawn to the emotions behind every story the quiet moments, the
           unforgettable characters, and the worlds readers carry with them
           long after the final page.
         </>
@@ -205,7 +205,7 @@ export function MyJourneySection() {
 
       <div className="relative z-10 mx-auto max-w-[1180px]">
         {/* Section heading */}
-        <header className="mx-auto mb-14 max-w-3xl text-center md:mb-20">
+        {/* <header className="mx-auto mb-14 max-w-3xl text-center md:mb-20">
           <div className="flex items-center justify-center gap-4">
             <span
               aria-hidden="true"
@@ -280,7 +280,30 @@ export function MyJourneySection() {
             A creative journey shaped by stories, emotion and the desire to
             make imagined characters feel real.
           </p>
-        </header>
+        </header> */}
+
+           <div className="reveal text-center mx-auto max-w-2xl  ">
+
+        <MiniHead text=" My Journey" />
+
+          <Heading
+            text="The Story Behind"
+            highlight="the Art"
+          />
+
+          <p
+            className="
+              mt-5 mb-10 max-w-[56ch]
+              text-sm leading-relaxed
+              text-inksoft
+              sm:text-[1.2rem]
+              sm:leading-[1.6]
+              text-center
+            "
+          >
+            A creative journey shaped by stories, emotion and the desire to make imagined characters feel real.
+          </p>
+          </div>
 
         <div
           className="
@@ -372,7 +395,8 @@ export function MyJourneySection() {
                   relative
                   mt-5
                   font-editorial
-                  text-2xl
+                  mdLtext-2xl
+                  text-lg
                   italic
                   leading-[1.45]
                   text-gold-light
@@ -426,11 +450,12 @@ export function MyJourneySection() {
                   border
                   border-gold/25
                   bg-white/[0.05]
-                  p-4
+                  md:p-4
+                  p-2
                   backdrop-blur-sm
                 "
               >
-                <div className="flex items-start gap-3">
+                <div className="flex items-start flex-col md:flex-row gap-3">
                   <span
                     aria-hidden="true"
                     className="
@@ -566,7 +591,7 @@ export function MyJourneySection() {
                     <h3
                       className="
                         font-display
-                        text-lg
+                        text-base
                         uppercase
                         tracking-[0.12em]
                         text-burgundy
@@ -579,12 +604,11 @@ export function MyJourneySection() {
 
                   <p
                     className={`
-                      mt-5
-                      font-editorial
-                      text-base
-                      leading-[1.85]
-                      text-ink-soft
-                      sm:text-[1.05rem]
+                      mt-5 mb-10 max-w-[56ch]
+              text-sm leading-relaxed
+              text-inksoft
+              sm:text-[1.2rem]
+              sm:leading-[1.6]
                       ${
                         index === 0
                           ? `
@@ -651,7 +675,7 @@ export function MyJourneySection() {
                 className="
                   relative
                   font-editorial
-                  text-xl
+                  text-base
                   italic
                   leading-relaxed
                   text-wine
