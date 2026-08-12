@@ -5,6 +5,7 @@ import { PageHero } from '../components/Extras'
 import TestimonialSlider from '../components/TestimonialSlider'
 import { useGsapReveal } from '../hooks'
 import PrimaryButton from '../components/Button'
+import ClientReviews from '../components/ClientReviews'
 
 export default function TestimonialsPage() {
   const [filter, setFilter] = useState('all')
@@ -13,7 +14,9 @@ export default function TestimonialsPage() {
   return (
     <>
       <PageHero eyebrow="Testimonials" title="Kind Words From" shimmerWord="Clients" script="Nothing means more than hearing your characters came to life the way you imagined." />
+      <ClientReviews/>
       <section className="py-10 md:py-24 bg-paper px-5 md:px-8">
+        
         <div className="flex flex-wrap justify-center gap-2.5 mb-10">
           {testimonialFilters.map((f) => (
             <button key={f.key} onClick={() => setFilter(f.key)}

@@ -10,7 +10,7 @@ const PACKAGES = [
       "Artwork based on your story and characters",
       "Pricing varies by complexity",
       "Sketch approval stage included",
-      "High-resolution final files",
+      "High resolution final files",
     ],
   },
   {
@@ -18,7 +18,7 @@ const PACKAGES = [
     price: "$80 – $450",
     badge: "Most Loved",
     items: [
-      "Bust-up: $80 – $120",
+      "Bust up: $80 – $120",
       "Half body: $130 – $180",
       "Full body: $190 – $260",
       "Couple illustration: $360 – $450",
@@ -32,7 +32,7 @@ const PACKAGES = [
       "Full illustrated scene",
       "One or multiple characters",
       "Price varies by character count and complexity",
-      "High-resolution final files",
+      "High resolution final files",
     ],
   },
   {
@@ -51,10 +51,10 @@ const PACKAGES = [
     price: "$400 – $1,000",
     badge: null,
     items: [
-      "5-second animation: $400 – $600",
-      "10-second animation: $650 – $1,000",
+      "5 second animation: $400 – $600",
+      "10 second animation: $650 – $1,000",
       "Pricing varies by movement and scene complexity",
-      "High-resolution final files",
+      "High resolution final files",
     ],
   },
   {
@@ -63,7 +63,7 @@ const PACKAGES = [
     badge: null,
     items: [
       "Single social media post: $60 – $120",
-      "7-day campaign: $700 – $1,200",
+      "7 day campaign: $700 – $1,200",
       "Monthly handling: $1,300 – $2,500",
       "Posts, stories, reels and account handling",
     ],
@@ -76,7 +76,7 @@ const PACKAGES = [
       "Interior book graphics",
       "Decorative illustrations and visual elements",
       "Custom graphics based on the book style",
-      "High-resolution final files",
+      "High resolution final files",
     ],
   },
   {

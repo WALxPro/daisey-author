@@ -12,6 +12,7 @@ import {
 
 import { FaThreads } from "react-icons/fa6";
 import { SiSubstack } from "react-icons/si";
+import { FaFacebookF } from "react-icons/fa";
 
 const BRAND = "Daisyy Sketches";
 
@@ -58,10 +59,10 @@ const socials = [
     href: "https://cara.app/daisyyartist",
   },
   {
-    icon: FaRedditAlien,
-    label: "Reddit",
-    href: "https://reddit.com/u/YOUR_USERNAME",
-  },
+     icon: FaFacebookF,
+     label: "Facebook",
+     href: "https://www.facebook.com/profile.php?id=61592689087913",
+   },
   {
     icon: FaThreads,
     label: "Threads",
@@ -181,7 +182,7 @@ export function Footer() {
                 text-paper/65
               "
             >
-              Hand-drawn character art, romantic scenes and book
+              Hand drawn character art, romantic scenes and book
               illustrations created to bring your stories and
               imagined worlds to life.
             </p>
@@ -284,7 +285,7 @@ export function Footer() {
               "
             >
               Follow along for sketches, artwork reveals and
-              behind-the-scenes updates.
+              behind the scenes updates.
             </p>
 
             <div
@@ -457,22 +458,20 @@ export function Footer() {
             >
               ✦
             </span>
-
-            <Link
-              to="/privacy"
-              className="
-                font-caps
-                text-[0.58rem]
-                uppercase
-                tracking-[0.18em]
-                text-paper/50
-                transition-colors
-                duration-300
-                hover:text-gold
-              "
+            <span
+              aria-hidden="true"
+              className="hidden text-gold/35 sm:inline"
             >
-              Privacy Policy
-            </Link>
+              ✦
+            </span>
+            <span
+              aria-hidden="true"
+              className="hidden text-gold/35 sm:inline"
+            >
+              ✦
+            </span>
+
+           
           </div>
         </div>
       </div>

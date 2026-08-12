@@ -388,7 +388,7 @@ export const tiers = [
     price: "$80 – $450",
     img: "/images/character-dreadlock.webp",
     points: [
-      "Bust-up: $80 – $120",
+      "Bust up: $80 – $120",
       "Half body: $130 – $180",
       "Full body: $190 – $260",
       "Couple illustration: $360 – $450",
@@ -470,7 +470,7 @@ export const services = [
       'Custom book cover illustration',
       'Artwork based on your story and characters',
       'Sketch approval stage',
-      'High-resolution final files',
+      'High resolution final files',
     ],
     revisions: '2 rounds of revisions included',
     references:
@@ -484,11 +484,11 @@ export const services = [
     img: '/images/character-roseline.webp',
     featured: true,
     summary:
-      'Custom character illustrations ranging from bust-up portraits to full-body and couple artwork.',
+      'Custom character illustrations ranging from Bust up portraits to full-body and couple artwork.',
     description:
-      'Bring your characters to life with custom artwork tailored to their personality, appearance, outfits, and story. Choose from bust-up, half-body, full-body, or couple illustrations.',
+      'Bring your characters to life with custom artwork tailored to their personality, appearance, outfits, and story. Choose from Bust up, half-body, full-body, or couple illustrations.',
     included: [
-      'Bust-up: $80 – $120',
+      'Bust up: $80 – $120',
       'Half body: $130 – $180',
       'Full body: $190 – $260',
       'Couple illustration: $360 – $450',
@@ -504,14 +504,14 @@ export const services = [
     start: '$270 – $500',
     img: '/images/couple-icerink.webp',
     summary:
-      'A fully illustrated scene featuring one or multiple characters in a story-driven environment.',
+      'A fully illustrated scene featuring one or multiple characters in a story driven environment.',
     description:
       'Capture an important moment from your story with a detailed illustrated scene. Pricing varies depending on the number of characters, environment, lighting, and overall complexity.',
     included: [
       'Full illustrated scene',
       'One or multiple characters',
       'Character and environment artwork',
-      'High-resolution final files',
+      'High resolution final files',
     ],
     revisions: '2 rounds of revisions included',
     references:
@@ -548,10 +548,10 @@ export const services = [
     description:
       'Bring your artwork to life with short custom animations. Pricing depends on animation length, movement, number of characters, scenes, and overall complexity.',
     included: [
-      '5-second animation: $400 – $600',
-      '10-second animation: $650 – $1,000',
+      '5 second animation: $400 – $600',
+      '10 second animation: $650 – $1,000',
       'Custom movement and scene animation',
-      'High-resolution final files',
+      'High resolution final files',
     ],
     revisions: '2 rounds of revisions included',
     references:
@@ -569,7 +569,7 @@ export const services = [
       'From a single promotional post to complete monthly account handling, create consistent visual content for your social media presence.',
     included: [
       'Single social media post: $60 – $120',
-      '7-day campaign: $700 – $1,200',
+      '7 day campaign: $700 – $1,200',
       'Monthly handling: $1,300 – $2,500',
       'Posts, stories, reels and account handling',
     ],
@@ -591,7 +591,7 @@ export const services = [
       'Interior book graphics',
       'Decorative illustrations and visual elements',
       'Custom graphics based on the book style',
-      'High-resolution final files',
+      'High resolution final files',
     ],
     revisions: '2 rounds of revisions included',
     references:
@@ -632,9 +632,9 @@ export const testimonials = [
   { name: 'A. Rivers', handle: '@ariverswrites', cat: 'couple', img: '/images/couple-icerink.webp', quote: 'She captured my hockey boys mid-kiss EXACTLY how I pictured them. My readers lost their minds. Worth every penny.' },
   { name: 'M. Hale', handle: '@mhale_author', cat: 'cover', img: '/images/book-cover-swanston.webp', quote: 'My cover looks like it belongs on a bestseller shelf. Communication was easy and the sketch stage made me feel involved the whole way.' },
   { name: 'J. Okafor', handle: '@jokaforbooks', cat: 'character', img: '/images/character-dreadlock.webp', quote: 'The Guardian came out better than the version in my head. Hand-drawn, soulful, and delivered right on schedule.' },
-  { name: 'S. Bennett', handle: '@sbennettromance', cat: 'couple', img: '/images/couple-oliver-cindy.webp', quote: 'A cowboy dipping a ballerina - weird brief, perfect execution. She just gets romance.' },
+  { name: 'S. Bennett', handle: '@sbennettromance', cat: 'couple', img: '/images/couple-oliver-cindy.webp', quote: 'A cowboy dipping a ballerina weird brief, perfect execution. She just gets romance.' },
   { name: 'L. Tran', handle: '@ltranwrites', cat: 'character', img: '/images/character-roseline.webp', quote: 'Every tattoo on my MC means something in the book, and she drew every single one accurately. That attention to detail is rare.' },
-  { name: 'R. Castillo', handle: '@rcastillobooks', cat: 'cover', img: '/images/character-trio.webp', quote: "Commissioned group art for my urban fantasy trilogy. The lighting, the mood - chef's kiss. Already booked her for book two." },
+  { name: 'R. Castillo', handle: '@rcastillobooks', cat: 'cover', img: '/images/character-trio.webp', quote: "Commissioned group art for my urban fantasy trilogy. The lighting, the mood chef's kiss. Already booked her for book two." },
 ]
 
 export const testimonialFilters = [
@@ -647,15 +647,15 @@ export const testimonialFilters = [
 export const processSteps = [
   { num: '01', title: 'Reference & Brief', text: 'You provide a clear visual reference and complete commission details before we begin.' },
   { num: '02', title: 'Sketch', text: 'I draft the initial concept and composition for your character or scene.' },
-  { num: '03', title: 'Client Approval', text: 'You review the sketch and share notes - we lock it in together.' },
+  { num: '03', title: 'Client Approval', text: 'You review the sketch and share notes we lock it in together.' },
   { num: '04', title: 'Coloring & Shading', text: 'Detailed rendering, lighting, and finishing touches bring the piece to life.' },
-  { num: '05', title: 'Final Delivery', text: 'High-resolution final files delivered - usually within 2-3 weeks.' },
+  { num: '05', title: 'Final Delivery', text: 'High resolution final files delivered usually within 2-3 weeks.' },
 ]
 
 export const funFacts = [
-  { label: 'Favorite genre to illustrate', value: 'Romance fantasy - give me longing stares and glowing magic.' },
-  { label: 'Dream commission', value: 'A full illustrated edition of an enemies-to-lovers duology.' },
-  { label: 'Go-to art tools', value: 'A well-worn drawing tablet, too many custom brushes, and lo-fi playlists.' },
+  { label: 'Favorite genre to illustrate', value: 'Romance fantasy give me longing stares and glowing magic.' },
+  { label: 'Dream commission', value: 'A full illustrated edition of an enemies to lovers duology.' },
+  { label: 'Go-to art tools', value: 'A well worn drawing tablet, too many custom brushes, and lofi playlists.' },
   { label: 'Fun detail', value: 'I name every unnamed background character. They all have lore now.' },
 ]
 

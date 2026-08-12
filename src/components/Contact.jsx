@@ -16,6 +16,7 @@ import { BRAND, INSTAGRAM, IG_HANDLE, EMAIL } from "../data";
 import { FaRedditAlien } from "react-icons/fa6";
 import { FaThreads } from "react-icons/fa6";
 import { SiSubstack } from "react-icons/si";
+import { FaFacebookF } from "react-icons/fa";
 import { PiPaintBrushBroadFill } from "react-icons/pi";
 import emailjs from "@emailjs/browser";
 
@@ -31,9 +32,9 @@ const socials = [
     href: "https://cara.app/daisyyartist",
   },
   {
-    icon: FaRedditAlien,
-    label: "Reddit",
-    href: "https://reddit.com/u/YOUR_USERNAME",
+    icon: FaFacebookF,
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61592689087913",
   },
   {
     icon: FaThreads,
@@ -2121,7 +2122,7 @@ export function Contact() {
             >
               Whether you are an author dreaming of the perfect character
               design, a reader wanting to see a beloved character come to life,
-              or someone searching for a one-of-a-kind custom illustration, I
+              or someone searching for a one of a kind custom illustration, I
               would love to hear your ideas.
             </p>
 
