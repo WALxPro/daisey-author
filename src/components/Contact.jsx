@@ -20,9 +20,14 @@ import { PiPaintBrushBroadFill } from "react-icons/pi";
 
 const socials = [
   {
+    icon: FaInstagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/daisyy_sketches/",
+  },
+  {
     icon: PiPaintBrushBroadFill,
     label: "Cara",
-    href: "https://cara.app/YOUR_USERNAME",
+    href: "https://cara.app/daisyyartist",
   },
   {
     icon: FaRedditAlien,
@@ -32,12 +37,12 @@ const socials = [
   {
     icon: FaThreads,
     label: "Threads",
-    href: "https://threads.net/@YOUR_USERNAME",
+    href: "https://www.threads.com/@daisyy_sketches?xmt=AQG0k_bgb8Y_8CdOq0ti6zARccG2AynC73iUVbTxPluXLQ8",
   },
   {
     icon: SiSubstack,
     label: "Substack",
-    href: "https://YOUR_USERNAME.substack.com",
+    href: "https://substack.com/@daisyysketches2",
   },
 ];
 function Status() {
@@ -56,7 +61,29 @@ const labelCls =
 
 export function Contact() {
   const [sent, setSent] = useState(false);
+  const handleSubmit = (event) => {
+  event.preventDefault();
 
+  const formData = new FormData(event.currentTarget);
+
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    projectType: formData.get("projectType"),
+    budget: formData.get("budget"),
+    description: formData.get("description"),
+
+    references: Array.from(formData.getAll("reference")).map((file) => ({
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    })),
+  };
+
+  console.log("Contact Form Data:", data);
+
+  setSent(true);
+};
   const labelClass = `
     mb-2
     block
@@ -457,10 +484,8 @@ export function Contact() {
                   sm:p-8
                   md:p-10
                 "
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  setSent(true);
-                }}
+                  onSubmit={handleSubmit}
+
               >
                 <span
                   aria-hidden="true"
@@ -1180,376 +1205,7 @@ export function Contact() {
   );
 }
 
-// import { useEffect } from "react";
-import { createPortal } from "react-dom";
 
-export default function Lightbox({
-  artworks = [],
-  currentIndex = 0,
-  onChange,
-  onClose,
-}) {
-  const total = artworks.length;
-  const art = artworks[currentIndex];
-
-  const showPrevious = () => {
-    if (total <= 1) return;
-
-    const previousIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
-
-    onChange(previousIndex);
-  };
-
-  const showNext = () => {
-    if (total <= 1) return;
-
-    const nextIndex = currentIndex === total - 1 ? 0 : currentIndex + 1;
-
-    onChange(nextIndex);
-  };
-
-  useEffect(() => {
-    if (!art) return;
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-
-      if (event.key === "ArrowLeft") {
-        showPrevious();
-      }
-
-      if (event.key === "ArrowRight") {
-        showNext();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [art, currentIndex, total, onClose, onChange]);
-
-  useEffect(() => {
-    if (!art) return;
-
-    const previousOverflow = document.body.style.overflow;
-
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [art]);
-
-  if (!art || typeof document === "undefined") {
-    return null;
-  }
-
-  return createPortal(
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={art.title || "Artwork viewer"}
-      className="
-        fixed
-        inset-0
-        z-[9999]
-        isolate
-        overflow-y-auto
-      "
-    >
-      {/* Background overlay */}
-      <div
-        aria-hidden="true"
-        onClick={onClose}
-        className="fixed inset-0"
-        style={{
-          background: `
-            radial-gradient(
-              ellipse 46% 70% at 50% 48%,
-              rgba(90, 77, 112, 0.62) 0%,
-              rgba(58, 47, 78, 0.7) 38%,
-              rgba(27, 17, 42, 0.9) 68%,
-              rgba(9, 4, 15, 1) 100%
-            )
-          `,
-          backdropFilter: "blur(22px)",
-          WebkitBackdropFilter: "blur(22px)",
-        }}
-      />
-
-      {/* Close button */}
-      <button
-        type="button"
-        aria-label="Close artwork viewer"
-        onClick={onClose}
-        className="
-          fixed
-          right-5
-          top-5
-          z-30
-          flex
-          h-11
-          w-11
-          items-center
-          justify-center
-          rounded-full
-          transition-all
-          duration-300
-          hover:rotate-90
-          hover:bg-white/10
-          sm:right-8
-          sm:top-7
-        "
-        style={{
-          color: "var(--paper)",
-          border: "1px solid rgba(var(--color-gold), 0.42)",
-          background: "rgba(var(--color-wine-dark), 0.3)",
-        }}
-      >
-        <FiX size={20} />
-      </button>
-
-      <div
-        className="
-          relative
-          z-10
-          flex
-          min-h-full
-          w-full
-          items-center
-          justify-center
-          px-4
-          py-20
-          sm:px-8
-          sm:py-16
-        "
-      >
-        <div className="w-full max-w-[1400px]">
-          {/* Image and desktop navigation */}
-          <div className="flex w-full items-center justify-center gap-5 sm:gap-8">
-            {total > 1 && (
-              <button
-                type="button"
-                aria-label="Previous artwork"
-                onClick={showPrevious}
-                className="
-                  hidden
-                  h-12
-                  w-12
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-300
-                  hover:-translate-x-1
-                  hover:bg-white/10
-                  sm:flex
-                "
-                style={{
-                  color: "var(--paper)",
-                  border: "1px solid rgba(var(--color-gold), 0.38)",
-                  background: "rgba(var(--color-wine-deep), 0.28)",
-                }}
-              >
-                <FiChevronLeft size={23} />
-              </button>
-            )}
-
-            <div className="flex min-w-0 justify-center">
-              <img
-                src={art.src}
-                alt={art.title || "Selected artwork"}
-                draggable="false"
-                className="
-                  block
-                  max-h-[58svh]
-                  max-w-full
-                  select-none
-                  object-contain
-                  sm:max-h-[68vh]
-                  sm:max-w-[75vw]
-                  lg:max-w-[62vw]
-                "
-                style={{
-                  boxShadow: `
-                    0 10px 35px rgba(var(--color-wine-dark), 0.48),
-                    0 35px 90px rgba(var(--color-wine-dark), 0.7),
-                    0 0 35px rgba(var(--color-gold), 0.12)
-                  `,
-                }}
-              />
-            </div>
-
-            {total > 1 && (
-              <button
-                type="button"
-                aria-label="Next artwork"
-                onClick={showNext}
-                className="
-                  hidden
-                  h-12
-                  w-12
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-all
-                  duration-300
-                  hover:translate-x-1
-                  hover:bg-white/10
-                  sm:flex
-                "
-                style={{
-                  color: "var(--paper)",
-                  border: "1px solid rgba(var(--color-gold), 0.38)",
-                  background: "rgba(var(--color-wine-deep), 0.28)",
-                }}
-              >
-                <FiChevronRight size={23} />
-              </button>
-            )}
-          </div>
-
-          {/* Artwork information */}
-          <div className="mx-auto mt-7 max-w-2xl px-3 text-center">
-            <h3
-              className="
-                font-display
-                text-2xl
-                uppercase
-                tracking-[0.16em]
-                sm:text-3xl
-              "
-              style={{
-                color: "var(--paper)",
-                textShadow: "0 3px 18px rgba(var(--color-wine-dark), 0.9)",
-              }}
-            >
-              {art.title}
-            </h3>
-
-            {art.catLabel && (
-              <span
-                className="
-                  mt-4
-                  inline-block
-                  border
-                  px-4
-                  py-1.5
-                  font-caps
-                  text-[0.58rem]
-                  uppercase
-                  tracking-[0.2em]
-                "
-                style={{
-                  color: "var(--gold-bright)",
-                  borderColor: "rgba(var(--color-gold-bright), 0.5)",
-                  background: "rgba(var(--color-wine-deep), 0.25)",
-                }}
-              >
-                {art.catLabel}
-              </span>
-            )}
-
-            {art.desc && (
-              <p
-                className="
-                  mx-auto
-                  mt-4
-                  max-w-xl
-                  font-editorial
-                  text-[15px]
-                  italic
-                  leading-relaxed
-                  sm:text-base
-                "
-                style={{
-                  color: "rgba(var(--color-paper), 0.72)",
-                }}
-              >
-                {art.desc}
-              </p>
-            )}
-
-            {total > 1 && (
-              <p
-                className="
-                  mt-5
-                  font-caps
-                  text-[0.65rem]
-                  tracking-[0.22em]
-                "
-                style={{
-                  color: "rgba(var(--color-paper), 0.48)",
-                }}
-              >
-                {currentIndex + 1} / {total}
-              </p>
-            )}
-          </div>
-
-          {/* Mobile navigation */}
-          {total > 1 && (
-            <div className="mt-6 flex justify-center gap-4 sm:hidden">
-              <button
-                type="button"
-                aria-label="Previous artwork"
-                onClick={showPrevious}
-                className="
-                  flex
-                  h-11
-                  w-11
-                  items-center
-                  justify-center
-                  rounded-full
-                "
-                style={{
-                  color: "var(--paper)",
-                  border: "1px solid rgba(var(--color-gold), 0.4)",
-                  background: "rgba(var(--color-wine-deep), 0.35)",
-                }}
-              >
-                <FiChevronLeft size={21} />
-              </button>
-
-              <button
-                type="button"
-                aria-label="Next artwork"
-                onClick={showNext}
-                className="
-                  flex
-                  h-11
-                  w-11
-                  items-center
-                  justify-center
-                  rounded-full
-                "
-                style={{
-                  color: "var(--paper)",
-                  border: "1px solid rgba(var(--color-gold), 0.4)",
-                  background: "rgba(var(--color-wine-deep), 0.35)",
-                }}
-              >
-                <FiChevronRight size={21} />
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>,
-    document.body,
-  );
-}
-// ArtistDesk.jsx
-// Premium animated "art studio" scene for the Contact page (left side).
-// Drop this in and replace your old static desk SVG with <ArtistDesk />.
-// Colors are pulled from your palette: paper, burgundy, gold, ink, rose.
-// Everything loops gently; all motion is disabled under prefers-reduced-motion.
 
 export function ArtistDesk() {
   return (
@@ -1997,5 +1653,373 @@ export function ArtistDesk() {
         }
       `}</style>
     </div>
+  );
+}
+
+
+
+
+import { createPortal } from "react-dom";
+
+export default function Lightbox({
+  artworks = [],
+  currentIndex = 0,
+  onChange,
+  onClose,
+}) {
+  const total = artworks.length;
+  const art = artworks[currentIndex];
+
+  const showPrevious = () => {
+    if (total <= 1) return;
+
+    const previousIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
+
+    onChange(previousIndex);
+  };
+
+  const showNext = () => {
+    if (total <= 1) return;
+
+    const nextIndex = currentIndex === total - 1 ? 0 : currentIndex + 1;
+
+    onChange(nextIndex);
+  };
+
+  useEffect(() => {
+    if (!art) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevious();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [art, currentIndex, total, onClose, onChange]);
+
+  useEffect(() => {
+    if (!art) return;
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [art]);
+
+  if (!art || typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={art.title || "Artwork viewer"}
+      className="
+        fixed
+        inset-0
+        z-[9999]
+        isolate
+        overflow-y-auto
+      "
+    >
+      {/* Background overlay */}
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        className="fixed inset-0"
+        style={{
+          background: `
+            radial-gradient(
+              ellipse 46% 70% at 50% 48%,
+              rgba(90, 77, 112, 0.62) 0%,
+              rgba(58, 47, 78, 0.7) 38%,
+              rgba(27, 17, 42, 0.9) 68%,
+              rgba(9, 4, 15, 1) 100%
+            )
+          `,
+          backdropFilter: "blur(22px)",
+          WebkitBackdropFilter: "blur(22px)",
+        }}
+      />
+
+      {/* Close button */}
+      <button
+        type="button"
+        aria-label="Close artwork viewer"
+        onClick={onClose}
+        className="
+          fixed
+          right-5
+          top-5
+          z-30
+          flex
+          h-11
+          w-11
+          items-center
+          justify-center
+          rounded-full
+          transition-all
+          duration-300
+          hover:rotate-90
+          hover:bg-white/10
+          sm:right-8
+          sm:top-7
+        "
+        style={{
+          color: "var(--paper)",
+          border: "1px solid rgba(var(--color-gold), 0.42)",
+          background: "rgba(var(--color-wine-dark), 0.3)",
+        }}
+      >
+        <FiX size={20} />
+      </button>
+
+      <div
+        className="
+          relative
+          z-10
+          flex
+          min-h-full
+          w-full
+          items-center
+          justify-center
+          px-4
+          py-20
+          sm:px-8
+          sm:py-16
+        "
+      >
+        <div className="w-full max-w-[1400px]">
+          {/* Image and desktop navigation */}
+          <div className="flex w-full items-center justify-center gap-5 sm:gap-8">
+            {total > 1 && (
+              <button
+                type="button"
+                aria-label="Previous artwork"
+                onClick={showPrevious}
+                className="
+                  hidden
+                  h-12
+                  w-12
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  transition-all
+                  duration-300
+                  hover:-translate-x-1
+                  hover:bg-white/10
+                  sm:flex
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.38)",
+                  background: "rgba(var(--color-wine-deep), 0.28)",
+                }}
+              >
+                <FiChevronLeft size={23} />
+              </button>
+            )}
+
+            <div className="flex min-w-0 justify-center">
+              <img
+                src={art.src}
+                alt={art.title || "Selected artwork"}
+                draggable="false"
+                className="
+                  block
+                  max-h-[58svh]
+                  max-w-full
+                  select-none
+                  object-contain
+                  sm:max-h-[68vh]
+                  sm:max-w-[75vw]
+                  lg:max-w-[62vw]
+                "
+                style={{
+                  boxShadow: `
+                    0 10px 35px rgba(var(--color-wine-dark), 0.48),
+                    0 35px 90px rgba(var(--color-wine-dark), 0.7),
+                    0 0 35px rgba(var(--color-gold), 0.12)
+                  `,
+                }}
+              />
+            </div>
+
+            {total > 1 && (
+              <button
+                type="button"
+                aria-label="Next artwork"
+                onClick={showNext}
+                className="
+                  hidden
+                  h-12
+                  w-12
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  transition-all
+                  duration-300
+                  hover:translate-x-1
+                  hover:bg-white/10
+                  sm:flex
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.38)",
+                  background: "rgba(var(--color-wine-deep), 0.28)",
+                }}
+              >
+                <FiChevronRight size={23} />
+              </button>
+            )}
+          </div>
+
+          {/* Artwork information */}
+          <div className="mx-auto mt-7 max-w-2xl px-3 text-center">
+            <h3
+              className="
+                font-display
+                text-2xl
+                uppercase
+                tracking-[0.16em]
+                sm:text-3xl
+              "
+              style={{
+                color: "var(--paper)",
+                textShadow: "0 3px 18px rgba(var(--color-wine-dark), 0.9)",
+              }}
+            >
+              {art.title}
+            </h3>
+
+            {art.catLabel && (
+              <span
+                className="
+                  mt-4
+                  inline-block
+                  border
+                  px-4
+                  py-1.5
+                  font-caps
+                  text-[0.58rem]
+                  uppercase
+                  tracking-[0.2em]
+                "
+                style={{
+                  color: "var(--gold-bright)",
+                  borderColor: "rgba(var(--color-gold-bright), 0.5)",
+                  background: "rgba(var(--color-wine-deep), 0.25)",
+                }}
+              >
+                {art.catLabel}
+              </span>
+            )}
+
+            {art.desc && (
+              <p
+                className="
+                  mx-auto
+                  mt-4
+                  max-w-xl
+                  font-editorial
+                  text-[15px]
+                  italic
+                  leading-relaxed
+                  sm:text-base
+                "
+                style={{
+                  color: "rgba(var(--color-paper), 0.72)",
+                }}
+              >
+                {art.desc}
+              </p>
+            )}
+
+            {total > 1 && (
+              <p
+                className="
+                  mt-5
+                  font-caps
+                  text-[0.65rem]
+                  tracking-[0.22em]
+                "
+                style={{
+                  color: "rgba(var(--color-paper), 0.48)",
+                }}
+              >
+                {currentIndex + 1} / {total}
+              </p>
+            )}
+          </div>
+
+          {/* Mobile navigation */}
+          {total > 1 && (
+            <div className="mt-6 flex justify-center gap-4 sm:hidden">
+              <button
+                type="button"
+                aria-label="Previous artwork"
+                onClick={showPrevious}
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.4)",
+                  background: "rgba(var(--color-wine-deep), 0.35)",
+                }}
+              >
+                <FiChevronLeft size={21} />
+              </button>
+
+              <button
+                type="button"
+                aria-label="Next artwork"
+                onClick={showNext}
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                "
+                style={{
+                  color: "var(--paper)",
+                  border: "1px solid rgba(var(--color-gold), 0.4)",
+                  background: "rgba(var(--color-wine-deep), 0.35)",
+                }}
+              >
+                <FiChevronRight size={21} />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>,
+    document.body,
   );
 }

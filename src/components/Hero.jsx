@@ -261,7 +261,7 @@ export default function Hero() {
               mx-auto
               mt-6
               max-w-lg
-              font-editorial
+              font-sans
               text-lg
               leading-relaxed
               text-ink-soft

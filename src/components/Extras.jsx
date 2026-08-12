@@ -255,7 +255,7 @@ function IgScatter() {
 /* ---------- Final CTA banner ---------- */
 export function CTABanner({ title = 'Ready to See Your Characters Come to Life?', sub = 'Get a personalized quote in 24-48 hours.', btn = 'Get a Custom Quote', to = '/contact' }) {
   return (
-    <section className="py-16 md:py-20 text-center bg-white relative overflow-hidden">
+    <section className="py-10 md:py-20 text-center bg-white relative overflow-hidden">
       
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(100deg,transparent 30%,rgba(var(--color-gold-light),.12) 50%,transparent 70%)', backgroundSize: '200% 100%', animation: 'shine 6s linear infinite' }} />
       <div className="reveal-text relative z-[1] max-w-[720px] mx-auto px-5">

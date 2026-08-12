@@ -281,15 +281,7 @@ export const Homeartworks = [
     span: '',
     note: 'Couple Illustration  Sports Romance, 2025',
   },
-   {
-    id: 'skylinehold',
-    src: '/images/Close-up-version.webp',
-    title: 'Skyline Hold',
-    cat: 'couple',
-    catLabel: 'Couple',
-    span: '',
-    note: 'Couple Illustration  Contemporary Romance, 2025',
-  },
+  
   {
     id: 'redcarpet',
     src: '/images/couple-redcarpet.webp',
@@ -299,58 +291,47 @@ export const Homeartworks = [
     span: '',
     note: 'Couple Illustration  Contemporary Romance, 2025',
   },
-  {
-    id: 'roseline',
-    src: '/images/character-roseline.webp',
-    title: 'Roseline',
-    cat: 'character',
-    subcat: 'fullbody',
-    catLabel: 'Full Body Character',
-    span: '',
-    note: 'Full-Body Character  Contemporary, 2025',
-  },
-  {
-    id: 'waltz',
-    src: '/images/couple-oliver-cindy.webp',
-    title: 'Spotlight Waltz',
+   {
+    id: 'shanemaddie',
+    src: '/images/couple-shane-maddie.webp',
+    title: 'Storm on the Shore',
     cat: 'couple',
     catLabel: 'Couple',
     span: '',
-    note: 'Couple Illustration  Romance, 2025',
+    note: 'Couple Illustration  Contemporary Romance, 2025',
   },
-  
- {
-    id: 'goldenboy',
-    src: '/images/golden-boy.webp',
-    title: 'Golden Hour',
+{
+    id: 'wolfborn',
+    src: '/images/character-wolfborn.webp',
+    title: 'Wolfborn',
     cat: 'character',
-    subcat: 'fullbody',
-    catLabel: 'Full Body Character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
     span: '',
-    note: 'Full-Body Character  Contemporary, 2025',
+    note: 'Character Portrait  Fantasy, 2025',
+  },
+     {
+    id: 'wolfpendant',
+    src: '/images/Beta-Final-File.webp',
+    title: 'Wolf Pendant',
+    cat: 'character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
+    span: '',
+    note: 'Character Portrait  Contemporary, 2025',
   },
    {
-    id: 'swanston',
-    src: '/images/book-cover-swanston.webp',
-    title: 'The Last Lamb of Swanston St.',
-    cat: 'cover',
-    catLabel: 'Book Cover',
-    span: '',
-    note: 'Custom Book Cover  Romance Fantasy, 2025',
-  },
-  
-  {
-    id: 'elvenqueen',
-    src: '/images/Individdual-characters-female.webp',
-    title: 'Elven Queen',
+    id: 'guardian',
+    src: '/images/character-dreadlock.webp',
+    title: 'The Guardian',
     cat: 'character',
-    subcat: 'fullbody',
-    catLabel: 'Full Body Character',
+    subcat: 'portrait',
+    catLabel: 'Character Portrait',
     span: '',
-    note: 'Full-Body Character  Fantasy, 2025',
+    note: 'Character Portrait  Urban Fantasy, 2025',
   },
-
- 
+   
+  
   {
     id: 'multigirl',
     src: '/images/multigirl-book-cover.webp',
@@ -359,6 +340,24 @@ export const Homeartworks = [
     catLabel: 'Book Cover',
     span: '',
     note: 'Custom Book Cover  Urban Fantasy, 2025',
+  },
+  {
+    id: 'swanston',
+    src: '/images/book-cover-swanston.webp',
+    title: 'The Last Lamb of Swanston St.',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover  Romance Fantasy, 2025',
+  },
+  {
+    id: 'twoworlds',
+    src: '/images/Comic-cover.webp',
+    title: 'Two Worlds, One Window',
+    cat: 'cover',
+    catLabel: 'Book Cover',
+    span: '',
+    note: 'Custom Book Cover  Mystery Romance, 2025',
   },
   
 ];
@@ -461,49 +460,165 @@ export const tiers = [
 
 export const services = [
   {
-    title: 'Bust-Up Illustration', start: 'Starting at $50', img: '/images/character-dreadlock.webp',
-    summary: 'A close, expressive portrait focused on the face and shoulders.',
-    description: 'Perfect for character profiles, avatars, and getting that one unforgettable expression exactly right. Every bust-up gets full attention on the eyes, hair, and personality of your character.',
-    included: ['Fully rendered head & shoulders portrait', 'Simple color or soft-gradient background', 'High-resolution files for web & print'],
-    revisions: '2 rounds of revisions included', references: 'Character description + face/hair references (photos, Picrews, or written details all welcome)', turnaround: '1–2 weeks',
+    title: 'Book Cover Art',
+    start: '$449 – $1,199',
+    img: '/images/book-cover-swanston.webp',
+    summary: 'Custom book cover artwork created around your story, characters, and visual direction.',
+    description:
+      'A fully custom illustrated book cover built around your story and characters. Pricing depends on the complexity of the artwork, characters, environment, and overall composition.',
+    included: [
+      'Custom book cover illustration',
+      'Artwork based on your story and characters',
+      'Sketch approval stage',
+      'High-resolution final files',
+    ],
+    revisions: '2 rounds of revisions included',
+    references:
+      'Story synopsis or blurb + character references + visual references or examples you like',
+    turnaround: '3–4 weeks',
   },
-  {
-    title: 'Half-Body Illustration', start: 'Starting at $90', img: '/images/character-wolfborn.webp',
-    summary: 'Waist-up, with more detail on outfit and pose.',
-    description: 'Room for expressive hands, detailed costumes, and atmosphere. A favorite for character reveals and author newsletters.',
-    included: ['Waist-up fully rendered illustration', 'Outfit & accessory detail', 'Atmospheric lighting', 'High-resolution files'],
-    revisions: '2 rounds of revisions included', references: 'Character description + outfit references', turnaround: '2 weeks',
-  },
-  {
-    title: 'Full-Body Illustration', start: 'Starting at $130', img: '/images/character-roseline.webp',
-    summary: 'The complete character  full outfit and pose detail, with an optional simple background.',
-    description: 'Your character head to toe: stance, styling, story. Great for pin-ups, character sheets, and swag art.',
-    included: ['Full-body fully rendered illustration', 'Complete costume design', 'Simple scenic background', 'High-resolution files'],
-    revisions: '2 rounds of revisions included', references: 'Character description + outfit & pose references', turnaround: '2–3 weeks',
-  },
-  {
-    title: 'Couple Illustration', start: 'Starting at $250', img: '/images/couple-icerink.webp', featured: true,
-    summary: 'Two characters together in a romance-focused composition  my most-loved service for romance authors.',
-    description: 'The kiss, the almost-kiss, the dance, the quiet moment  I build the whole scene around the emotion between your two characters.',
-    included: ['Two fully rendered characters', 'Romance-focused composition', 'Full scene, mood & lighting', 'High-resolution files'],
-    revisions: '2 rounds of revisions included', references: 'Both character references + the moment/scene you want captured', turnaround: '2–3 weeks',
-  },
-  {
-    title: 'Book Cover Design', start: 'Starting at $200', img: '/images/book-cover-swanston.webp',
-    summary: 'Full cover composition  character art plus title typography, formatted to print & ebook specs.',
-    description: 'A complete, market-ready cover: custom illustration, title treatment that matches your genre, and files sized for KDP, IngramSpark, or your printer of choice.',
-    included: ['Full custom cover illustration', 'Title & author-name typography treatment', 'Ebook + print-ready formats', 'High-resolution files'],
-    revisions: '2 rounds of revisions included', references: 'Blurb or synopsis, character references, comp titles you love', turnaround: '3 weeks',
-  },
-  {
-    title: 'Commercial Usage Add-On', start: '+30% of artwork price', img: '/images/couple-redcarpet.webp',
-    summary: 'Licensing for commercial use of any piece above.',
-    description: 'Planning to use the art on merch, marketing, or anything beyond the cover itself? Commercial usage rights are available for an additional 30% fee based on the original artwork price.',
-    included: ['Commercial license for the commissioned piece', 'Use on merchandise, ads & promotions'],
-    revisions: '', references: 'Just tell me how you plan to use the piece', turnaround: 'Instant  added to any commission',
-  },
-]
 
+  {
+    title: 'Character Art',
+    start: '$80 – $450',
+    img: '/images/character-roseline.webp',
+    featured: true,
+    summary:
+      'Custom character illustrations ranging from bust-up portraits to full-body and couple artwork.',
+    description:
+      'Bring your characters to life with custom artwork tailored to their personality, appearance, outfits, and story. Choose from bust-up, half-body, full-body, or couple illustrations.',
+    included: [
+      'Bust-up: $80 – $120',
+      'Half body: $130 – $180',
+      'Full body: $190 – $260',
+      'Couple illustration: $360 – $450',
+    ],
+    revisions: '2 rounds of revisions included',
+    references:
+      'Character description + face, hair, outfit, pose, or relationship references',
+    turnaround: '1–3 weeks',
+  },
+
+  {
+    title: 'Scene Illustration',
+    start: '$270 – $500',
+    img: '/images/couple-icerink.webp',
+    summary:
+      'A fully illustrated scene featuring one or multiple characters in a story-driven environment.',
+    description:
+      'Capture an important moment from your story with a detailed illustrated scene. Pricing varies depending on the number of characters, environment, lighting, and overall complexity.',
+    included: [
+      'Full illustrated scene',
+      'One or multiple characters',
+      'Character and environment artwork',
+      'High-resolution final files',
+    ],
+    revisions: '2 rounds of revisions included',
+    references:
+      'Scene description + character references + environment or mood references',
+    turnaround: '2–4 weeks',
+  },
+
+  {
+    title: 'Comic Illustration',
+    start: '$150 – $400',
+    img: '/images/character-dreadlock.webp',
+    summary:
+      'Professional comic pages available in black and white or full colour.',
+    description:
+      'Turn your story into polished comic artwork with custom illustrated pages. Choose between black and white or coloured pages depending on your project and visual direction.',
+    included: [
+      'Black and white page: $150 – $250',
+      'Coloured page: $250 – $400',
+      'Custom quotes for longer projects',
+      'Sketch approval stage',
+    ],
+    revisions: '2 rounds of revisions included',
+    references:
+      'Script or page breakdown + character references + visual style references',
+    turnaround: '1–2 weeks per page',
+  },
+
+  {
+    title: 'Animation',
+    start: '$400 – $1,000',
+    img: '/images/couple-redcarpet.webp',
+    summary:
+      'Short custom animations designed around your characters, artwork, or story.',
+    description:
+      'Bring your artwork to life with short custom animations. Pricing depends on animation length, movement, number of characters, scenes, and overall complexity.',
+    included: [
+      '5-second animation: $400 – $600',
+      '10-second animation: $650 – $1,000',
+      'Custom movement and scene animation',
+      'High-resolution final files',
+    ],
+    revisions: '2 rounds of revisions included',
+    references:
+      'Character or artwork references + animation concept + movement references',
+    turnaround: '3–5 weeks',
+  },
+
+  {
+    title: 'Social Media Content',
+    start: '$60 – $2,500',
+    img: '/images/couple-redcarpet.webp',
+    summary:
+      'Custom social media artwork and ongoing content support for authors, brands, and creative projects.',
+    description:
+      'From a single promotional post to complete monthly account handling, create consistent visual content for your social media presence.',
+    included: [
+      'Single social media post: $60 – $120',
+      '7-day campaign: $700 – $1,200',
+      'Monthly handling: $1,300 – $2,500',
+      'Posts, stories, reels and account handling',
+    ],
+    revisions: 'Revisions depend on the selected package',
+    references:
+      'Brand guidelines + content requirements + platform and campaign details',
+    turnaround: 'Depends on selected package',
+  },
+
+  {
+    title: 'Book Graphics',
+    start: '$50 – $130',
+    img: '/images/book-cover-swanston.webp',
+    summary:
+      'Custom interior graphics and decorative illustrations designed to complement your book.',
+    description:
+      'Add visual elements to your book with custom interior graphics, decorative illustrations, and artwork designed to match the tone and style of your story.',
+    included: [
+      'Interior book graphics',
+      'Decorative illustrations and visual elements',
+      'Custom graphics based on the book style',
+      'High-resolution final files',
+    ],
+    revisions: '2 rounds of revisions included',
+    references:
+      'Book style + manuscript or relevant pages + visual references',
+    turnaround: '1–2 weeks',
+  },
+
+  {
+    title: 'Merch Design & Production',
+    start: 'Custom Quote',
+    img: '/images/couple-redcarpet.webp',
+    summary:
+      'Custom merchandise artwork prepared for production across different products and quantities.',
+    description:
+      'Create artwork for merchandise and prepare the designs for production. Pricing is customized according to the product type, artwork requirements, and production quantity.',
+    included: [
+      'Custom merchandise artwork',
+      'Design preparation for production',
+      'Pricing based on product type',
+      'Pricing based on quantity',
+    ],
+    revisions: 'Revisions depend on the project scope',
+    references:
+      'Product type + artwork requirements + quantity + production specifications',
+    turnaround: 'Depends on project scope',
+  },
+];
 export const faqs = [
   { q: 'How long does a commission take?', a: 'Usually 2-3 weeks depending on complexity and current queue.' },
   { q: 'Do I need to pay upfront?', a: 'Full payment or partial upfront payment may be required before starting.' },

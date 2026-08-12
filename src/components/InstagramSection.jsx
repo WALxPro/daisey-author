@@ -45,7 +45,7 @@ function InstagramSection() {
         overflow-hidden
         border-y
         border-gold/20
-        py-16
+        py-10
         text-paper
         md:py-28
       "

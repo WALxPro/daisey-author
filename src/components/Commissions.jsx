@@ -96,7 +96,7 @@ function Commissions() {
   return (
     <section
       id="commissions"
-      className="commissions-section plum-panel relative overflow-hidden px-5 py-20 sm:px-10 lg:px-16 lg:py-28"
+      className="commissions-section plum-panel relative overflow-hidden px-5 py-10 sm:px-10 lg:px-16 lg:py-28"
     >
       <header className="reveal-text mx-auto max-w-2xl text-center">
         <p

@@ -50,12 +50,12 @@ const socials = [
   {
     icon: FaInstagram,
     label: "Instagram",
-    href: "https://instagram.com/YOUR_USERNAME",
+    href: "https://www.instagram.com/daisyy_sketches/",
   },
   {
     icon: PiPaintBrushBroadFill,
     label: "Cara",
-    href: "https://cara.app/YOUR_USERNAME",
+    href: "https://cara.app/daisyyartist",
   },
   {
     icon: FaRedditAlien,
@@ -65,12 +65,12 @@ const socials = [
   {
     icon: FaThreads,
     label: "Threads",
-    href: "https://threads.net/@YOUR_USERNAME",
+    href: "https://www.threads.com/@daisyy_sketches?xmt=AQG0k_bgb8Y_8CdOq0ti6zARccG2AynC73iUVbTxPluXLQ8",
   },
   {
     icon: SiSubstack,
     label: "Substack",
-    href: "https://YOUR_USERNAME.substack.com",
+    href: "https://substack.com/@daisyysketches2",
   },
 ];
 

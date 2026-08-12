@@ -13,7 +13,7 @@ export default function TestimonialsPage() {
   return (
     <>
       <PageHero eyebrow="Testimonials" title="Kind Words From" shimmerWord="Clients" script="Nothing means more than hearing your characters came to life the way you imagined." />
-      <section className="py-16 md:py-24 bg-paper px-5 md:px-8">
+      <section className="py-10 md:py-24 bg-paper px-5 md:px-8">
         <div className="flex flex-wrap justify-center gap-2.5 mb-10">
           {testimonialFilters.map((f) => (
             <button key={f.key} onClick={() => setFilter(f.key)}

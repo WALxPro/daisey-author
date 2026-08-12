@@ -82,7 +82,7 @@ export default function Home() {
           className="
             aurora
             px-5
-            py-20
+            py-10
             text-center
             md:py-28
           "
