@@ -7,24 +7,24 @@ import MobileReviewCarousel from "./MobileReviewCarousel";
 const videos = [
   {
     id: 1,
-    name: "Daisey",
-    handle: "@daisey_sketches",
+    name: "Daisyy",
+    handle: "@daisyy_sketches",
     publicId: "daisey_1_cyxxk6",
     quote:
       "Every commission felt handled with real care the detail blew me away.",
   },
   {
     id: 2,
-    name: "Daisey",
-    handle: "@daisey_sketches",
+    name: "Daisyy",
+    handle: "@daisyy_sketches",
     publicId: "daisey_2_vaoony",
     quote:
       "Communication was seamless from sketch to final frame. Ten out of ten.",
   },
   {
     id: 3,
-    name: "Daisey",
-    handle: "@daisey_sketches",
+    name: "Daisyy",
+    handle: "@daisyy_sketches",
     publicId: "daisey_3_frzmkh",
     quote: "The piece exceeded everything I pictured. I'll be back for more.",
   },
