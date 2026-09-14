@@ -63,10 +63,10 @@ export default function TestimonialSlider({ items = testimonials, dark = false }
           <blockquote className={`ts-quote font-serif italic text-lg md:text-2xl leading-snug mt-3 ${dark ? 'text-[var(--paper)]' : 'text-ink'}`}>
             "{t.quote}"
           </blockquote>
-          <figcaption className="mt-4">
+          {/* <figcaption className="mt-4">
             <span className={`font-caps text-[.66rem] tracking-[.22em] uppercase ${dark ? 'text-goldlight' : 'text-burgundy'}`}>{t.name}</span>
             <span className={`ml-2 text-[.8rem] ${dark ? 'text-creamdim' : 'text-inksoft'}`}>{t.handle}</span>
-          </figcaption>
+          </figcaption> */}
         </div>
       </figure>
 
