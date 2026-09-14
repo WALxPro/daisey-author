@@ -417,7 +417,7 @@ export function MyJourneySection() {
                     text-rose
                   "
                 >
-                  Daisy
+                  Daisyy
                 </span>
               </div>
 

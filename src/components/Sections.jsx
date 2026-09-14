@@ -442,7 +442,7 @@ export function About() {
               sm:leading-[1.6]
             "
           >
-            I'm Daisy, a fantasy and romance illustrator passionate about
+            I'm Daisyy, a fantasy and romance illustrator passionate about
             turning characters, emotions, and stories into memorable visual art.
             Every piece I create is carefully hand-drawn with attention to
             detail, ensuring that each character feels authentic, expressive,
