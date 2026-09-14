@@ -151,8 +151,8 @@ const chips = [
 export function About() {
   const reducedMotion = useReducedMotion();
 
-  const [commissionRef, commissions] = useCountUp(500);
-  const [authorsRef, authors] = useCountUp(1000);
+  const [commissionRef, commissions] = useCountUp(100);
+  const [authorsRef, authors] = useCountUp(100);
 
   return (
     <section
@@ -503,7 +503,7 @@ export function About() {
                   text-ink-soft
                 "
               >
-                Commissions
+                followers
               </span>
             </div>
 
